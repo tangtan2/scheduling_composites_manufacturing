@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="cplex_lib">
+    <CLASSES />
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/resources/cplex/cplex/bin/x86-64_osx" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>

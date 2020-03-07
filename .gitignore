@@ -1,0 +1,5 @@
+*temp/
+*archive/
+*.DS_Store
+*resources/
+*out/
