@@ -1,1 +1,1 @@
-steps/configuration to run experiments
+steps/configuration to Run experiments

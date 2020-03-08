@@ -10,11 +10,10 @@ public class BasicLBBD {
     public static void main(String[] args) {
 
         // Get settings from json file
-        // TBD: Parse JSON information
-        String filepath = "";
-        String sumfile = "";
-        String interfile = "";
-        int pi = 0;
+        String filepath = args[0];
+        String sumfile = args[1];
+        String interfile = args[2];
+        int pi = Integer.parseInt(args[3]);
 
         // Make data object and import raw data
         Data data = new Data(filepath, sumfile, pi);
@@ -753,7 +752,7 @@ public class BasicLBBD {
                             subcp.getEnd(t.demouldVar()));
                 }
                 for (AutoBatchS a : b2objs) {
-                    a.schedule(subcp.getStart(a.autoVar()),
+                    a.autoSched(subcp.getStart(a.autoVar()),
                             subcp.getEnd(a.autoVar()));
                 }
 

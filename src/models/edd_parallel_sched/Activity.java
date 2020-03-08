@@ -1,5 +1,8 @@
-package models.edd_serial_sched;
-import java.util.*;
+package models.edd_parallel_sched;
+import common.model_helpers.AutoBatch;
+import common.model_helpers.ToolBatch;
+
+import java.util.ArrayList;
 
 public class Activity {
 

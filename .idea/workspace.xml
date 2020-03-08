@@ -1,7 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a88c9d62-7ca9-4c87-ad6f-40ed9cfd1acb" name="Default Changelist" comment="" />
+    <list default="true" id="a88c9d62-7ca9-4c87-ad6f-40ed9cfd1acb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Run.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/instance_generation/GenInstances.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/solution_checker/SolutionCheck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/cluster_pack/Cluster.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/cluster_pack/Point.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/edd_parallel_sched/Activity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/edd_parallel_sched/AutoBatchA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/edd_parallel_sched/Horizon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/edd_parallel_sched/LabourH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/edd_parallel_sched/MachineH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/edd_parallel_sched/ToolBatchA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/edd_parallel_sched/ToolH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/genetic_sched/ActivityG.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/genetic_sched/AutoBatchA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/genetic_sched/Horizon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/genetic_sched/Individual.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/genetic_sched/LabourH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/genetic_sched/MachineH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/genetic_sched/ToolBatchA.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/genetic_sched/ToolH.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/run_experiments.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/run_experiments.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/model_helpers/AutoBatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/model_helpers/AutoBatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/model_helpers/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/model_helpers/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/basic_cp_pack/BasicCPPack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/basic_cp_pack/BasicCPPack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/basic_cp_sched/BasicCPSched.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/basic_cp_sched/BasicCPSched.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/basic_edd_pack/BasicEDDPack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/basic_edd_pack/BasicEDDPack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/basic_lbbd/BasicLBBD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/basic_lbbd/BasicLBBD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/basic_mip_pack/BasicMIPPack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/basic_mip_pack/BasicMIPPack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/cluster_pack/ClusterPack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/cluster_pack/ClusterPack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/edd_parallel_sched/EDDParallelSched.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/edd_parallel_sched/EDDParallelSched.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/edd_serial_sched/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/edd_serial_sched/Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/edd_serial_sched/AutoBatchA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/edd_serial_sched/AutoBatchA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/edd_serial_sched/EDDSerialSched.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/edd_serial_sched/EDDSerialSched.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/edd_serial_sched/ToolBatchA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/edd_serial_sched/ToolBatchA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/genetic_sched/GeneticSched.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/genetic_sched/GeneticSched.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/relaxed_cp_sched/RelaxedCPSched.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/relaxed_cp_sched/RelaxedCPSched.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,17 +56,25 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1YlXrhODVf3F3oyZyKjIFc8UVNk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="13" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/models/basic_lbbd" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -39,6 +86,15 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/models/basic_lbbd" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Run" />
+      <module name="scheduling_composites_manufacturing" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SbtLocalSettings">
     <option name="projectSyncType">
@@ -62,19 +118,66 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="609" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583637093527">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state x="609" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.959@0.23.1680.959" timestamp="1583637093527" />
     <state x="1073" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1583596211526">
       <screen x="0" y="23" width="1680" height="959" />
     </state>
     <state x="1073" y="225" key="#com.intellij.ide.util.MemberChooser/0.23.1680.959@0.23.1680.959" timestamp="1583596211526" />
+    <state x="882" y="293" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1583637091619">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state x="882" y="293" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1680.959@0.23.1680.959" timestamp="1583637091619" />
     <state x="678" y="203" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1583598759377">
       <screen x="0" y="23" width="1680" height="959" />
     </state>
     <state x="678" y="203" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.23.1680.959@0.23.1680.959" timestamp="1583598759377" />
+    <state x="393" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1583627167814">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state x="393" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1680.959@0.23.1680.959" timestamp="1583627167814" />
     <state x="578" y="275" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1583598760920">
       <screen x="0" y="23" width="1680" height="959" />
     </state>
     <state x="578" y="275" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.23.1680.959@0.23.1680.959" timestamp="1583598760920" />
+    <state width="798" height="318" key="GridCell.Tab.0.bottom" timestamp="1583637165922">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state width="798" height="318" key="GridCell.Tab.0.bottom/0.23.1680.959@0.23.1680.959" timestamp="1583637165922" />
+    <state width="798" height="318" key="GridCell.Tab.0.center" timestamp="1583637165922">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state width="798" height="318" key="GridCell.Tab.0.center/0.23.1680.959@0.23.1680.959" timestamp="1583637165922" />
+    <state width="798" height="318" key="GridCell.Tab.0.left" timestamp="1583637165921">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state width="798" height="318" key="GridCell.Tab.0.left/0.23.1680.959@0.23.1680.959" timestamp="1583637165921" />
+    <state width="798" height="318" key="GridCell.Tab.0.right" timestamp="1583637165922">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state width="798" height="318" key="GridCell.Tab.0.right/0.23.1680.959@0.23.1680.959" timestamp="1583637165922" />
+    <state width="798" height="318" key="GridCell.Tab.1.bottom" timestamp="1583637165923">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state width="798" height="318" key="GridCell.Tab.1.bottom/0.23.1680.959@0.23.1680.959" timestamp="1583637165923" />
+    <state width="798" height="318" key="GridCell.Tab.1.center" timestamp="1583637165923">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state width="798" height="318" key="GridCell.Tab.1.center/0.23.1680.959@0.23.1680.959" timestamp="1583637165923" />
+    <state width="798" height="318" key="GridCell.Tab.1.left" timestamp="1583637165923">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state width="798" height="318" key="GridCell.Tab.1.left/0.23.1680.959@0.23.1680.959" timestamp="1583637165923" />
+    <state width="798" height="318" key="GridCell.Tab.1.right" timestamp="1583637165923">
+      <screen x="0" y="23" width="1680" height="959" />
+    </state>
+    <state width="798" height="318" key="GridCell.Tab.1.right/0.23.1680.959@0.23.1680.959" timestamp="1583637165923" />
     <state x="328" y="84" key="SettingsEditor" timestamp="1583598763782">
       <screen x="0" y="23" width="1680" height="959" />
     </state>
@@ -83,9 +186,20 @@
       <screen x="0" y="23" width="1680" height="959" />
     </state>
     <state x="217" y="125" key="new project wizard/0.23.1680.959@0.23.1680.959" timestamp="1583518429736" />
-    <state x="925" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1583547503289">
+    <state x="925" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1583633064785">
       <screen x="0" y="23" width="1680" height="959" />
     </state>
-    <state x="925" y="233" width="670" height="676" key="search.everywhere.popup/0.23.1680.959@0.23.1680.959" timestamp="1583547503289" />
+    <state x="925" y="233" width="670" height="676" key="search.everywhere.popup/0.23.1680.959@0.23.1680.959" timestamp="1583633064785" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/models/cluster_pack/Cluster.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

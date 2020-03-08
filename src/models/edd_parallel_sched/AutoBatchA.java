@@ -1,4 +1,4 @@
-package models.edd_serial_sched;
+package models.edd_parallel_sched;
 import common.model_helpers.*;
 import java.util.ArrayList;
 

@@ -60,7 +60,7 @@ public class AutoBatch {
     }
 
     // Schedule
-    public void schedule(int as, int ae) {
+    public void autoSched(int as, int ae) {
 
         this.autoStart = as;
         this.autoEnd = ae;

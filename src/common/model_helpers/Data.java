@@ -19,7 +19,6 @@ public class Data {
     public int numtopbatch;
     public int numb1;
     public int numb2;
-    public int stepsperjob;
     public int numbottom;
     public int numtop;
     public int numtoptobottom;
@@ -100,9 +99,9 @@ public class Data {
             Sheet sheet = workbook.getSheet("single_param");
             this.numjob = (int) sheet.getRow(1).getCell(1).getNumericCellValue();
             this.totjobs = (int) sheet.getRow(2).getCell(1).getNumericCellValue();
-            this.numb1 = (int) sheet.getRow(3).getCell(1).getNumericCellValue();
-            this.numb2 = (int) sheet.getRow(4).getCell(1).getNumericCellValue();
-            this.stepsperjob = (int) sheet.getRow(5).getCell(1).getNumericCellValue();
+            this.numtopbatch = (int) sheet.getRow(3).getCell(1).getNumericCellValue();
+            this.numb1 = (int) sheet.getRow(4).getCell(1).getNumericCellValue();
+            this.numb2 = (int) sheet.getRow(5).getCell(1).getNumericCellValue();
             this.numbottom = (int) sheet.getRow(6).getCell(1).getNumericCellValue();
             this.numtop = (int) sheet.getRow(7).getCell(1).getNumericCellValue();
             this.numtoptobottom = (int) sheet.getRow(8).getCell(1).getNumericCellValue();
@@ -116,7 +115,6 @@ public class Data {
             this.numdistinctauto = (int) sheet.getRow(16).getCell(1).getNumericCellValue();
             this.horizon = (int) sheet.getRow(17).getCell(1).getNumericCellValue();
             this.waittime = (int) sheet.getRow(18).getCell(1).getNumericCellValue();
-            this.numtopbatch = (int) sheet.getRow(21).getCell(1).getNumericCellValue();
             sheet = workbook.getSheet("order_jobs");
             this.jobname = new String[this.numjob];
             this.dj = new int[this.numjob];
@@ -133,12 +131,12 @@ public class Data {
                 this.rspjoborder[i] = (int) sheet.getRow(i + 1).getCell(6).getNumericCellValue();
             }
             sheet = workbook.getSheet("jobs");
-            this.jobsteps = new String[this.numjob][this.stepsperjob];
-            this.jobsteptimes = new int[this.numjob][this.stepsperjob];
+            this.jobsteps = new String[this.numjob][4];
+            this.jobsteptimes = new int[this.numjob][4];
             for (int i = 0; i < this.numjob; i++) {
                 for (int j = 0; j < this.totjobs; j++) {
                     if (Integer.toString((int) sheet.getRow(j + 1).getCell(0).getNumericCellValue()).equals(this.jobname[i])) {
-                        for (int k = 0; k < this.stepsperjob; k++) {
+                        for (int k = 0; k < 4; k++) {
                             this.jobsteps[i][k] = sheet.getRow(j + 1).getCell(3 + 2 * k).getStringCellValue();
                             if (sheet.getRow(j + 1).getCell(3 + 2 * k).getStringCellValue().contains("Autoclave")) {
                                 this.jobsteptimes[i][k] = 0;
@@ -295,9 +293,9 @@ public class Data {
 
             Workbook workbook = new XSSFWorkbook(this.filepath);
             Sheet sheet = workbook.getSheet("single_param");
-            this.numb1_new = (int) sheet.getRow(3).getCell(1).getNumericCellValue();
-            this.numb2_new = (int) sheet.getRow(4).getCell(1).getNumericCellValue();
-            this.numb0_new = (int) sheet.getRow(21).getCell(1).getNumericCellValue();
+            this.numb0_new = (int) sheet.getRow(3).getCell(1).getNumericCellValue();
+            this.numb1_new = (int) sheet.getRow(4).getCell(1).getNumericCellValue();
+            this.numb2_new = (int) sheet.getRow(5).getCell(1).getNumericCellValue();
             sheet = workbook.getSheet("results");
             this.jobtob0 = new int[this.numjob];
             this.jobtotoptool = new String[this.numjob];
@@ -393,47 +391,11 @@ public class Data {
         try {
 
             XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(new FileInputStream(this.filepath));
-            XSSFSheet sheet = workbook.getSheet("results");
-            sheet.createRow(0).createCell(3).setCellValue("job");
-            sheet.createRow(0).createCell(4).setCellValue("job_to_b0");
-            sheet.createRow(0).createCell(5).setCellValue("job_top_tool");
-            sheet.createRow(0).createCell(6).setCellValue("job_prep_start");
-            sheet.createRow(0).createCell(7).setCellValue("job_prep_end");
-            sheet.createRow(0).createCell(8).setCellValue("job_layup_start");
-            sheet.createRow(0).createCell(9).setCellValue("job_layup_end");
-            sheet.createRow(0).createCell(10).setCellValue("job_auto_start");
-            sheet.createRow(0).createCell(11).setCellValue("job_auto_end");
-            sheet.createRow(0).createCell(12).setCellValue("job_demould_start");
-            sheet.createRow(0).createCell(13).setCellValue("job_demould_end");
-            sheet.createRow(0).createCell(14).setCellValue("job_tardiness");
-            sheet.createRow(0).createCell(16).setCellValue("b0");
-            sheet.createRow(0).createCell(17).setCellValue("b0_to_b1");
-            sheet.createRow(0).createCell(18).setCellValue("b0_top_tool");
-            sheet.createRow(0).createCell(20).setCellValue("b1");
-            sheet.createRow(0).createCell(21).setCellValue("b1_to_b2");
-            sheet.createRow(0).createCell(22).setCellValue("b1_bottom_tool");
-            sheet.createRow(0).createCell(23).setCellValue("b1_size");
-            sheet.createRow(0).createCell(24).setCellValue("b1_prep_start");
-            sheet.createRow(0).createCell(25).setCellValue("b1_prep_end");
-            sheet.createRow(0).createCell(26).setCellValue("b1_prep_labour");
-            sheet.createRow(0).createCell(27).setCellValue("b1_prep_labour_qty");
-            sheet.createRow(0).createCell(28).setCellValue("b1_prep_machine");
-            sheet.createRow(0).createCell(29).setCellValue("b1_layup_start");
-            sheet.createRow(0).createCell(30).setCellValue("b1_layup_end");
-            sheet.createRow(0).createCell(31).setCellValue("b1_layup_labour");
-            sheet.createRow(0).createCell(32).setCellValue("b1_layup_labour_qty");
-            sheet.createRow(0).createCell(33).setCellValue("b1_layup_machine");
-            sheet.createRow(0).createCell(34).setCellValue("b1_demould_start");
-            sheet.createRow(0).createCell(35).setCellValue("b1_demould_end");
-            sheet.createRow(0).createCell(36).setCellValue("b1_demould_labour");
-            sheet.createRow(0).createCell(37).setCellValue("b1_demould_labour_qty");
-            sheet.createRow(0).createCell(38).setCellValue("b1_demould_machine");
-            sheet.createRow(0).createCell(40).setCellValue("b2");
-            sheet.createRow(0).createCell(41).setCellValue("b2_capacity");
-            sheet.createRow(0).createCell(42).setCellValue("b2_tools_size");
-            sheet.createRow(0).createCell(43).setCellValue("b2_auto_start");
-            sheet.createRow(0).createCell(44).setCellValue("b2_auto_end");
-            sheet.createRow(0).createCell(45).setCellValue("b2_auto_mchine");
+            XSSFSheet sheet = workbook.getSheet("single_param");
+            sheet.getRow(3).getCell(1).setCellValue(soln.b0s().size());
+            sheet.getRow(4).getCell(1).setCellValue(soln.b1s().size());
+            sheet.getRow(5).getCell(1).setCellValue(soln.b2s().size());
+            sheet = workbook.getSheet("results");
             for (int i = 0; i < soln.numJob(); i++) {
                 sheet.createRow(i + 1).createCell(3).setCellValue(i);
                 sheet.getRow(i + 1).createCell(4).setCellValue(soln.b0s().indexOf(soln.jobs().get(i).b0()));
@@ -525,47 +487,11 @@ public class Data {
         try {
 
             XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(new FileInputStream(this.filepath));
-            XSSFSheet sheet = workbook.getSheet("results");
-            sheet.createRow(0).createCell(3).setCellValue("job");
-            sheet.createRow(0).createCell(4).setCellValue("job_to_b0");
-            sheet.createRow(0).createCell(5).setCellValue("job_top_tool");
-            sheet.createRow(0).createCell(6).setCellValue("job_prep_start");
-            sheet.createRow(0).createCell(7).setCellValue("job_prep_end");
-            sheet.createRow(0).createCell(8).setCellValue("job_layup_start");
-            sheet.createRow(0).createCell(9).setCellValue("job_layup_end");
-            sheet.createRow(0).createCell(10).setCellValue("job_auto_start");
-            sheet.createRow(0).createCell(11).setCellValue("job_auto_end");
-            sheet.createRow(0).createCell(12).setCellValue("job_demould_start");
-            sheet.createRow(0).createCell(13).setCellValue("job_demould_end");
-            sheet.createRow(0).createCell(14).setCellValue("job_tardiness");
-            sheet.createRow(0).createCell(16).setCellValue("b0");
-            sheet.createRow(0).createCell(17).setCellValue("b0_to_b1");
-            sheet.createRow(0).createCell(18).setCellValue("b0_top_tool");
-            sheet.createRow(0).createCell(20).setCellValue("b1");
-            sheet.createRow(0).createCell(21).setCellValue("b1_to_b2");
-            sheet.createRow(0).createCell(22).setCellValue("b1_bottom_tool");
-            sheet.createRow(0).createCell(23).setCellValue("b1_size");
-            sheet.createRow(0).createCell(24).setCellValue("b1_prep_start");
-            sheet.createRow(0).createCell(25).setCellValue("b1_prep_end");
-            sheet.createRow(0).createCell(26).setCellValue("b1_prep_labour");
-            sheet.createRow(0).createCell(27).setCellValue("b1_prep_labour_qty");
-            sheet.createRow(0).createCell(28).setCellValue("b1_prep_machine");
-            sheet.createRow(0).createCell(29).setCellValue("b1_layup_start");
-            sheet.createRow(0).createCell(30).setCellValue("b1_layup_end");
-            sheet.createRow(0).createCell(31).setCellValue("b1_layup_labour");
-            sheet.createRow(0).createCell(32).setCellValue("b1_layup_labour_qty");
-            sheet.createRow(0).createCell(33).setCellValue("b1_layup_machine");
-            sheet.createRow(0).createCell(34).setCellValue("b1_demould_start");
-            sheet.createRow(0).createCell(35).setCellValue("b1_demould_end");
-            sheet.createRow(0).createCell(36).setCellValue("b1_demould_labour");
-            sheet.createRow(0).createCell(37).setCellValue("b1_demould_labour_qty");
-            sheet.createRow(0).createCell(38).setCellValue("b1_demould_machine");
-            sheet.createRow(0).createCell(40).setCellValue("b2");
-            sheet.createRow(0).createCell(41).setCellValue("b2_capacity");
-            sheet.createRow(0).createCell(42).setCellValue("b2_tools_size");
-            sheet.createRow(0).createCell(43).setCellValue("b2_auto_start");
-            sheet.createRow(0).createCell(44).setCellValue("b2_auto_end");
-            sheet.createRow(0).createCell(45).setCellValue("b2_auto_mchine");
+            XSSFSheet sheet = workbook.getSheet("single_param");
+            sheet.getRow(3).getCell(1).setCellValue(soln.b0s().size());
+            sheet.getRow(4).getCell(1).setCellValue(soln.b1s().size());
+            sheet.getRow(5).getCell(1).setCellValue(soln.b2s().size());
+            sheet = workbook.getSheet("results");
             for (int i = 0; i < soln.numJob(); i++) {
                 sheet.createRow(i + 1).createCell(3).setCellValue(i);
                 sheet.getRow(i + 1).createCell(4).setCellValue(soln.b0s().indexOf(soln.jobs().get(i).b0()));
@@ -615,9 +541,6 @@ public class Data {
                 sheet.getRow(i + 1).createCell(45).setCellValue(soln.b2s().get(i).autoMachine().name());
             }
             sheet = workbook.getSheet("quality_over_time");
-            sheet.createRow(0).createCell(0).setCellValue("instance");
-            sheet.getRow(0).createCell(1).setCellValue("quality");
-            sheet.getRow(0).createCell(2).setCellValue("time");
             for (int i = 0; i < objs.size(); i++) {
                 sheet.createRow(i + 1).createCell(0).setCellValue(i + 1);
                 sheet.getRow(i + 1).createCell(1).setCellValue(objs.get(i));
@@ -686,7 +609,7 @@ public class Data {
         try {
 
             XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(new FileInputStream(this.sumfile));
-            XSSFSheet sheet = workbook.getSheet("current_exp");
+            XSSFSheet sheet = workbook.getSheet("current_exp_sched");
             sheet.createRow(this.probleminstance).createCell(0).setCellValue(this.probleminstance);
             sheet.getRow(this.probleminstance).createCell(1).setCellValue(soln.numJob());
             sheet.getRow(this.probleminstance).createCell(2).setCellValue(soln.status());

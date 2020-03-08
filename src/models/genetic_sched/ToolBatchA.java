@@ -1,4 +1,4 @@
-package models.edd_serial_sched;
+package models.genetic_sched;
 import common.model_helpers.*;
 
 public class ToolBatchA extends ToolBatch {
@@ -6,9 +6,9 @@ public class ToolBatchA extends ToolBatch {
     // Private class variables
     private AutoBatchA b2;
     private ToolH bottomTool;
-    private Activity prepAct;
-    private Activity layupAct;
-    private Activity demouldAct;
+    private ActivityG prepAct;
+    private ActivityG layupAct;
+    private ActivityG demouldAct;
     private MachineH prepMachine;
     private MachineH layupMachine;
     private MachineH demouldMachine;
@@ -18,6 +18,7 @@ public class ToolBatchA extends ToolBatch {
     private int prepQty;
     private int layupQty;
     private int demouldQty;
+    private int due = (int) Double.POSITIVE_INFINITY;
 
     // Constructor
     public ToolBatchA(ToolH bottom) {
@@ -28,20 +29,26 @@ public class ToolBatchA extends ToolBatch {
     }
 
     // Create activities
-    public void createActivities() {
+    public int createActivities(int index) {
 
-        this.prepAct = new Activity(this.jobs().get(0).steps()[0],
-                this.jobs().stream().map(Job::stepTimes).map(x -> x[0]).reduce(0, Integer::sum),
-                this);
-        this.layupAct = new Activity(this.jobs().get(0).steps()[1],
-                this.jobs().stream().map(Job::stepTimes).map(x -> x[1]).reduce(0, Integer::sum),
-                this);
+        for (Job j : this.jobs()) {
+            if (j.due() < this.due) {
+                this.due = j.due();
+            }
+        }
+        this.prepAct = new ActivityG(this.jobs().get(0).steps()[0],
+                index++, 0, this.due,
+                this.jobs().stream().map(Job::stepTimes).map(x -> x[0]).reduce(0, Integer::sum));
+        this.layupAct = new ActivityG(this.jobs().get(0).steps()[1],
+                index++, 1, this.due,
+                this.jobs().stream().map(Job::stepTimes).map(x -> x[1]).reduce(0, Integer::sum));
         this.layupAct.addPred(prepAct);
-        this.demouldAct = new Activity(this.jobs().get(0).steps()[3],
-                this.jobs().stream().map(Job::stepTimes).map(x -> x[3]).reduce(0, Integer::sum),
-                this);
+        this.demouldAct = new ActivityG(this.jobs().get(0).steps()[3],
+                index++, 3, this.due,
+                this.jobs().stream().map(Job::stepTimes).map(x -> x[3]).reduce(0, Integer::sum));
         this.demouldAct.addPred(prepAct);
         this.demouldAct.addPred(layupAct);
+        return index;
 
     }
 
@@ -122,9 +129,9 @@ public class ToolBatchA extends ToolBatch {
     // Accessors
     public AutoBatchA b2A() {return this.b2;}
     public ToolH bottomToolH() {return this.bottomTool;}
-    public Activity prepAct() {return this.prepAct;}
-    public Activity layupAct() {return this.layupAct;}
-    public Activity demouldAct() {return this.demouldAct;}
+    public ActivityG prepAct() {return this.prepAct;}
+    public ActivityG layupAct() {return this.layupAct;}
+    public ActivityG demouldAct() {return this.demouldAct;}
     public MachineH prepMachineH() {return this.prepMachine;}
     public MachineH layupMachineH() {return this.layupMachine;}
     public MachineH demouldMachineH() {return this.demouldMachine;}
