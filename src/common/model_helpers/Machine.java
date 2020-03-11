@@ -6,6 +6,7 @@ public class Machine {
     // Private class variables
     private String name;
     private int[] qtyPerShift;
+    private int capacity;
     private int[] shiftStart;
     private int[] shiftEnd;
     private IloCumulFunctionExpr cumul;
@@ -17,6 +18,15 @@ public class Machine {
         this.qtyPerShift = qty;
         this.shiftStart = start;
         this.shiftEnd = end;
+
+    }
+    public Machine(String name, int[] qty, int[] start, int[] end, int capacity) {
+
+        this.name = name;
+        this.qtyPerShift = qty;
+        this.shiftStart = start;
+        this.shiftEnd = end;
+        this.capacity = capacity;
 
     }
 
@@ -33,5 +43,6 @@ public class Machine {
     public int[] shiftStart() {return this.shiftStart;}
     public int[] shiftEnd() {return this.shiftEnd;}
     public IloCumulFunctionExpr cumul() {return this.cumul;}
+    public int capacity() {return this.capacity;}
 
 }

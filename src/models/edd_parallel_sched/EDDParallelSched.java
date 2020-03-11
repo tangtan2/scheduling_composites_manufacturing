@@ -2,19 +2,33 @@ package models.edd_parallel_sched;
 import common.model_helpers.*;
 import java.util.*;
 import java.io.*;
-import org.apache.commons.lang3.SerializationUtils;
 
 public class EDDParallelSched {
 
-    public static ArrayList<AutoBatchA> parallel(ArrayList<AutoBatchA> b2objs) {
+    public static ArrayList<Activity> parallel(ArrayList<AutoBatchA> b2objs) {
 
         // Sort autoclave batches by due date
         ArrayList<AutoBatchA> iterate = new ArrayList<>(b2objs);
         iterate.sort(Comparator.comparing(AutoBatchA::due));
 
+        // Reset activities
+        int activityIt = 0;
+        for (AutoBatchA a : b2objs) {
+            activityIt = a.createActivity(activityIt);
+            for (ToolBatchA t : a.b1sA()) {
+                activityIt = t.createActivities(activityIt);
+                t.setAutoBatchA(a);
+                t.prepAct().setBatches(t, a);
+                t.layupAct().setBatches(t, a);
+                t.demouldAct().setBatches(t, a);
+            }
+            a.autoAct().setBatches(a);
+            a.linkAct();
+        }
+
         // Reset horizons
         for (AutoBatchA a : b2objs) {
-            a.autoMachine().resetHorizon();
+            a.autoMachineH().resetHorizon();
             for (ToolBatchA t : a.b1sA()) {
                 t.prepMachineH().resetHorizon();
                 t.prepLabourH().resetHorizon();
@@ -40,18 +54,20 @@ public class EDDParallelSched {
             if (active.size() > 0) {
                 active.sort(Comparator.comparing(Activity::end));
                 int scheduletime = active.get(0).end();
+                ArrayList<Activity> toBeRemoved = new ArrayList<>();
                 for (Activity a : active) {
                     if (a.end() <= scheduletime) {
                         completed.add(a);
-                        active.remove(a);
+                        toBeRemoved.add(a);
                     }
                 }
+                active.removeAll(toBeRemoved);
             }
 
             // Update decision set
-            if (toBeAdded.isEmpty() && iterate.size() > 0) {
+            if (toBeAdded.isEmpty()) {
                 int choose = (int) Math.round(Math.random() * randomize);
-                if (iterate.size() >= choose - 1) {
+                if (iterate.size() > choose) {
                     for (ToolBatchA t : iterate.get(choose).b1sA()) {
                         decision.add(t.prepAct());
                         toBeAdded.add(t.layupAct());
@@ -73,10 +89,11 @@ public class EDDParallelSched {
                     iterate.remove(0);
                 }
             } else {
+                ArrayList<Activity> union = new ArrayList<>();
+                union.addAll(completed);
+                union.addAll(active);
+                ArrayList<Activity> toBeRemoved = new ArrayList<>();
                 for (Activity a : toBeAdded) {
-                    ArrayList<Activity> union = new ArrayList<>();
-                    union.addAll(completed);
-                    union.addAll(active);
                     if (union.containsAll(a.predecessors())) {
                         for (Activity pred : a.predecessors()) {
                             if (pred.end() > a.maxPredEnd()) {
@@ -84,9 +101,10 @@ public class EDDParallelSched {
                             }
                         }
                         decision.add(a);
-                        toBeAdded.remove(a);
+                        toBeRemoved.add(a);
                     }
                 }
+                toBeAdded.removeAll(toBeRemoved);
             }
 
             // While loop to schedule all jobs in decision set
@@ -97,46 +115,71 @@ public class EDDParallelSched {
 
                 // Schedule next activity and add to active set
                 assert next != null;
-                if (next.b1() == null) {
+                if (next.type() == 2) {
                     ArrayList<Horizon> relevanthorizons = new ArrayList<>();
                     for (ToolBatchA t : next.b2().b1sA()) {
                         relevanthorizons.add(t.bottomToolH().horizon());
                     }
-                    relevanthorizons.add(next.b2().autoMachine().horizon());
-                    for (int i = next.maxPredEnd(); i < relevanthorizons.get(0).horizonEnd(); i += 5) {
+                    relevanthorizons.add(next.b2().autoMachineH().horizon());
+                    int earliest = Math.max(next.maxPredEnd(), relevanthorizons.stream().map(Horizon::earliest).max(Comparator.comparing(Integer::intValue)).orElseThrow());
+                    for (int i = earliest; i < relevanthorizons.get(0).horizonEnd(); i += 5) {
                         int ind = 0;
                         for (Horizon h : relevanthorizons) {
-                            if (!h.check(i, i + next.length(), 1)) {
-                                ind = 1;
-                                break;
+                            int numtools = 0;
+                            for (ToolBatchA t : next.b2().b1sA()) {
+                                if (t.bottomToolH().horizon().equals(h)) {
+                                    numtools++;
+                                }
+                            }
+                            if (numtools == 0) {
+                                if (!h.check(i, i + next.length(), 1)) {
+                                    ind = 1;
+                                    break;
+                                }
+                            } else {
+                                if (!h.check(i, i + next.length(), numtools)) {
+                                    ind = 1;
+                                    break;
+                                }
                             }
                         }
                         if (ind == 0) {
                             for (Horizon h : relevanthorizons) {
-                                h.schedule(i, i + next.length(), 1);
+                                int numtools = 0;
+                                for (ToolBatchA t : next.b2().b1sA()) {
+                                    if (t.bottomToolH().horizon().equals(h)) {
+                                        numtools++;
+                                    }
+                                }
+                                if (numtools == 0) {
+                                    h.schedule(i, i + next.length(), 1);
+                                } else {
+                                    h.schedule(i, i + next.length(), numtools);
+                                }
                             }
-                            next.b2().autoSched(i, i + next.length());
+                            next.schedule(i, i + next.length());
                             break;
                         }
                     }
-                } else if (next.b2() == null) {
+                } else {
                     ArrayList<Horizon> relevanthorizons = new ArrayList<>();
                     int labourqty = 0;
                     relevanthorizons.add(next.b1().bottomToolH().horizon());
-                    if (next.name().contains("Prep")) {
+                    if (next.type() == 0) {
                         relevanthorizons.add(next.b1().prepMachineH().horizon());
                         relevanthorizons.add(next.b1().prepLabourH().horizon());
                         labourqty = next.b1().prepQty();
-                    } else if (next.name().contains("Lay")) {
+                    } else if (next.type() == 1) {
                         relevanthorizons.add(next.b1().layupMachineH().horizon());
                         relevanthorizons.add(next.b1().layupLabourH().horizon());
                         labourqty = next.b1().layupQty();
-                    } else if (next.name().contains("Demould")) {
+                    } else if (next.type() == 3) {
                         relevanthorizons.add(next.b1().demouldMachineH().horizon());
                         relevanthorizons.add(next.b1().demouldLabourH().horizon());
                         labourqty = next.b1().demouldQty();
                     }
-                    for (int i = next.maxPredEnd(); i < relevanthorizons.get(0).horizonEnd(); i += 5) {
+                    int earliest = Math.max(next.maxPredEnd(), relevanthorizons.stream().map(Horizon::earliest).max(Comparator.comparing(Integer::intValue)).orElseThrow());
+                    for (int i = earliest; i < relevanthorizons.get(0).horizonEnd(); i += 5) {
                         int ind = 0;
                         for (Horizon h : relevanthorizons) {
                             if (relevanthorizons.indexOf(h) == relevanthorizons.size() - 1) {
@@ -159,13 +202,7 @@ public class EDDParallelSched {
                                     h.schedule(i, i + next.length(), 1);
                                 }
                             }
-                            if (next.name().contains("Prep")) {
-                                next.b1().prepSched(i, i + next.length());
-                            } else if (next.name().contains("Lay")) {
-                                next.b1().layupSched(i, i + next.length());
-                            } else if (next.name().contains("Demould")) {
-                                next.b1().demouldSched(i, i + next.length());
-                            }
+                            next.schedule(i, i + next.length());
                             break;
                         }
                     }
@@ -176,29 +213,9 @@ public class EDDParallelSched {
 
         }
 
-        // Schedule jobs
-        for (AutoBatchA a : b2objs) {
-            for (ToolBatchA t : a.b1sA()) {
-                t.jobs().sort(Comparator.comparing(Job::due));
-                int prepstart = t.prepStart();
-                int layupstart = t.layupStart();
-                int autostart = a.autoStart();
-                int autoend = a.autoEnd();
-                int demouldstart = t.demouldStart();
-                for (Job j : t.jobs()) {
-                    j.schedule(prepstart, prepstart + j.stepTimes()[0],
-                            layupstart, layupstart + j.stepTimes()[1],
-                            autostart, autoend,
-                            demouldstart, demouldstart + j.stepTimes()[3]);
-                    prepstart += j.stepTimes()[0];
-                    layupstart += j.stepTimes()[1];
-                    demouldstart += j.stepTimes()[3];
-                }
-            }
-        }
-
         // Return scheduled batches
-        return b2objs;
+        completed.addAll(active);
+        return completed;
 
     }
 
@@ -257,48 +274,41 @@ public class EDDParallelSched {
         for (int i = 0; i < data.numb0_new; i++) {
             for (Tool t : toptoolobjs) {
                 if (data.b0toptool[i].equals(t.name())) {
-                    TopBatch newtop = new TopBatch(t);
+                    TopBatch newtop = new TopBatch(t, data.b0indices[i]);
                     for (int j = 0; j < data.numjob; j++) {
-                        if (data.jobtob0[j] == i) {
-                            newtop.addJob(jobobjs.get(j));
-                            jobobjs.get(j).setTopBatch(newtop);
+                        if (data.jobtob0[j] == data.b0indices[i]) {
+                            newtop.addJob(jobobjs.get(data.jobindices[j]));
+                            jobobjs.get(data.jobindices[j]).setTopBatch(newtop);
                         }
                     }
                     b0objs.add(newtop);
                 }
             }
         }
+        b0objs.sort(Comparator.comparing(TopBatch::index));
         for (int i = 0; i < data.numb1_new; i++) {
             for (ToolH t : bottomtoolobjs) {
                 if (data.b1bottomtool[i].equals(t.name())) {
-                    ToolBatchA newtool = new ToolBatchA(t);
+                    ToolBatchA newtool = new ToolBatchA(t, data.b1indices[i]);
                     for (int j = 0; j < data.numb0_new; j++) {
-                        if (data.b0tob1[j] == i) {
-                            newtool.addTopBatch(b0objs.get(j));
-                            b0objs.get(j).setToolBatch(newtool);
+                        if (data.b0tob1[j] == data.b1indices[i]) {
+                            newtool.addTopBatch(b0objs.get(data.b0indices[j]));
+                            b0objs.get(data.b0indices[j]).setToolBatch(newtool);
                         }
                     }
                     b1objs.add(newtool);
                 }
             }
         }
+        b1objs.sort(Comparator.comparing(ToolBatchA::index));
         for (int i = 0; i < data.numb2_new; i++) {
-            AutoBatchA newauto = new AutoBatchA(data.b2cap[i]);
+            AutoBatchA newauto = new AutoBatchA(data.b2cap[i], data.b2indices[i]);
             for (int j = 0; j < data.numb1_new; j++) {
-                if (data.b1tob2[j] == i) {
-                    newauto.addToolBatchA(b1objs.get(j));
-                    b1objs.get(j).setAutoBatchA(newauto);
+                if (data.b1tob2[j] == data.b2indices[i]) {
+                    newauto.addToolBatchA(b1objs.get(data.b1indices[j]));
                 }
             }
             b2objs.add(newauto);
-        }
-
-        // Create activity objects
-        for (ToolBatchA t : b1objs) {
-            t.createActivities();
-        }
-        for (AutoBatchA a : b2objs) {
-            a.createActivity();
         }
 
         // Set activity parameters
@@ -306,9 +316,9 @@ public class EDDParallelSched {
             for (ToolBatchA t : a.b1sA()) {
                 for (int i = 0; i < data.batchtomachine.length; i++) {
                     if (t.jobs().get(0).steps()[0].equals(data.batchtomachine[i][1])) {
-                        for (Machine m : machineobjs) {
+                        for (MachineH m : machineobjs) {
                             if (m.name().equals(data.batchtomachine[i][0])) {
-                                t.setPrepMachine(m);
+                                t.setPrepMachineH(m);
                                 break;
                             }
                         }
@@ -317,9 +327,9 @@ public class EDDParallelSched {
                 }
                 for (int i = 0; i < data.batchtomachine.length; i++) {
                     if (t.jobs().get(0).steps()[1].equals(data.batchtomachine[i][1])) {
-                        for (Machine m : machineobjs) {
+                        for (MachineH m : machineobjs) {
                             if (m.name().equals(data.batchtomachine[i][0])) {
-                                t.setLayupMachine(m);
+                                t.setLayupMachineH(m);
                                 break;
                             }
                         }
@@ -328,9 +338,9 @@ public class EDDParallelSched {
                 }
                 for (int i = 0; i < data.batchtomachine.length; i++) {
                     if (t.jobs().get(0).steps()[3].equals(data.batchtomachine[i][1])) {
-                        for (Machine m : machineobjs) {
+                        for (MachineH m : machineobjs) {
                             if (m.name().equals(data.batchtomachine[i][0])) {
-                                t.setDemouldMachine(m);
+                                t.setDemouldMachineH(m);
                                 break;
                             }
                         }
@@ -341,12 +351,12 @@ public class EDDParallelSched {
                 int lind = 0;
                 int dind = 0;
                 for (int i = 0; i < data.labourtomachine.length; i++) {
-                    if (t.prepMachine().name().equals(data.labourtomachine[i][0]) &&
+                    if (t.prepMachineH().name().equals(data.labourtomachine[i][0]) &&
                             (t.jobs().get(0).partFamily().equals(data.labourtomachine[i][1]) ||
                                     data.labourtomachine[i][1].equals("N/A"))) {
-                        for (Labour l : labourobjs) {
-                            if (l.name().equals(data.labourtomachine[i][2])) {
-                                t.setPrepLabour(l, data.labourqtyrequired[i]);
+                        for (LabourH l : labourobjs) {
+                            if (l.skills().contains(data.labourtomachine[i][2])) {
+                                t.setPrepLabourH(l, data.labourqtyrequired[i]);
                                 pind = 1;
                                 break;
                             }
@@ -355,12 +365,12 @@ public class EDDParallelSched {
                     }
                 }
                 for (int i = 0; i < data.labourtomachine.length; i++) {
-                    if (t.layupMachine().name().equals(data.labourtomachine[i][0]) &&
+                    if (t.layupMachineH().name().equals(data.labourtomachine[i][0]) &&
                             (t.jobs().get(0).partFamily().equals(data.labourtomachine[i][1]) ||
                                     data.labourtomachine[i][1].equals("N/A"))) {
-                        for (Labour l : labourobjs) {
-                            if (l.name().equals(data.labourtomachine[i][2])) {
-                                t.setLayupLabour(l, data.labourqtyrequired[i]);
+                        for (LabourH l : labourobjs) {
+                            if (l.skills().contains(data.labourtomachine[i][2])) {
+                                t.setLayupLabourH(l, data.labourqtyrequired[i]);
                                 lind = 1;
                                 break;
                             }
@@ -369,12 +379,12 @@ public class EDDParallelSched {
                     }
                 }
                 for (int i = 0; i < data.labourtomachine.length; i++) {
-                    if (t.demouldMachine().name().equals(data.labourtomachine[i][0]) &&
+                    if (t.demouldMachineH().name().equals(data.labourtomachine[i][0]) &&
                             (t.jobs().get(0).partFamily().equals(data.labourtomachine[i][1]) ||
                                     data.labourtomachine[i][1].equals("N/A"))) {
-                        for (Labour l : labourobjs) {
-                            if (l.name().equals(data.labourtomachine[i][2])) {
-                                t.setDemouldLabour(l, data.labourqtyrequired[i]);
+                        for (LabourH l : labourobjs) {
+                            if (l.skills().contains(data.labourtomachine[i][2])) {
+                                t.setDemouldLabourH(l, data.labourqtyrequired[i]);
                                 dind = 1;
                                 break;
                             }
@@ -383,20 +393,20 @@ public class EDDParallelSched {
                     }
                 }
                 if (pind == 0) {
-                    t.setPrepLabour(labourobjs.get(labourobjs.size() - 1), 0);
+                    t.setPrepLabourH(labourobjs.get(labourobjs.size() - 1), 0);
                 }
                 if (lind == 0) {
-                    t.setLayupLabour(labourobjs.get(labourobjs.size() - 1), 0);
+                    t.setLayupLabourH(labourobjs.get(labourobjs.size() - 1), 0);
                 }
                 if (dind == 0) {
-                    t.setDemouldLabour(labourobjs.get(labourobjs.size() - 1), 0);
+                    t.setDemouldLabourH(labourobjs.get(labourobjs.size() - 1), 0);
                 }
             }
             for (int i = 0; i < data.batchtomachine.length; i++) {
                 if (a.jobs().get(0).steps()[2].equals(data.batchtomachine[i][1])) {
-                    for (Machine m : machineobjs) {
+                    for (MachineH m : machineobjs) {
                         if (m.name().equals(data.batchtomachine[i][0])) {
-                            a.setAutoMachine(m);
+                            a.setAutoMachineH(m);
                             break;
                         }
                     }
@@ -415,25 +425,33 @@ public class EDDParallelSched {
         ArrayList<Integer> allObjs = new ArrayList<>();
         SolutionSched best = null;
         for (int i = 0; i < repetitions; i++) {
-            ArrayList<AutoBatchA> scheduled = parallel(SerializationUtils.clone(b2objs));
+            ArrayList<Activity> scheduled = parallel(b2objs);
             double endtime = System.nanoTime();
             double elapsedtime = (endtime - starttime) / 1_000_000_000;
             int objval = 0;
-            for (AutoBatchA b2 : scheduled) {
-                objval += b2.capacity() - b2.sumToolSize();
-                for (Job j : b2.jobs()) {
-                    objval += j.tardiness();
+            for (Activity b2 : scheduled) {
+                if (b2.type() == 3) {
+                    for (Job j : b2.b1().jobs()) {
+                        objval += Math.max(0, b2.end() - j.due());
+                    }
                 }
             }
-            allObjs.sort(Comparator.comparing(Integer::intValue));
-            if (objval < allObjs.get(0)) {
-                best =  new SolutionSched(data.numjob, objval, elapsedtime, "Feasible");
-                best.addAutoBatch(new ArrayList<>(b2objs));
+            if (i == 0) {
+                allObjs.add(objval);
+                best = new SolutionSched(data.numjob, objval, elapsedtime, "Feasible");
+                best.addActivities(scheduled);
+            } else {
+                allObjs.sort(Comparator.comparing(Integer::intValue));
+                if (objval < allObjs.get(0)) {
+                    best = new SolutionSched(data.numjob, objval, elapsedtime, "Feasible");
+                    best.addActivities(scheduled);
+                }
             }
             writer.write("Heuristic scheduling solution found after " + elapsedtime + " seconds with objective value " + objval + "\n");
         }
 
         // Write solution to file
+        assert best != null;
         data.writeSched(best);
         data.writeSum(best);
 

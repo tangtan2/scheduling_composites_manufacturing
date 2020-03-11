@@ -5,6 +5,7 @@ import java.util.List;
 public class ToolBatch {
 
     // Private class variables
+    private int index;
     private ArrayList<Job> jobs = new ArrayList<>();
     private ArrayList<TopBatch> b0s = new ArrayList<>();
     private Tool bottomTool;
@@ -32,6 +33,20 @@ public class ToolBatch {
 
         this.bottomTool = bottom;
         this.size = bottom.size();
+
+    }
+    public ToolBatch(Tool bottom, int index) {
+
+        this.index = index;
+        this.bottomTool = bottom;
+        this.size = bottom.size();
+
+    }
+
+    // Add index
+    public void addIndex(int index) {
+
+        this.index = index;
 
     }
 
@@ -148,5 +163,6 @@ public class ToolBatch {
     public int layupQty() {return this.layupQty;}
     public int demouldQty() {return this.demouldQty;}
     public int rspOrder() {return this.rspOrder;}
+    public int index() {return this.index;}
 
 }

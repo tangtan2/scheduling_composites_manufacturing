@@ -1,5 +1,4 @@
-package models.relaxed_cp_sched;
-import common.model_helpers.*;
+package common.model_helpers;
 import ilog.concert.IloIntVar;
 import ilog.concert.IloIntervalVar;
 

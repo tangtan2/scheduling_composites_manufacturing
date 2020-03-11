@@ -5,6 +5,7 @@ import java.util.List;
 public class AutoBatch {
 
     // Private class variables
+    private int index;
     private ArrayList<Job> jobs = new ArrayList<>();
     private ArrayList<ToolBatch> b1s = new ArrayList<>();
     private int capacity;
@@ -17,6 +18,19 @@ public class AutoBatch {
     public AutoBatch(int cap) {
 
         this.capacity = cap;
+
+    }
+    public AutoBatch(int cap, int index) {
+
+        this.capacity = cap;
+        this.index = index;
+
+    }
+
+    // Add index
+    public void addIndex(int index) {
+
+        this.index = index;
 
     }
 
@@ -75,5 +89,6 @@ public class AutoBatch {
     public int autoStart() {return this.autoStart;}
     public int autoEnd() {return this.autoEnd;}
     public Machine autoMachine() {return this.autoMachine;}
+    public int index() {return this.index;}
 
 }

@@ -96,6 +96,7 @@ public class BasicCPPack {
                     newtop.addJob(j);
                     ToolBatch newb1 = new ToolBatch(j.mappedCombos().get(0).bottom());
                     newb1.addTopBatch(newtop);
+                    newb1.calcRSP();
                     b1objs.add(newb1);
                     System.out.println("Job " + j.index() + " is assigned to a single tool batch");
                 } else {
@@ -144,7 +145,7 @@ public class BasicCPPack {
             // Tool packing modeler parameters
             cp.setParameter(IloCP.IntParam.Workers, 1);
             cp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            cp.setParameter(IloCP.DoubleParam.TimeLimit, 1800);
+            cp.setParameter(IloCP.DoubleParam.TimeLimit, 10);
 
             // Solve tool packing
             double elapsedTime = 0;
@@ -216,9 +217,6 @@ public class BasicCPPack {
                 }
             }
 
-            // Close tool packing modeler
-            cp.end();
-
             // Create autoclave packing modeler
             IloCP autocp = new IloCP();
 
@@ -231,9 +229,8 @@ public class BasicCPPack {
 
             // v_i
             IloIntVar[] b2vol = new IloIntVar[b1objs.size()];
-            int maxcap = Arrays.stream(data.autocapperjob).max().getAsInt();
             for (int i = 0; i < b1objs.size(); i++) {
-                b2vol[i] = autocp.intVar(0, maxcap);
+                b2vol[i] = autocp.intVar(0, b1objs.get(i).jobs().get(0).autoCap());
             }
 
             // a
@@ -247,10 +244,19 @@ public class BasicCPPack {
             }
             autocp.add(autocp.pack(b2vol, b1pack, b1vol));
 
-            // Calculate number of bins
+            // Only pack tool batches into bins with correct capacity
             for (int i = 0; i < b1objs.size(); i++) {
-                autocp.addGe(bins, b1pack[i]);
+                ArrayList<Integer> allowedBins = new ArrayList<>();
+                for (int j = 0; j < b1objs.size(); j++) {
+                    if (b1objs.get(i).jobs().get(0).autoCap() == b1objs.get(j).jobs().get(0).autoCap()) {
+                        allowedBins.add(j);
+                    }
+                }
+                autocp.add(autocp.allowedAssignments(b1pack[i], allowedBins.stream().mapToInt(x -> x).toArray()));
             }
+
+            // Calculate number of bins
+            autocp.addEq(bins, autocp.diff(b1objs.size(), autocp.count(b2vol, 0)));
 
             // Only tool batches with the same cycle can be batched into the same autoclave batch
             for (int i = 0; i < b1objs.size(); i++) {
@@ -308,7 +314,7 @@ public class BasicCPPack {
             // Autoclave packing modeler parameters
             autocp.setParameter(IloCP.IntParam.Workers, 1);
             autocp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            autocp.setParameter(IloCP.DoubleParam.TimeLimit, 1800);
+            autocp.setParameter(IloCP.DoubleParam.TimeLimit, 10);
 
             // Solve autoclave packing
             if (autocp.solve()) {
@@ -322,8 +328,11 @@ public class BasicCPPack {
                 for (int i = 0; i < b1objs.size(); i++) {
                     System.out.println("Tool batch " + i + " has volume " + b1vol[i] + " and is packed into autoclave batch " + autocp.getValue(b1pack[i]));
                 }
-                for (int i = 0; i < autocp.getValue(bins) + 1; i++) {
-                    System.out.println("Autoclave batch " + i + " has volume " + autocp.getValue(b2vol[i]));
+                it = 0;
+                for (int i = 0; i < b1objs.size(); i++) {
+                    if (autocp.getValue(b2vol[i]) > 0) {
+                        System.out.println("Autoclave batch " + it++ + " has volume " + autocp.getValue(b2vol[i]));
+                    }
                 }
 
             } else {
@@ -336,24 +345,38 @@ public class BasicCPPack {
 
             // Obtain solution values
             ArrayList<AutoBatch> b2objs = new ArrayList<>();
-            for (int i = 0; i < autocp.getValue(bins) + 1; i++) {
-                AutoBatch newb2 = new AutoBatch(0);
-                for (int j = 0; j < b1objs.size(); j++) {
-                    if (autocp.getValue(b1pack[j]) == i) {
-                        if (newb2.capacity() == 0) {
-                            newb2.setCapacity(b1objs.get(j).jobs().get(0).autoCap());
-                        }
-                        newb2.addToolBatch(b1objs.get(j));
-                        b1objs.get(j).setAutoBatch(newb2);
-                        for (TopBatch top : b1objs.get(j).b0s()) {
-                            top.setToolBatch(b1objs.get(j));
-                            for (Job currentj : top.jobs()) {
-                                currentj.setTopBatch(top);
+            for (int i = 0; i < b1objs.size(); i++) {
+                if (autocp.getValue(b2vol[i]) > 0) {
+                    AutoBatch newb2 = new AutoBatch(0);
+                    for (int j = 0; j < b1objs.size(); j++) {
+                        if (autocp.getValue(b1pack[j]) == i) {
+                            if (newb2.capacity() == 0) {
+                                newb2.setCapacity(b1objs.get(j).jobs().get(0).autoCap());
+                            }
+                            newb2.addToolBatch(b1objs.get(j));
+                            b1objs.get(j).setAutoBatch(newb2);
+                            for (TopBatch top : b1objs.get(j).b0s()) {
+                                top.setToolBatch(b1objs.get(j));
+                                for (Job currentj : top.jobs()) {
+                                    currentj.setTopBatch(top);
+                                }
                             }
                         }
                     }
+                    b2objs.add(newb2);
                 }
-                b2objs.add(newb2);
+            }
+
+            // Add indices
+            it = 0;
+            for (int i = 0; i < b1objs.size(); i++) {
+                b1objs.get(i).addIndex(i);
+                for (TopBatch t : b1objs.get(i).b0s()) {
+                    t.addIndex(it++);
+                }
+            }
+            for (int i = 0; i < b2objs.size(); i++) {
+                b2objs.get(i).addIndex(i);
             }
 
             // Make solution object
@@ -364,7 +387,8 @@ public class BasicCPPack {
             data.writePack(soln);
             data.writeSum(soln);
 
-            // Close modeler and intermediate file
+            // Close modelers and intermediate file
+            cp.end();
             autocp.end();
             writer.close();
 

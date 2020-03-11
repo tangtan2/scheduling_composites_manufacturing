@@ -96,7 +96,7 @@ public class BasicLBBD {
         }
 
         // Time spent within each component
-        int componentLimit = 600;
+        int componentLimit = 10;
 
         // Create list to hold intermediate results
         ArrayList<AutoBatchS> b2objs;
@@ -119,14 +119,19 @@ public class BasicLBBD {
             // Make batches with single job to tool mappings
             ArrayList<ToolBatchS> b1objs = new ArrayList<>();
             ArrayList<JobS> remainingjobs = new ArrayList<>();
+            int b0it = 0;
+            int b1it = 0;
             for (JobS j : jobobjs) {
                 if (j.mappedCombos().size() == 1 &&
                         j.mappedCombos().get(0).maxTop() == 1 &&
                         j.mappedCombos().get(0).maxJobPerTop() == 1) {
-                    TopBatchS newtop = new TopBatchS(j.mappedCombos().get(0).top());
-                    newtop.addJob(j);
-                    ToolBatchS newb1 = new ToolBatchS(j.mappedCombos().get(0).bottom());
-                    newb1.addTopBatch(newtop);
+                    TopBatchS newtop = new TopBatchS(j.mappedCombos().get(0).top(), b0it++);
+                    newtop.addJobS(j);
+                    j.setTopBatchS(newtop);
+                    ToolBatchS newb1 = new ToolBatchS(j.mappedCombos().get(0).bottom(), b1it++);
+                    newtop.setToolBatchS(newb1);
+                    newb1.addTopBatchS(newtop);
+                    newb1.calcRSP();
                     b1objs.add(newb1);
                     System.out.println("Job " + j.index() + " is assigned to a single tool batch");
                 } else {
@@ -221,30 +226,30 @@ public class BasicLBBD {
                     jobs.sort(Comparator.comparing(JobS::rspOrder));
                     while (!jobs.isEmpty()) {
                         int maxnum = comboobjs.get(i).maxTop() * comboobjs.get(i).maxJobPerTop();
-                        ToolBatchS newb1 = new ToolBatchS(comboobjs.get(i).bottom());
+                        ToolBatchS newb1 = new ToolBatchS(comboobjs.get(i).bottom(), b1it++);
                         if (jobs.size() > maxnum) {
                             for (int j = 0; j < comboobjs.get(i).maxTop(); j++) {
-                                TopBatchS newtop = new TopBatchS(comboobjs.get(i).top());
+                                TopBatchS newtop = new TopBatchS(comboobjs.get(i).top(), b0it++);
                                 for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
-                                    newtop.addJob(jobs.get(0));
+                                    newtop.addJobS(jobs.get(0));
                                     jobs.remove(0);
                                 }
-                                newb1.addTopBatch(newtop);
-                                newtop.setToolBatch(newb1);
+                                newb1.addTopBatchS(newtop);
+                                newtop.setToolBatchS(newb1);
                             }
                         } else {
                             while (!jobs.isEmpty()) {
-                                TopBatchS newtop = new TopBatchS(comboobjs.get(i).top());
+                                TopBatchS newtop = new TopBatchS(comboobjs.get(i).top(), b0it++);
                                 for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
                                     if (!jobs.isEmpty()) {
-                                        newtop.addJob(jobs.get(0));
+                                        newtop.addJobS(jobs.get(0));
                                         jobs.remove(0);
                                     } else {
                                         break;
                                     }
                                 }
-                                newb1.addTopBatch(newtop);
-                                newtop.setToolBatch(newb1);
+                                newb1.addTopBatchS(newtop);
+                                newtop.setToolBatchS(newb1);
                             }
                         }
                         newb1.calcRSP();
@@ -252,9 +257,6 @@ public class BasicLBBD {
                     }
                 }
             }
-
-            // Close tool packing modeler
-            cp.end();
 
             // Create autoclave packing modeler
             IloCP autocp = new IloCP();
@@ -268,9 +270,8 @@ public class BasicLBBD {
 
             // v_i
             IloIntVar[] b2vol = new IloIntVar[b1objs.size()];
-            int maxcap = Arrays.stream(data.autocapperjob).max().getAsInt();
             for (int i = 0; i < b1objs.size(); i++) {
-                b2vol[i] = autocp.intVar(0, maxcap);
+                b2vol[i] = autocp.intVar(0, b1objs.get(i).jobsS().get(0).autoCap());
             }
 
             // a
@@ -284,15 +285,24 @@ public class BasicLBBD {
             }
             autocp.add(autocp.pack(b2vol, b1pack, b1vol));
 
-            // Calculate number of bins
+            // Only pack tool batches into bins with correct capacity
             for (int i = 0; i < b1objs.size(); i++) {
-                autocp.addGe(bins, b1pack[i]);
+                ArrayList<Integer> allowedBins = new ArrayList<>();
+                for (int j = 0; j < b1objs.size(); j++) {
+                    if (b1objs.get(i).jobsS().get(0).autoCap() == b1objs.get(j).jobsS().get(0).autoCap()) {
+                        allowedBins.add(j);
+                    }
+                }
+                autocp.add(autocp.allowedAssignments(b1pack[i], allowedBins.stream().mapToInt(x -> x).toArray()));
             }
+
+            // Calculate number of bins
+            autocp.addEq(bins, autocp.diff(b1objs.size(), autocp.count(b2vol, 0)));
 
             // Only tool batches with the same cycle can be batched into the same autoclave batch
             for (int i = 0; i < b1objs.size(); i++) {
                 for (int j = 0; j < b1objs.size(); j++) {
-                    if (!b1objs.get(i).jobs().get(0).steps()[2].equals(b1objs.get(j).jobs().get(0).steps()[2])) {
+                    if (!b1objs.get(i).jobsS().get(0).steps()[2].equals(b1objs.get(j).jobsS().get(0).steps()[2])) {
                         autocp.add(autocp.allDiff(new IloIntVar[]{b1pack[i], b1pack[j]}));
                     }
                 }
@@ -351,9 +361,9 @@ public class BasicLBBD {
                 autocp.setParameter(IloCP.IntParam.Workers, 1);
                 autocp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
                 if (3600 - elapsedTime > componentLimit) {
-                    cp.setParameter(IloCP.DoubleParam.TimeLimit, componentLimit);
+                    autocp.setParameter(IloCP.DoubleParam.TimeLimit, componentLimit);
                 } else if (3600 - elapsedTime > 1) {
-                    cp.setParameter(IloCP.DoubleParam.TimeLimit, 3600 - elapsedTime);
+                    autocp.setParameter(IloCP.DoubleParam.TimeLimit, 3600 - elapsedTime);
                 } else {
 
                     // Time limit reached but there have been feasible solutions found
@@ -366,7 +376,7 @@ public class BasicLBBD {
                 if (autocp.solve()) {
 
                     // Check for optimality status
-                    if (cp.getStatusString().equals("Feasible")) {
+                    if (autocp.getStatusString().equals("Feasible")) {
                         nonOptimal = 1;
                     }
 
@@ -379,8 +389,10 @@ public class BasicLBBD {
                     for (int i = 0; i < b1objs.size(); i++) {
                         System.out.println("Tool batch " + i + " has volume " + b1vol[i] + " and is packed into autoclave batch " + autocp.getValue(b1pack[i]));
                     }
-                    for (int i = 0; i < autocp.getValue(bins) + 1; i++) {
-                        System.out.println("Autoclave batch " + i + " has volume " + autocp.getValue(b2vol[i]));
+                    for (int i = 0; i < b1objs.size(); i++) {
+                        if (autocp.getValue(b2vol[i]) > 0) {
+                            System.out.println("Autoclave batch " + i + " has volume " + autocp.getValue(b2vol[i]));
+                        }
                     }
 
                 } else {
@@ -393,50 +405,52 @@ public class BasicLBBD {
 
                 // Obtain solution values
                 b2objs = new ArrayList<>();
-                for (int i = 0; i < autocp.getValue(bins) + 1; i++) {
-                    AutoBatchS newb2 = new AutoBatchS(0);
-                    for (int j = 0; j < b1objs.size(); j++) {
-                        if (autocp.getValue(b1pack[j]) == i) {
-                            if (newb2.capacity() == 0) {
-                                newb2.setCapacity(b1objs.get(j).jobs().get(0).autoCap());
-                            }
-                            newb2.addToolBatch(b1objs.get(j));
-                            b1objs.get(j).setAutoBatch(newb2);
-                            for (TopBatchS top : b1objs.get(j).b0sS()) {
-                                top.setToolBatch(b1objs.get(j));
-                                for (JobS currentj : top.jobsS()) {
-                                    currentj.setTopBatch(top);
+                int b2it = 0;
+                for (int i = 0; i < b1objs.size(); i++) {
+                    if (autocp.getValue(b2vol[i]) > 0) {
+                        AutoBatchS newb2 = new AutoBatchS(0, b2it++);
+                        for (int j = 0; j < b1objs.size(); j++) {
+                            if (autocp.getValue(b1pack[j]) == i) {
+                                if (newb2.capacity() == 0) {
+                                    newb2.setCapacity(b1objs.get(j).jobsS().get(0).autoCap());
+                                }
+                                newb2.addToolBatchS(b1objs.get(j));
+                                b1objs.get(j).setAutoBatchS(newb2);
+                                for (TopBatchS top : b1objs.get(j).b0sS()) {
+                                    top.setToolBatchS(b1objs.get(j));
+                                    for (JobS currentj : top.jobsS()) {
+                                        currentj.setTopBatchS(top);
+                                    }
                                 }
                             }
                         }
+                        b2objs.add(newb2);
                     }
-                    b2objs.add(newb2);
                 }
 
                 // Create subproblem modeler
                 IloCP subcp = new IloCP();
 
                 // Define decision variables
-                // prep_{j, k}, lay_{j, k}, dem_{j, k}, x_k, y_k, z_i, w_k, l_j
+                // prep_{j, k}, lay_{j, k}, dem_{j, k}, x_k, y_k, z_i, w_k
                 for (AutoBatchS i : b2objs) {
                     IloIntervalVar commonauto = subcp.intervalVar(i.jobsS().get(0).stepTimes()[2]);
                     commonauto.setPresent();
                     i.setAuto(commonauto);
                     for (ToolBatchS k : i.b1sS()) {
-                        for (JobS j : k.jobsS()) {
-                            j.setVars(subcp.intervalVar(j.stepTimes()[0]),
-                                    subcp.intervalVar(j.stepTimes()[1]),
-                                    commonauto,
-                                    subcp.intervalVar(j.stepTimes()[3]),
-                                    subcp.intVar(0, data.horizon));
-                        }
-                        k.setVars(subcp.intervalVar(k.jobsS().stream().map(JobS::stepTimes).map(x -> x[0]).reduce(0, Integer::sum)),
-                                subcp.intervalVar(k.jobsS().stream().map(JobS::stepTimes).map(x -> x[1]).reduce(0, Integer::sum)),
-                                subcp.intervalVar(k.jobsS().stream().map(JobS::stepTimes).map(x -> x[3]).reduce(0, Integer::sum)));
+                        k.setVars(subcp.intervalVar(k.jobsS().get(0).stepTimes()[0]),
+                                subcp.intervalVar(k.jobsS().get(0).stepTimes()[1]),
+                                subcp.intervalVar(k.jobsS().get(0).stepTimes()[3]));
                         k.prepVar().setPresent();
                         k.layupVar().setPresent();
                         k.demouldVar().setPresent();
+                        k.demouldVar().setEndMax(data.horizon);
                     }
+                }
+
+                // l_j
+                for (JobS j : jobobjs) {
+                    j.addVar(subcp.intVar(0, data.horizon));
                 }
 
                 // CE
@@ -451,49 +465,11 @@ public class BasicLBBD {
                 }
 
                 // Create constraints
-                // Span all activities per job and precedence
-                for (JobS j : jobobjs) {
-                    IloIntervalSequenceVar totjob = subcp.intervalSequenceVar(
-                            new IloIntervalVar[]{j.prepVar(),
-                                    j.layupVar(),
-                                    j.autoVar(),
-                                    j.demouldVar()});
-                    subcp.add(subcp.first(totjob, j.prepVar()));
-                    subcp.add(subcp.last(totjob, j.demouldVar()));
-                    subcp.add(subcp.before(totjob, j.layupVar(), j.autoVar()));
-                    subcp.add(subcp.startBeforeEnd(j.layupVar(), j.autoVar(), -data.waittime));
-                    subcp.add(subcp.noOverlap(totjob));
-                }
-
-                // Span tool prep activities
+                // Precedence between activities
                 for (ToolBatchS t : b1objs) {
-                    IloIntervalVar[] temp = new IloIntervalVar[t.jobsS().size()];
-                    for (int j = 0; j < t.jobsS().size(); j++) {
-                        temp[j] = t.jobsS().get(j).prepVar();
-                    }
-                    cp.add(cp.noOverlap(temp));
-                    cp.add(cp.span(t.prepVar(), temp));
-                }
-
-                // Span layup activities
-                for (ToolBatchS t : b1objs) {
-                    IloIntervalVar[] temp = new IloIntervalVar[t.jobsS().size()];
-                    for (int j = 0; j < t.jobsS().size(); j++) {
-                        temp[j] = t.jobsS().get(j).layupVar();
-                    }
-                    subcp.add(subcp.noOverlap(temp));
-                    subcp.add(subcp.span(t.layupVar(), temp));
-                    subcp.add(subcp.endBeforeEnd(t.prepVar(), t.layupVar()));
-                }
-
-                // Span demould activities
-                for (ToolBatchS t : b1objs) {
-                    IloIntervalVar[] temp = new IloIntervalVar[t.jobsS().size()];
-                    for (int j = 0; j < t.jobsS().size(); j++) {
-                        temp[j] = t.jobsS().get(j).demouldVar();
-                    }
-                    subcp.add(subcp.noOverlap(temp));
-                    subcp.add(subcp.span(t.demouldVar(), temp));
+                    subcp.add(subcp.endBeforeStart(t.prepVar(), t.layupVar()));
+                    subcp.add(subcp.endBeforeStart(t.layupVar(), t.b2S().autoVar()));
+                    subcp.add(subcp.endBeforeStart(t.b2S().autoVar(), t.demouldVar()));
                 }
 
                 // Resource utilization for bottom tools
@@ -593,7 +569,7 @@ public class BasicLBBD {
                     int ind = 0;
                     for (int j = 0; j < data.numskilltomachine; j++) {
                         if (data.labourtomachine[j][0].equals(i.prepMachine().name()) &&
-                                (i.jobs().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
+                                (i.jobsS().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
                                         data.labourtomachine[j][1].equals("N/A"))) {
                             String skill = data.labourtomachine[j][2];
                             for (Labour l : labourobjs) {
@@ -617,7 +593,7 @@ public class BasicLBBD {
                     int ind = 0;
                     for (int j = 0; j < data.numskilltomachine; j++) {
                         if (data.labourtomachine[j][0].equals(i.layupMachine().name()) &&
-                                (i.jobs().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
+                                (i.jobsS().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
                                         data.labourtomachine[j][1].equals("N/A"))) {
                             String skill = data.labourtomachine[j][2];
                             for (Labour l : labourobjs) {
@@ -641,7 +617,7 @@ public class BasicLBBD {
                     int ind = 0;
                     for (int j = 0; j < data.numskilltomachine; j++) {
                         if (data.labourtomachine[j][0].equals(i.demouldMachine().name()) &&
-                                (i.jobs().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
+                                (i.jobsS().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
                                         data.labourtomachine[j][1].equals("N/A"))) {
                             String skill = data.labourtomachine[j][2];
                             for (Labour l : labourobjs) {
@@ -675,7 +651,7 @@ public class BasicLBBD {
 
                 // Job tardiness
                 for (JobS j : jobobjs) {
-                    subcp.addGe(j.tardyVar(), subcp.diff(subcp.endOf(j.demouldVar()), j.due()));
+                    subcp.addGe(j.tardyVar(), subcp.diff(subcp.endOf(j.b0S().b1S().demouldVar()), j.due()));
                 }
 
                 // Objective function
@@ -713,6 +689,30 @@ public class BasicLBBD {
                     String filecontent = "Schedule found after time " + Math.round(elapsedTime) + " with objective value of " + subcp.getObjValue() + "\n";
                     writer.write(filecontent);
 
+                    // Obtain solution values
+                    for (JobS j : jobobjs) {
+                        j.schedule(subcp.getStart(j.b0S().b1S().prepVar()),
+                                subcp.getEnd(j.b0S().b1S().prepVar()),
+                                subcp.getStart(j.b0S().b1S().layupVar()),
+                                subcp.getEnd(j.b0S().b1S().layupVar()),
+                                subcp.getStart(j.b0S().b1S().b2S().autoVar()),
+                                subcp.getEnd(j.b0S().b1S().b2S().autoVar()),
+                                subcp.getStart(j.b0S().b1S().demouldVar()),
+                                subcp.getEnd(j.b0S().b1S().demouldVar()));
+                    }
+                    for (ToolBatchS t : b1objs) {
+                        t.schedule(subcp.getStart(t.prepVar()),
+                                subcp.getEnd(t.prepVar()),
+                                subcp.getStart(t.layupVar()),
+                                subcp.getEnd(t.layupVar()),
+                                subcp.getStart(t.demouldVar()),
+                                subcp.getEnd(t.demouldVar()));
+                    }
+                    for (AutoBatchS a : b2objs) {
+                        a.autoSched(subcp.getStart(a.autoVar()),
+                                subcp.getEnd(a.autoVar()));
+                    }
+
                     // Print to output
                     System.out.println("Objective value: " + subcp.getObjValue());
                     for (AutoBatchS a : b2objs) {
@@ -730,30 +730,6 @@ public class BasicLBBD {
                         System.out.println("Autoclave batch uses curing machine " + a.autoMachine().name());
                     }
 
-                }
-
-                // Obtain solution values
-                for (JobS j : jobobjs) {
-                    j.schedule(subcp.getStart(j.prepVar()),
-                            subcp.getEnd(j.prepVar()),
-                            subcp.getStart(j.layupVar()),
-                            subcp.getEnd(j.layupVar()),
-                            subcp.getStart(j.autoVar()),
-                            subcp.getEnd(j.autoVar()),
-                            subcp.getStart(j.demouldVar()),
-                            subcp.getEnd(j.demouldVar()));
-                }
-                for (ToolBatchS t : b1objs) {
-                    t.schedule(subcp.getStart(t.prepVar()),
-                            subcp.getEnd(t.prepVar()),
-                            subcp.getStart(t.layupVar()),
-                            subcp.getEnd(t.layupVar()),
-                            subcp.getStart(t.demouldVar()),
-                            subcp.getEnd(t.demouldVar()));
-                }
-                for (AutoBatchS a : b2objs) {
-                    a.autoSched(subcp.getStart(a.autoVar()),
-                            subcp.getEnd(a.autoVar()));
                 }
 
                 // Add cuts
@@ -774,7 +750,7 @@ public class BasicLBBD {
 
                 // Make solution object and add to solution list
                 Solution newsoln = new Solution(data.numjob, subcp.getObjValue(), elapsedTime, subcp.getStatusString());
-                newsoln.addAutoBatch(new ArrayList<>(b2objs));
+                newsoln.addAutoBatchS(b2objs);
                 newsoln.addLBBDIter(iteration);
                 if (iteration > 1) {
                     allObjs.sort(Comparator.comparing(Integer::intValue));

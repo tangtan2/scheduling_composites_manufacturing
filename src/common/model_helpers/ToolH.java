@@ -1,5 +1,4 @@
-package models.edd_serial_sched;
-import common.model_helpers.Tool;
+package common.model_helpers;
 
 public class ToolH extends Tool {
 
@@ -11,6 +10,8 @@ public class ToolH extends Tool {
     public ToolH(String name, int cap, int qty, int min, int horizonEnd, int size) {
 
         super(name, cap, qty, min, size);
+        this.horizon = createHorizon(horizonEnd);
+        this.horizonEnd = horizonEnd;
 
     }
     public ToolH(String name, int cap, int qty, int min, int horizonEnd) {

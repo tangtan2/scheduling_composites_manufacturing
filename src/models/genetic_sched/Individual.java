@@ -1,15 +1,16 @@
 package models.genetic_sched;
+import common.model_helpers.Activity;
 import java.util.ArrayList;
 
 public class Individual {
 
     // Private class variables
-    private ArrayList<ActivityG> activityList;
+    private ArrayList<Activity> activityList;
     private int[][] schedule;
     private int fitness;
 
     // Constructor
-    public Individual(ArrayList<ActivityG> activityList, int[][] schedule, int fitness) {
+    public Individual(ArrayList<Activity> activityList, int[][] schedule, int fitness) {
 
         this.activityList = activityList;
         this.schedule = schedule;
@@ -18,7 +19,7 @@ public class Individual {
     }
 
     // Accessors
-    public ArrayList<ActivityG> activityList() {return this.activityList;}
+    public ArrayList<Activity> activityList() {return this.activityList;}
     public int[][] schedule() {return this.schedule;}
     public int fitness() {return this.fitness;}
 

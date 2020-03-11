@@ -1,8 +1,7 @@
-package models.basic_lbbd;
-import common.model_helpers.AutoBatch;
-import ilog.concert.IloIntervalVar;
+package common.model_helpers;
 import java.util.ArrayList;
 import java.util.List;
+import ilog.concert.*;
 
 public class AutoBatchS extends AutoBatch {
 
@@ -12,9 +11,9 @@ public class AutoBatchS extends AutoBatch {
     private IloIntervalVar autoVar;
 
     // Constructor
-    public AutoBatchS(int cap) {
+    public AutoBatchS(int cap, int i) {
 
-        super(cap);
+        super(cap, i);
 
     }
 

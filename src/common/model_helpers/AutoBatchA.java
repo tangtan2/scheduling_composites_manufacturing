@@ -1,5 +1,4 @@
-package models.edd_parallel_sched;
-import common.model_helpers.*;
+package common.model_helpers;
 import java.util.ArrayList;
 
 public class AutoBatchA extends AutoBatch {
@@ -11,15 +10,16 @@ public class AutoBatchA extends AutoBatch {
     private MachineH autoMachine;
 
     // Coonstructor
-    public AutoBatchA(int cap) {
+    public AutoBatchA(int cap, int index) {
 
-        super(cap);
+        super(cap, index);
 
     }
 
     // Add tool batch
     public void addToolBatchA(ToolBatchA newtool) {
 
+        this.b1s.add(newtool);
         this.addToolBatch(newtool);
         for (Job j : this.jobs()) {
             if (j.due() < this.due) {
@@ -30,9 +30,19 @@ public class AutoBatchA extends AutoBatch {
     }
 
     // Create activity
-    public void createActivity() {
+    public int createActivity(int index) {
 
-        this.autoAct = new Activity(this.jobs().get(0).steps()[2], this.jobs().get(0).stepTimes()[2], this);
+        this.autoAct = new Activity(this.jobs().get(0).steps()[2], index++, 2, this.due, this.jobs().get(0).stepTimes()[2]);
+        return index;
+
+    }
+
+    // Link activity to layup predecessor
+    public void linkAct() {
+
+        for (ToolBatchA t : this.b1s) {
+            this.autoAct.addPred(t.layupAct());
+        }
 
     }
 
@@ -47,6 +57,6 @@ public class AutoBatchA extends AutoBatch {
     public ArrayList<ToolBatchA> b1sA() {return this.b1s;}
     public Activity autoAct() {return this.autoAct;}
     public int due() {return this.due;}
-    public MachineH autoMachine() {return this.autoMachine;}
+    public MachineH autoMachineH() {return this.autoMachine;}
 
 }

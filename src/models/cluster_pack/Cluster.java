@@ -1,6 +1,7 @@
 package models.cluster_pack;
 import common.model_helpers.Tool;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 
 public class Cluster {
@@ -105,17 +106,25 @@ public class Cluster {
     public void reset(int newC) {
 
         this.centroid = newC;
-        points = new ArrayList<>();
+        this.points = new ArrayList<>();
+        this.VFI = new ArrayList<>();
 
     }
 
     // Static helper method to check which cluster point p is closest to
     public static Cluster checkCluster(ArrayList<Cluster> clusters, Point p) {
 
-        int diff = Math.abs(p.location() - clusters.get(0).centroid());
-        Cluster best = clusters.get(0);
+        int diff = (int) Double.POSITIVE_INFINITY;
+        Cluster best = null;
         for (Cluster c : clusters) {
-            if (Math.abs(p.location() - c.centroid()) < diff) {
+            int countTool = 0;
+            for (Point p1 : c.points()) {
+                if (p1.b1().bottomTool().equals(p.b1().bottomTool())) {
+                    countTool++;
+                }
+            }
+            if (countTool < p.b1().bottomTool().qty() && Math.abs(p.location() - c.centroid()) < diff) {
+                diff = Math.abs(p.location() - c.centroid());
                 best = c;
             }
         }
@@ -142,17 +151,35 @@ public class Cluster {
 
         boolean flag = true;
         for (Cluster c : clusters) {
-            if (c.recomputeKMS() != c.centroid()) {
-                flag = false;
-                break;
+            if (!c.points().isEmpty() && !c.VFI().isEmpty()) {
+                if (c.recomputeKMS() != c.centroid()) {
+                    flag = false;
+                    break;
+                }
             }
         }
         return flag;
 
     }
 
+    // Static helper method to find closest point
+    public static Point findPoint(Collection<Point> points, Cluster c) {
+
+        int diff = (int) Double.POSITIVE_INFINITY;
+        Point best = null;
+        for (Point p : points) {
+            if (Math.abs(p.location() - c.centroid()) < diff) {
+                diff = Math.abs(p.location() - c.centroid());
+                best = p;
+            }
+        }
+        return best;
+
+    }
+
     // Accessors
     public int centroid() {return this.centroid;}
     public ArrayList<Point> points() {return this.points;}
+    public ArrayList<Point> VFI() {return this.VFI;}
 
 }

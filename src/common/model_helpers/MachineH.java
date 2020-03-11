@@ -1,17 +1,15 @@
-package models.edd_serial_sched;
-import common.model_helpers.Labour;
-import java.util.ArrayList;
+package common.model_helpers;
 
-public class LabourH extends Labour {
+public class MachineH extends Machine {
 
     // Private class variables
     private Horizon horizon;
     private int horizonEnd;
 
     // Constructor
-    public LabourH(String name, ArrayList<String> skills, int[] qty, int[] start, int[] end, int horizonEnd) {
+    public MachineH(String name, int[] qty, int[] start, int[] end, int horizonEnd) {
 
-        super(name, skills, qty, start, end);
+        super(name, qty, start, end);
         this.horizon = createHorizon(horizonEnd);
         this.horizonEnd = horizonEnd;
 

@@ -95,6 +95,7 @@ public class BasicMIPPack {
                     newtop.addJob(j);
                     ToolBatch newb1 = new ToolBatch(j.mappedCombos().get(0).bottom());
                     newb1.addTopBatch(newtop);
+                    newb1.calcRSP();
                     b1objs.add(newb1);
                     System.out.println("Job " + j.index() + " is assigned to a single tool batch");
                 } else {
@@ -160,14 +161,15 @@ public class BasicMIPPack {
             // Tool packing modeler parameters
             cplex.setParam(IloCplex.Param.Threads, 1);
             cplex.setParam(IloCplex.IntParam.MIP.Display, 1);
-            cplex.setParam(IloCplex.DoubleParam.TimeLimit, 1800);
+            cplex.setParam(IloCplex.DoubleParam.TimeLimit, 10);
 
             // Solve tool packing
+            double start = cplex.getCplexTime();
             double elapsedTime = 0;
             if (cplex.solve()) {
 
                 // Get solution time and write summary to intermediate file
-                elapsedTime += cplex.getCplexTime();
+                elapsedTime += (cplex.getCplexTime() - start);
                 writer.write("Tool packing found after time " + Math.round(elapsedTime) + " with objective value of " + cplex.getObjValue() + "\n");
 
                 // Print to output
@@ -232,9 +234,6 @@ public class BasicMIPPack {
                 }
             }
 
-            // Close tool packing modeler
-            cplex.end();
-
             // Create autoclave packing modeler
             IloCplex autocplex = new IloCplex();
 
@@ -249,9 +248,8 @@ public class BasicMIPPack {
 
             // vol_i
             IloIntVar[] b2vol = new IloIntVar[b1objs.size()];
-            int maxcap = Arrays.stream(data.autocapperjob).max().getAsInt();
             for (int i = 0; i < b1objs.size(); i++) {
-                b2vol[i] = autocplex.intVar(0, maxcap);
+                b2vol[i] = autocplex.intVar(0, b1objs.get(i).jobs().get(0).autoCap());
             }
 
             // a
@@ -267,14 +265,26 @@ public class BasicMIPPack {
                 autocplex.addEq(temp, 1);
             }
 
-            // Calculate number of bins
+            // Only pack tool batches into bins with correct capacity
             for (int i = 0; i < b1objs.size(); i++) {
                 IloLinearIntExpr temp = autocplex.linearIntExpr();
                 for (int j = 0; j < b1objs.size(); j++) {
-                    temp.addTerm(j, b1tob2[i][j]);
+                    if (b1objs.get(i).jobs().get(0).autoCap() != b1objs.get(j).jobs().get(0).autoCap()) {
+                        temp.addTerm(1, b1tob2[i][j]);
+                    }
                 }
-                autocplex.addGe(numbins, temp);
+                autocplex.addEq(temp, 0);
             }
+
+            // Calculate number of bins
+            IloIntVar[] indicators = new IloIntVar[b1objs.size()];
+            for (int i = 0; i < b1objs.size(); i++) {
+                indicators[i] = autocplex.intVar(0, 1);
+                for (int j = 0; j < b1objs.size(); j++) {
+                    autocplex.addGe(indicators[i], b1tob2[j][i]);
+                }
+            }
+            autocplex.addGe(numbins, autocplex.sum(indicators));
 
             // Capacity constraint of autoclave batches
             for (int j = 0; j < b1objs.size(); j++) {
@@ -347,13 +357,14 @@ public class BasicMIPPack {
             // Autoclave packing modeler parameters
             autocplex.setParam(IloCplex.Param.Threads, 1);
             autocplex.setParam(IloCplex.IntParam.MIP.Display, 1);
-            autocplex.setParam(IloCplex.DoubleParam.TimeLimit, 1800);
+            autocplex.setParam(IloCplex.DoubleParam.TimeLimit, 60);
 
             // Solve autoclave packing
+            start = autocplex.getCplexTime();
             if (autocplex.solve()) {
 
                 // Get solution time and write summary to intermediate file
-                elapsedTime += autocplex.getCplexTime();
+                elapsedTime += (autocplex.getCplexTime() - start);
                 writer.write("Autoclave packing found after time " + Math.round(elapsedTime) + " with objective value of " + autocplex.getObjValue() + "\n");
 
                 // Print to output
@@ -365,8 +376,10 @@ public class BasicMIPPack {
                         }
                     }
                 }
-                for (int i = 0; i < autocplex.getValue(numbins) + 1; i++) {
-                    System.out.println("Autoclave batch " + i + " has volume " + autocplex.getValue(b2vol[i]));
+                for (int i = 0; i < b1objs.size(); i++) {
+                    if (autocplex.getValue(b2vol[i]) > 0) {
+                        System.out.println("Autoclave batch " + i + " has volume " + autocplex.getValue(b2vol[i]));
+                    }
                 }
 
             } else {
@@ -376,24 +389,38 @@ public class BasicMIPPack {
 
             // Obtain solution values
             ArrayList<AutoBatch> b2objs = new ArrayList<>();
-            for (int i = 0; i < autocplex.getValue(numbins) + 1; i++) {
-                AutoBatch newb2 = new AutoBatch(0);
-                for (int j = 0; j < b1objs.size(); j++) {
-                    if (autocplex.getValue(b1tob2[j][i]) == 1) {
-                        if (newb2.capacity() == 0) {
-                            newb2.setCapacity(b1objs.get(j).jobs().get(0).autoCap());
-                        }
-                        newb2.addToolBatch(b1objs.get(j));
-                        b1objs.get(j).setAutoBatch(newb2);
-                        for (TopBatch top : b1objs.get(j).b0s()) {
-                            top.setToolBatch(b1objs.get(j));
-                            for (Job currentj : top.jobs()) {
-                                currentj.setTopBatch(top);
+            for (int i = 0; i < b1objs.size(); i++) {
+                if (autocplex.getValue(b2vol[i]) > 0) {
+                    AutoBatch newb2 = new AutoBatch(0);
+                    for (int j = 0; j < b1objs.size(); j++) {
+                        if (autocplex.getValue(b1tob2[j][i]) == 1) {
+                            if (newb2.capacity() == 0) {
+                                newb2.setCapacity(b1objs.get(j).jobs().get(0).autoCap());
+                            }
+                            newb2.addToolBatch(b1objs.get(j));
+                            b1objs.get(j).setAutoBatch(newb2);
+                            for (TopBatch top : b1objs.get(j).b0s()) {
+                                top.setToolBatch(b1objs.get(j));
+                                for (Job currentj : top.jobs()) {
+                                    currentj.setTopBatch(top);
+                                }
                             }
                         }
                     }
+                    b2objs.add(newb2);
                 }
-                b2objs.add(newb2);
+            }
+
+            // Add indices
+            int it = 0;
+            for (int i = 0; i < b1objs.size(); i++) {
+                b1objs.get(i).addIndex(i);
+                for (TopBatch t : b1objs.get(i).b0s()) {
+                    t.addIndex(it++);
+                }
+            }
+            for (int i = 0; i < b2objs.size(); i++) {
+                b2objs.get(i).addIndex(i);
             }
 
             // Make solution object
@@ -404,7 +431,8 @@ public class BasicMIPPack {
             data.writePack(soln);
             data.writeSum(soln);
 
-            // Close modeler and intermediate file
+            // Close modelers and intermediate file
+            cplex.end();
             autocplex.end();
             writer.close();
 

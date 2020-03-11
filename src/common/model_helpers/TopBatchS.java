@@ -1,6 +1,5 @@
-package models.basic_lbbd;
-import common.model_helpers.Tool;
-import common.model_helpers.TopBatch;
+package common.model_helpers;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +10,9 @@ public class TopBatchS extends TopBatch {
     private ToolBatchS b1;
 
     // Constructor
-    public TopBatchS(Tool top) {
+    public TopBatchS(Tool top, int i) {
 
-        super(top);
+        super(top, i);
 
     }
 

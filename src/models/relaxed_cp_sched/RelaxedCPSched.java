@@ -32,7 +32,7 @@ public class RelaxedCPSched {
         }
         ArrayList<Machine> machineobjs = new ArrayList<>();
         for (int i = 0; i < data.nummachine; i++) {
-            Machine newmachine = new Machine(data.machinename[i], data.machineshift[i], data.shiftstart, data.shiftend);
+            Machine newmachine = new Machine(data.machinename[i], data.machineshift[i], data.shiftstart, data.shiftend, data.machinecap[i]);
             machineobjs.add(newmachine);
         }
         ArrayList<Labour> labourobjs = new ArrayList<>();
@@ -91,6 +91,10 @@ public class RelaxedCPSched {
                         j.autoVar(),
                         j.demouldVar()});
                 cp.add(cp.first(totjob, j.prepVar()));
+                cp.add(cp.last(totjob, j.demouldVar()));
+                cp.add(cp.before(totjob, j.layupVar(), j.autoVar()));
+                cp.add(cp.startBeforeEnd(j.layupVar(), j.autoVar(), -data.waittime));
+                cp.add(cp.noOverlap(totjob));
             }
 
             // Resource utilization for bottom tools
@@ -159,7 +163,7 @@ public class RelaxedCPSched {
                     if (data.batchtomachine[i][1].equals(j.steps()[2])) {
                         for (Machine m : machineobjs) {
                             if (m.name().equals(data.batchtomachine[i][0])) {
-                                m.cumul().add(cp.pulse(j.autoVar(), 1));
+                                m.cumul().add(cp.pulse(j.autoVar(), j.size()));
                                 break;
                             }
                         }
@@ -190,7 +194,7 @@ public class RelaxedCPSched {
                     int time = 0;
                     while (time < data.horizon) {
                         for (int j = 0; j < data.numshift; j++) {
-                            cp.add(cp.alwaysIn(m.cumul(), time + data.shiftstart[j], time + data.shiftend[j], 0, m.qtyPerShift()[j]));
+                            cp.add(cp.alwaysIn(m.cumul(), time + data.shiftstart[j], time + data.shiftend[j], 0, m.capacity()));
                         }
                         time += 7 * 24 * 60;
                     }

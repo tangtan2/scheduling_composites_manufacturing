@@ -27,6 +27,8 @@ public class BasicEDDPack {
         }
 
         // Pack jobs into tool batches
+        int numb0 = 0;
+        int numb1 = 0;
         while (!iterate.isEmpty()) {
 
             // Choose next job
@@ -55,7 +57,7 @@ public class BasicEDDPack {
             }
 
             // Batch into tool batch
-            ToolBatch newb1 = new ToolBatch(best.bottom());
+            ToolBatch newb1 = new ToolBatch(best.bottom(), numb1++);
             int maxjob = best.top().capacity() * best.bottom().capacity();
             for (Job j : iterate) {
                 if (j.mappedCombos().contains(best)) {
@@ -67,12 +69,15 @@ public class BasicEDDPack {
             }
             iterate.removeAll(associatedJobs);
             while (!associatedJobs.isEmpty()) {
-                TopBatch newtop = new TopBatch(best.top());
+                TopBatch newtop = new TopBatch(best.top(), numb0++);
                 newtop.setToolBatch(newb1);
                 if (associatedJobs.size() >= best.top().capacity()) {
-                    newtop.addJob(associatedJobs.subList(0, best.top().capacity() - 1));
+                    newtop.addJob(associatedJobs.subList(0, best.top().capacity()));
                 } else {
                     newtop.addJob(associatedJobs);
+                }
+                for (Job j : newtop.jobs()) {
+                    j.setTopBatch(newtop);
                 }
                 newb1.addTopBatch(newtop);
                 associatedJobs.removeAll(newtop.jobs());
@@ -83,9 +88,10 @@ public class BasicEDDPack {
 
         // Pack tool batches into autoclave batches
         ArrayList<ToolBatch> iterate2 = new ArrayList<>(b1objs);
+        int numb2 = 0;
         while (!iterate2.isEmpty()) {
 
-            // Choose next tool battch
+            // Choose next tool batch
             int choose = (int) Math.round(Math.random() * randomize);
             ToolBatch currentTool;
             if (iterate2.size() > choose) {
@@ -95,7 +101,7 @@ public class BasicEDDPack {
             }
 
             // Batch into autoclave batch
-            AutoBatch newauto = new AutoBatch(currentTool.jobs().get(0).autoCap());
+            AutoBatch newauto = new AutoBatch(currentTool.jobs().get(0).autoCap(), numb2++);
             newauto.addToolBatch(currentTool);
             currentTool.setAutoBatch(newauto);
             for (ToolBatch t : iterate2) {
@@ -209,10 +215,7 @@ public class BasicEDDPack {
             ArrayList<AutoBatch> packed = run(jobobjs);
             double end = System.nanoTime();
             double elapsedTime = (end - start) / 1_000_000_000;
-            int objval = 0;
-            for (AutoBatch a : packed) {
-                objval += (a.capacity() - a.sumToolSize());
-            }
+            int objval = packed.size();
             SolutionPack soln = new SolutionPack(data.numjob, objval, elapsedTime, "Feasible");
             soln.addAutoBatch(packed);
             solutionList.add(soln);

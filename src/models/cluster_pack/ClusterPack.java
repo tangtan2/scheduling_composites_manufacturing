@@ -96,6 +96,9 @@ public class ClusterPack {
                     newtop.addJob(j);
                     ToolBatch newb1 = new ToolBatch(j.mappedCombos().get(0).bottom());
                     newb1.addTopBatch(newtop);
+                    newtop.setToolBatch(newb1);
+                    j.setTopBatch(newtop);
+                    newb1.calcRSP();
                     b1objs.add(newb1);
                     System.out.println("Job " + j.index() + " is assigned to a single tool batch");
                 } else {
@@ -144,7 +147,7 @@ public class ClusterPack {
             // Tool packing modeler parameters
             cp.setParameter(IloCP.IntParam.Workers, 1);
             cp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            cp.setParameter(IloCP.DoubleParam.TimeLimit, 1800);
+            cp.setParameter(IloCP.DoubleParam.TimeLimit, 10);
 
             // Solve tool packing
             double elapsedTime = 0;
@@ -159,7 +162,7 @@ public class ClusterPack {
                 for (int i = 0; i < remainingjobs.size(); i++) {
                     for (int j = 0; j < comboobjs.size(); j++) {
                         if (cp.getValue(jobtocombo[i]) == j) {
-                            System.out.println("Job " + remainingjobs.get(i).index() + " is assigned to combo " + j);
+                            System.out.println("Job " + remainingjobs.get(i).index() + " is assigned to combo " + j + " with top tool " + comboobjs.get(j).top().name() + " and bottom tool " + comboobjs.get(j).bottom().name());
                         }
                     }
                 }
@@ -190,6 +193,7 @@ public class ClusterPack {
                                 TopBatch newtop = new TopBatch(comboobjs.get(i).top());
                                 for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
                                     newtop.addJob(jobs.get(0));
+                                    jobs.get(0).setTopBatch(newtop);
                                     jobs.remove(0);
                                 }
                                 newb1.addTopBatch(newtop);
@@ -201,6 +205,7 @@ public class ClusterPack {
                                 for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
                                     if (!jobs.isEmpty()) {
                                         newtop.addJob(jobs.get(0));
+                                        jobs.get(0).setTopBatch(newtop);
                                         jobs.remove(0);
                                     } else {
                                         break;
@@ -215,9 +220,6 @@ public class ClusterPack {
                     }
                 }
             }
-
-            // Close tool packing modeler
-            cp.end();
 
             // Cluster point definitions
             HashMap<Integer, Point> pointMap = new HashMap<>();
@@ -259,8 +261,9 @@ public class ClusterPack {
                             temp++;
                         }
                     }
-                    if (temp > k) {
-                        k = temp;
+                    int numneeded = (int) Math.ceil((float) temp / b.qty());
+                    if (numneeded > k) {
+                        k = numneeded;
                     }
                 }
 
@@ -273,15 +276,26 @@ public class ClusterPack {
 
                     // Initialize cluster centroids
                     ArrayList<Cluster> clusters = new ArrayList<>();
-                    int maxC = Collections.max(pointMapPerAuto.entrySet(), Map.Entry.comparingByValue(Comparator.comparing(Point::location))).getValue().location();
-                    for (int j = 0; j < k; k++) {
+                    int maxC = 0;
+                    for (Point p : pointMapPerAuto.values()) {
+                        if (p.location() > maxC) {
+                            maxC = p.location();
+                        }
+                    }
+                    for (int j = 0; j < k; j++) {
                         clusters.add(new Cluster(Math.max(1, (int) Math.round(Math.random() * maxC))));
                     }
 
                     // Perform k means to obtain initial solution
                     int iter = 0;
                     while (iter <= maxiter) {
-                        for (Point p : pointMapPerAuto.values()) {
+                        Collection<Point> iterate = new ArrayList<>(pointMapPerAuto.values());
+                        for (Cluster c : clusters) {
+                            Point bestPoint = Cluster.findPoint(iterate, c);
+                            c.addPoint(bestPoint);
+                            iterate.remove(bestPoint);
+                        }
+                        for (Point p : iterate) {
                             Cluster.checkCluster(clusters, p).addPoint(p);
                         }
                         if (Cluster.checkConverge(clusters)) {
@@ -291,8 +305,12 @@ public class ClusterPack {
                             break;
                         } else {
                             for (Cluster c : clusters) {
-                                int newC = c.recompute();
-                                c.reset(newC);
+                                if (c.points().isEmpty()) {
+                                    c.reset(Math.max(1, (int) Math.round(Math.random() * maxC)));
+                                } else {
+                                    int newC = c.recompute();
+                                    c.reset(newC);
+                                }
                             }
                             iter++;
                         }
@@ -301,25 +319,48 @@ public class ClusterPack {
                     // Perform k means S to obtain actual solution
                     iter = 0;
                     while (iter <= maxiter) {
-                        for (Point p : pointMapPerAuto.values()) {
+                        Collection<Point> iterate = new ArrayList<>(pointMapPerAuto.values());
+                        for (Cluster c : clusters) {
+                            Point bestPoint = Cluster.findPoint(iterate, c);
+                            c.addPoint(bestPoint);
+                            iterate.remove(bestPoint);
+                        }
+                        for (Point p : iterate) {
                             Cluster.checkCluster(clusters, p).addPoint(p);
                         }
                         for (Cluster c : clusters) {
                             c.calcVFI(i);
                         }
                         if (Cluster.checkConvergeKMS(clusters)) {
-                            for (Cluster c : clusters) {
-                                c.reset(c.centroid());
-                            }
                             break;
                         } else {
-                            for (Cluster c : clusters) {
-                                int newC = c.recomputeKMS();
-                                c.reset(newC);
-                            }
                             iter++;
                             if (iter > maxiter) {
-                                feasible = false;
+                                for (Cluster c : clusters) {
+                                    if (c.points().stream().map(Point::size).reduce(Integer::sum).orElseThrow() > i) {
+                                        feasible = false;
+                                    }
+                                    for (Point p : c.points()) {
+                                        int temp = 0;
+                                        for (Point p1 : c.points()) {
+                                            if (p.b1().bottomTool().equals(p1.b1().bottomTool())) {
+                                                temp++;
+                                            }
+                                        }
+                                        if (temp > p.b1().bottomTool().qty()) {
+                                            feasible = false;
+                                        }
+                                    }
+                                }
+                                break;
+                            }
+                            for (Cluster c : clusters) {
+                                if (c.points().isEmpty() || c.VFI().isEmpty()) {
+                                    c.reset(Math.max(1, (int) Math.round(Math.random() * maxC)));
+                                } else {
+                                    int newC = c.recomputeKMS();
+                                    c.reset(newC);
+                                }
                             }
                         }
                     }
@@ -332,6 +373,7 @@ public class ClusterPack {
                             AutoBatch newauto = new AutoBatch(i);
                             for (Point p : c.points()) {
                                 newauto.addToolBatch(p.b1());
+                                p.b1().setAutoBatch(newauto);
                             }
                             b2objs.add(newauto);
                         }
@@ -350,6 +392,18 @@ public class ClusterPack {
 
             }
 
+            // Add indices
+            it = 0;
+            for (int i = 0; i < b1objs.size(); i++) {
+                b1objs.get(i).addIndex(i);
+                for (TopBatch t : b1objs.get(i).b0s()) {
+                    t.addIndex(it++);
+                }
+            }
+            for (int i = 0; i < b2objs.size(); i++) {
+                b2objs.get(i).addIndex(i);
+            }
+
             // Make solution object
             elapsedTime += (System.nanoTime() - start) / 1_000_000_000;
             SolutionPack soln = new SolutionPack(data.numjob, b2objs.size(), elapsedTime, "Feasible");
@@ -359,7 +413,8 @@ public class ClusterPack {
             data.writePack(soln);
             data.writeSum(soln);
 
-            // Close intermediate file
+            // Close tool packing modeler and intermediate file
+            cp.end();
             writer.close();
 
         } catch (Exception e) {

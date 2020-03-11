@@ -12,6 +12,10 @@ public class Solution {
     private ArrayList<TopBatch> b0s = new ArrayList<>();
     private ArrayList<ToolBatch> b1s = new ArrayList<>();
     private ArrayList<AutoBatch> b2s = new ArrayList<>();
+    private ArrayList<JobS> jobsS = new ArrayList<>();
+    private ArrayList<TopBatchS> b0sS = new ArrayList<>();
+    private ArrayList<ToolBatchS> b1sS = new ArrayList<>();
+    private ArrayList<AutoBatchS> b2sS = new ArrayList<>();
     private int iteration;
     private int overHour;
     private double totElapsedTime;
@@ -48,10 +52,22 @@ public class Solution {
 
         this.b2s = b2s;
         for (AutoBatch a : b2s) {
-            this.jobs.addAll(a.jobs());
-            this.b1s.addAll(a.b1s());
+            this.jobs.addAll(new ArrayList<>(a.jobs()));
+            this.b1s.addAll(new ArrayList<>(a.b1s()));
             for (ToolBatch t : a.b1s()) {
-                this.b0s.addAll(t.b0s());
+                this.b0s.addAll(new ArrayList<>(t.b0s()));
+            }
+        }
+
+    }
+    public void addAutoBatchS(ArrayList<AutoBatchS> b2s) {
+
+        this.b2sS = b2s;
+        for (AutoBatchS a : b2s) {
+            this.jobsS.addAll(a.jobsS());
+            this.b1sS.addAll(a.b1sS());
+            for (ToolBatchS t : a.b1sS()) {
+                this.b0sS.addAll(t.b0sS());
             }
         }
 
@@ -66,6 +82,10 @@ public class Solution {
     public ArrayList<TopBatch> b0s() {return this.b0s;}
     public ArrayList<ToolBatch> b1s() {return this.b1s;}
     public ArrayList<AutoBatch> b2s() {return this.b2s;}
+    public ArrayList<JobS> jobsS() {return this.jobsS;}
+    public ArrayList<TopBatchS> b0sS() {return this.b0sS;}
+    public ArrayList<ToolBatchS> b1sS() {return this.b1sS;}
+    public ArrayList<AutoBatchS> b2sS() {return this.b2sS;}
     public int iteration() {return this.iteration;}
     public int overHour() {return this.overHour;}
     public double totElapsedTime() {return this.totElapsedTime;}

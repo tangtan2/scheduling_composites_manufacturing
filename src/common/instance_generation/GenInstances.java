@@ -13,18 +13,23 @@ public class GenInstances {
         String templatePath = args[0];
         String instancePath = args[1];
         int reps = Integer.parseInt(args[2]);
+        String date = args[3];
         ArrayList<Integer> numjobs = new ArrayList<>();
-        for (int i = 3; i < args.length; i++) {
+        for (int i = 4; i < args.length; i++) {
             numjobs.add(Integer.parseInt(args[i]));
         }
+
+        // Make overarching folder
+        String newFolder = instancePath + "/instances_" + date;
+        boolean folderSuccess0 = new File(newFolder).mkdir();
 
         // Iterate through different instance classes
         for (Integer numjob : numjobs) {
 
             // Make new directory to hold instances
-            String currentFolder = instancePath + "/jobs_" + numjob;
-            boolean folderSuccess = new File(currentFolder).mkdir();
-            if (folderSuccess) {
+            String currentFolder = newFolder + "/jobs_" + numjob + "/";
+            boolean folderSuccess1 = new File(currentFolder).mkdir();
+            if (folderSuccess1 && folderSuccess0) {
 
                 // Create reps number of instances
                 for (int i = 0; i < reps; i++) {
@@ -39,24 +44,25 @@ public class GenInstances {
                     int totjobs = (int) sheet.getRow(2).getCell(1).getNumericCellValue();
                     int numsamples = (int) sheet.getRow(19).getCell(1).getNumericCellValue();
                     sheet = workbook.getSheet("sample");
-                    ArrayList<String> jobs = new ArrayList<>();
+                    ArrayList<Integer> jobs = new ArrayList<>();
                     for (int j = 0; j < numjob; j++) {
-                        jobs.add(sheet.getRow(
+                        jobs.add((int) sheet.getRow(
                                 (int) Math.ceil(Math.random() * numsamples)
-                        ).getCell(0).getStringCellValue());
+                        ).getCell(0).getNumericCellValue());
                     }
                     sheet = workbook.getSheet("jobs");
                     int[] autocaps = new int[numjob];
                     int[] sizes = new int[numjob];
                     String[] partFams = new String[numjob];
                     int[] dues = new int[numjob];
-                    for (String job : jobs) {
+                    int it = 0;
+                    for (Integer job : jobs) {
                         for (int j = 0; j < totjobs; j++) {
-                            if (job.equals(sheet.getRow(j + 1).getCell(0).getStringCellValue())) {
-                                autocaps[jobs.indexOf(job)] = (int) sheet.getRow(j + 1).getCell(11).getNumericCellValue();
-                                sizes[jobs.indexOf(job)] = (int) sheet.getRow(j + 1).getCell(13).getNumericCellValue();
-                                partFams[jobs.indexOf(job)] = sheet.getRow(j + 1).getCell(12).getStringCellValue();
-                                dues[jobs.indexOf(job)] = (int) Math.ceil(Math.random() * 4);
+                            if (job == (sheet.getRow(j + 1).getCell(0).getNumericCellValue())) {
+                                autocaps[it] = (int) sheet.getRow(j + 1).getCell(11).getNumericCellValue();
+                                sizes[it] = (int) sheet.getRow(j + 1).getCell(13).getNumericCellValue();
+                                partFams[it] = sheet.getRow(j + 1).getCell(12).getStringCellValue();
+                                dues[it++] = (int) Math.ceil(Math.random() * 4);
                                 break;
                             }
                         }
@@ -66,11 +72,11 @@ public class GenInstances {
                     sheet = workbook.getSheet("order_jobs");
                     for (int j = 0; j < numjob; j++) {
                         sheet.createRow(j + 1).createCell(0).setCellValue(j);
-                        sheet.createRow(j + 1).createCell(1).setCellValue(jobs.get(j));
-                        sheet.createRow(j + 1).createCell(2).setCellValue(dues[j]);
-                        sheet.createRow(j + 1).createCell(3).setCellValue(sizes[j]);
-                        sheet.createRow(j + 1).createCell(4).setCellValue(autocaps[j]);
-                        sheet.createRow(j + 1).createCell(5).setCellValue(partFams[j]);
+                        sheet.getRow(j + 1).createCell(1).setCellValue(jobs.get(j));
+                        sheet.getRow(j + 1).createCell(2).setCellValue(dues[j]);
+                        sheet.getRow(j + 1).createCell(3).setCellValue(sizes[j]);
+                        sheet.getRow(j + 1).createCell(4).setCellValue(autocaps[j]);
+                        sheet.getRow(j + 1).createCell(5).setCellValue(partFams[j]);
                     }
 
                     // Create results page and add headings
@@ -130,12 +136,12 @@ public class GenInstances {
                         }
                     }
                     sheet = workbook.getSheet("single_param");
-                    sheet.getRow(1).getCell(1).setCellValue(numjob);
-                    sheet.getRow(3).getCell(1).setCellValue(numjob);
-                    sheet.getRow(4).getCell(1).setCellValue(numjob);
-                    sheet.getRow(5).getCell(1).setCellValue(numjob);
-                    sheet.getRow(16).getCell(1).setCellValue(autocount.size());
-                    sheet.getRow(17).getCell(1).setCellValue(150 * numjob);
+                    sheet.getRow(1).createCell(1).setCellValue(numjob);
+                    sheet.getRow(3).createCell(1).setCellValue(numjob);
+                    sheet.getRow(4).createCell(1).setCellValue(numjob);
+                    sheet.getRow(5).createCell(1).setCellValue(numjob);
+                    sheet.getRow(16).createCell(1).setCellValue(autocount.size());
+                    sheet.getRow(17).createCell(1).setCellValue(150 * numjob);
 
                     // Write output and close workbook
                     workbook.write(new FileOutputStream(currentFile));

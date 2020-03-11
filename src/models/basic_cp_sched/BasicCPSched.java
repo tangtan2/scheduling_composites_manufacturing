@@ -62,37 +62,39 @@ public class BasicCPSched {
         for (int i = 0; i < data.numb0_new; i++) {
             for (Tool t : toptoolobjs) {
                 if (data.b0toptool[i].equals(t.name())) {
-                    TopBatchS newtop = new TopBatchS(t);
+                    TopBatchS newtop = new TopBatchS(t, data.b0indices[i]);
                     for (int j = 0; j < data.numjob; j++) {
-                        if (data.jobtob0[j] == i) {
-                            newtop.addJobS(jobobjs.get(j));
-                            jobobjs.get(j).setTopBatchS(newtop);
+                        if (data.jobtob0[j] == data.b0indices[i]) {
+                            newtop.addJobS(jobobjs.get(data.jobindices[j]));
+                            jobobjs.get(data.jobindices[j]).setTopBatchS(newtop);
                         }
                     }
                     b0objs.add(newtop);
                 }
             }
         }
+        b0objs.sort(Comparator.comparing(TopBatchS::index));
         for (int i = 0; i < data.numb1_new; i++) {
             for (Tool t : bottomtoolobjs) {
                 if (data.b1bottomtool[i].equals(t.name())) {
-                    ToolBatchS newtool = new ToolBatchS(t);
+                    ToolBatchS newtool = new ToolBatchS(t, data.b1indices[i]);
                     for (int j = 0; j < data.numb0_new; j++) {
-                        if (data.b0tob1[j] == i) {
-                            newtool.addTopBatchS(b0objs.get(j));
-                            b0objs.get(j).setToolBatchS(newtool);
+                        if (data.b0tob1[j] == data.b1indices[i]) {
+                            newtool.addTopBatchS(b0objs.get(data.b0indices[j]));
+                            b0objs.get(data.b0indices[j]).setToolBatchS(newtool);
                         }
                     }
                     b1objs.add(newtool);
                 }
             }
         }
+        b1objs.sort(Comparator.comparing(ToolBatchS::index));
         for (int i = 0; i < data.numb2_new; i++) {
-            AutoBatchS newauto = new AutoBatchS(data.b2cap[i]);
+            AutoBatchS newauto = new AutoBatchS(data.b2cap[i], data.b2indices[i]);
             for (int j = 0; j < data.numb1_new; j++) {
-                if (data.b1tob2[j] == i) {
-                    newauto.addToolBatchS(b1objs.get(j));
-                    b1objs.get(j).setAutoBatchS(newauto);
+                if (data.b1tob2[j] == data.b2indices[i]) {
+                    newauto.addToolBatchS(b1objs.get(data.b1indices[j]));
+                    b1objs.get(data.b1indices[j]).setAutoBatchS(newauto);
                 }
             }
             b2objs.add(newauto);
@@ -109,26 +111,25 @@ public class BasicCPSched {
             IloCP cp = new IloCP();
 
             // Define decision variables
-            // prep_{j, k}, lay_{j, k}, dem_{j, k}, x_k, y_k, z_i, w_k, l_j
+            // prep_{j, k}, lay_{j, k}, dem_{j, k}, x_k, y_k, z_i, w_k
             for (AutoBatchS i : b2objs) {
                 IloIntervalVar commonauto = cp.intervalVar(i.jobsS().get(0).stepTimes()[2]);
                 commonauto.setPresent();
                 i.setAuto(commonauto);
                 for (ToolBatchS k : i.b1sS()) {
-                    for (JobS j : k.jobsS()) {
-                        j.setVars(cp.intervalVar(j.stepTimes()[0]),
-                                cp.intervalVar(j.stepTimes()[1]),
-                                commonauto,
-                                cp.intervalVar(j.stepTimes()[3]),
-                                cp.intVar(0, data.horizon));
-                    }
-                    k.setVars(cp.intervalVar(k.jobsS().stream().map(JobS::stepTimes).map(x -> x[0]).reduce(0, Integer::sum)),
-                            cp.intervalVar(k.jobsS().stream().map(JobS::stepTimes).map(x -> x[1]).reduce(0, Integer::sum)),
-                            cp.intervalVar(k.jobsS().stream().map(JobS::stepTimes).map(x -> x[3]).reduce(0, Integer::sum)));
+                    k.setVars(cp.intervalVar(k.jobsS().get(0).stepTimes()[0]),
+                            cp.intervalVar(k.jobsS().get(0).stepTimes()[1]),
+                            cp.intervalVar(k.jobsS().get(0).stepTimes()[3]));
                     k.prepVar().setPresent();
                     k.layupVar().setPresent();
                     k.demouldVar().setPresent();
+                    k.demouldVar().setEndMax(data.horizon);
                 }
+            }
+
+            // l_j
+            for (JobS j : jobobjs) {
+                j.addVar(cp.intVar(0, data.horizon));
             }
 
             // CE
@@ -143,49 +144,11 @@ public class BasicCPSched {
             }
 
             // Create constraints
-            // Span all activities per job and precedence
-            for (JobS j : jobobjs) {
-                IloIntervalSequenceVar totjob = cp.intervalSequenceVar(
-                        new IloIntervalVar[]{j.prepVar(),
-                                j.layupVar(),
-                                j.autoVar(),
-                                j.demouldVar()});
-                cp.add(cp.first(totjob, j.prepVar()));
-                cp.add(cp.last(totjob, j.demouldVar()));
-                cp.add(cp.before(totjob, j.layupVar(), j.autoVar()));
-                cp.add(cp.startBeforeEnd(j.layupVar(), j.autoVar(), -data.waittime));
-                cp.add(cp.noOverlap(totjob));
-            }
-
-            // Span tool prep activities
+            // Precedence between activities
             for (ToolBatchS t : b1objs) {
-                IloIntervalVar[] temp = new IloIntervalVar[t.jobsS().size()];
-                for (int j = 0; j < t.jobsS().size(); j++) {
-                    temp[j] = t.jobsS().get(j).prepVar();
-                }
-                cp.add(cp.noOverlap(temp));
-                cp.add(cp.span(t.prepVar(), temp));
-            }
-
-            // Span layup activities
-            for (ToolBatchS t : b1objs) {
-                IloIntervalVar[] temp = new IloIntervalVar[t.jobsS().size()];
-                for (int j = 0; j < t.jobsS().size(); j++) {
-                    temp[j] = t.jobsS().get(j).layupVar();
-                }
-                cp.add(cp.noOverlap(temp));
-                cp.add(cp.span(t.layupVar(), temp));
-                cp.add(cp.endBeforeEnd(t.prepVar(), t.layupVar()));
-            }
-
-            // Span demould activities
-            for (ToolBatchS t : b1objs) {
-                IloIntervalVar[] temp = new IloIntervalVar[t.jobsS().size()];
-                for (int j = 0; j < t.jobsS().size(); j++) {
-                    temp[j] = t.jobsS().get(j).demouldVar();
-                }
-                cp.add(cp.noOverlap(temp));
-                cp.add(cp.span(t.demouldVar(), temp));
+                cp.add(cp.endBeforeStart(t.prepVar(), t.layupVar()));
+                cp.add(cp.endBeforeStart(t.layupVar(), t.b2S().autoVar()));
+                cp.add(cp.endBeforeStart(t.b2S().autoVar(), t.demouldVar()));
             }
 
             // Resource utilization for bottom tools
@@ -285,7 +248,7 @@ public class BasicCPSched {
                 int ind = 0;
                 for (int j = 0; j < data.numskilltomachine; j++) {
                     if (data.labourtomachine[j][0].equals(i.prepMachine().name()) &&
-                            (i.jobs().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
+                            (i.jobsS().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
                                     data.labourtomachine[j][1].equals("N/A"))) {
                         String skill = data.labourtomachine[j][2];
                         for (Labour l : labourobjs) {
@@ -309,7 +272,7 @@ public class BasicCPSched {
                 int ind = 0;
                 for (int j = 0; j < data.numskilltomachine; j++) {
                     if (data.labourtomachine[j][0].equals(i.layupMachine().name()) &&
-                            (i.jobs().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
+                            (i.jobsS().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
                                     data.labourtomachine[j][1].equals("N/A"))) {
                         String skill = data.labourtomachine[j][2];
                         for (Labour l : labourobjs) {
@@ -333,7 +296,7 @@ public class BasicCPSched {
                 int ind = 0;
                 for (int j = 0; j < data.numskilltomachine; j++) {
                     if (data.labourtomachine[j][0].equals(i.demouldMachine().name()) &&
-                            (i.jobs().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
+                            (i.jobsS().get(0).partFamily().equals(data.labourtomachine[j][1]) ||
                                     data.labourtomachine[j][1].equals("N/A"))) {
                         String skill = data.labourtomachine[j][2];
                         for (Labour l : labourobjs) {
@@ -367,7 +330,7 @@ public class BasicCPSched {
 
             // Job tardiness
             for (JobS j : jobobjs) {
-                cp.addGe(j.tardyVar(), cp.diff(cp.endOf(j.demouldVar()), j.due()));
+                cp.addGe(j.tardyVar(), cp.diff(cp.endOf(j.b0S().b1S().demouldVar()), j.due()));
             }
 
             // Objective function
@@ -380,7 +343,7 @@ public class BasicCPSched {
             // Scheduling modeler parameters
             cp.setParameter(IloCP.IntParam.Workers, 1);
             cp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            cp.setParameter(IloCP.DoubleParam.TimeLimit, 3600);
+            cp.setParameter(IloCP.DoubleParam.TimeLimit, 10);
 
             // Solve scheduling
             double elapsedTime = 0;
@@ -390,6 +353,30 @@ public class BasicCPSched {
                 elapsedTime = cp.getInfo(IloCP.DoubleInfo.SolveTime);
                 String filecontent = "Schedule found after time " + Math.round(elapsedTime) + " with objective value of " + cp.getObjValue() + "\n";
                 writer.write(filecontent);
+
+                // Obtain solution values
+                for (JobS j : jobobjs) {
+                    j.schedule(cp.getStart(j.b0S().b1S().prepVar()),
+                            cp.getEnd(j.b0S().b1S().prepVar()),
+                            cp.getStart(j.b0S().b1S().layupVar()),
+                            cp.getEnd(j.b0S().b1S().layupVar()),
+                            cp.getStart(j.b0S().b1S().b2S().autoVar()),
+                            cp.getEnd(j.b0S().b1S().b2S().autoVar()),
+                            cp.getStart(j.b0S().b1S().demouldVar()),
+                            cp.getEnd(j.b0S().b1S().demouldVar()));
+                }
+                for (ToolBatchS t : b1objs) {
+                    t.schedule(cp.getStart(t.prepVar()),
+                            cp.getEnd(t.prepVar()),
+                            cp.getStart(t.layupVar()),
+                            cp.getEnd(t.layupVar()),
+                            cp.getStart(t.demouldVar()),
+                            cp.getEnd(t.demouldVar()));
+                }
+                for (AutoBatchS a : b2objs) {
+                    a.autoSched(cp.getStart(a.autoVar()),
+                            cp.getEnd(a.autoVar()));
+                }
 
                 // Print to output
                 System.out.println("Objective value: " + cp.getObjValue());
@@ -410,33 +397,9 @@ public class BasicCPSched {
 
             }
 
-            // Obtain solution values
-            for (JobS j : jobobjs) {
-                j.schedule(cp.getStart(j.prepVar()),
-                        cp.getEnd(j.prepVar()),
-                        cp.getStart(j.layupVar()),
-                        cp.getEnd(j.layupVar()),
-                        cp.getStart(j.autoVar()),
-                        cp.getEnd(j.autoVar()),
-                        cp.getStart(j.demouldVar()),
-                        cp.getEnd(j.demouldVar()));
-            }
-            for (ToolBatchS t : b1objs) {
-                t.schedule(cp.getStart(t.prepVar()),
-                        cp.getEnd(t.prepVar()),
-                        cp.getStart(t.layupVar()),
-                        cp.getEnd(t.layupVar()),
-                        cp.getStart(t.demouldVar()),
-                        cp.getEnd(t.demouldVar()));
-            }
-            for (AutoBatchS a : b2objs) {
-                a.autoSched(cp.getStart(a.autoVar()),
-                        cp.getEnd(a.autoVar()));
-            }
-
             // Make solution object
             SolutionSched soln = new SolutionSched(data.numjob, cp.getObjValue(), elapsedTime, cp.getStatusString());
-            soln.addAutoBatch(new ArrayList<>(b2objs));
+            soln.addAutoBatchS(b2objs);
 
             // Write solution to file
             data.writeSched(soln);

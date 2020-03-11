@@ -1,4 +1,4 @@
-package models.edd_serial_sched;
+package common.model_helpers;
 
 public class Horizon {
 
@@ -34,17 +34,31 @@ public class Horizon {
         this.periodEnd = new int[numperiods];
         int time = 0;
         for (int i = 0; i < numperiods; i++) {
-            for (int j = 0; j < shiftStart.length; j++) {
-                if (shiftStart[j] <= time && time < shiftEnd[j]) {
+            periodStart[i] = i * 5;
+            periodEnd[i] = i * 5 + 5;
+            for (int j = 0; j < qtyPerShift.length; j++) {
+                if (time >= shiftStart[j] && (time + 4) < shiftEnd[j]) {
                     qtyPerPeriod[i] = qtyPerShift[j];
-                    time += 5;
-                    if (time == shiftEnd[shiftEnd.length - 1]) {
-                        time = 0;
-                    }
                     break;
                 }
             }
+            time += 5;
+            if (time == 7 * 24 * 60) {
+                time = 0;
+            }
         }
+
+    }
+
+    // Get earliest availability
+    public int earliest() {
+
+        for (int i = 0; i < this.periodStart.length; i++) {
+            if (qtyPerPeriod[i] > 0) {
+                return i * 5;
+            }
+        }
+        return horizonEnd;
 
     }
 
@@ -52,7 +66,7 @@ public class Horizon {
     public boolean check(int start, int end, int qty) {
 
         for (int i = 0; i < this.periodStart.length; i++) {
-            if (this.periodStart[i] <= start) {
+            if (this.periodStart[i] == start) {
                 for (int j = i; j < this.periodStart.length; j++) {
                     if (this.qtyPerPeriod[j] < qty) {
                         return false;
@@ -72,7 +86,7 @@ public class Horizon {
     public void schedule(int start, int end, int qty) {
 
         for (int i = 0; i < this.periodStart.length; i++) {
-            if (this.periodStart[i] <= start) {
+            if (this.periodStart[i] == start) {
                 for (int j = i; j < this.periodStart.length; j++) {
                     this.qtyPerPeriod[j] -= qty;
                     if (this.periodStart[j] <= end && end < this.periodEnd[j]) {
