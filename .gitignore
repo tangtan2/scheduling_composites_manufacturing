@@ -1,5 +1,6 @@
-*temp/
-*archive/
 *.DS_Store
-*resources/
-*out/
+*lib/
+*test/
+*target/
+*config/
+*data/

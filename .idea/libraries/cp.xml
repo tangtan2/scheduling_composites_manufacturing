@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="cp">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/resources/cplex/cpoptimizer/lib/ILOG.CP.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

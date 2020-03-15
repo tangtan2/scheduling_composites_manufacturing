@@ -1,15 +1,13 @@
 directories
 
+- config -> text files containing experimental parameters
+
 - data
 ---- archive -> archived experimental results
 ---- temp -> hold experimental instance sets
 ---- template -> templates for instance generate and summary sheets
 
 - docs -> documentation for project
-
-- resources
----- cplex -> IBM CPLEX Java API
----- poi -> Apache library for Excel manipulation in Java
 
 - src
 ---- common
