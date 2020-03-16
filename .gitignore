@@ -1,6 +1,7 @@
-*.DS_Store
+*DS_Store
 *lib/
 *test/
 *target/
 *config/
 *data/
+*.idea/
