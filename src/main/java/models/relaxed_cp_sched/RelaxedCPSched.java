@@ -290,7 +290,7 @@ public class RelaxedCPSched {
             // RSP modeler parameters
             cp.setParameter(IloCP.IntParam.Workers, 1);
             cp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            cp.setParameter(IloCP.DoubleParam.TimeLimit, 60);
+            cp.setParameter(IloCP.DoubleParam.TimeLimit, 3600);
 
             // Solve RSP
             double elapsedTime = 0;

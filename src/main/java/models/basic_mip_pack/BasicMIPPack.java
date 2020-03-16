@@ -161,7 +161,7 @@ public class BasicMIPPack {
             // Tool packing modeler parameters
             cplex.setParam(IloCplex.Param.Threads, 1);
             cplex.setParam(IloCplex.IntParam.MIP.Display, 1);
-            cplex.setParam(IloCplex.DoubleParam.TimeLimit, 10);
+            cplex.setParam(IloCplex.DoubleParam.TimeLimit, 900);
 
             // Solve tool packing
             double start = cplex.getCplexTime();
@@ -357,7 +357,7 @@ public class BasicMIPPack {
             // Autoclave packing modeler parameters
             autocplex.setParam(IloCplex.Param.Threads, 1);
             autocplex.setParam(IloCplex.IntParam.MIP.Display, 1);
-            autocplex.setParam(IloCplex.DoubleParam.TimeLimit, 60);
+            autocplex.setParam(IloCplex.DoubleParam.TimeLimit, 30);
 
             // Solve autoclave packing
             start = autocplex.getCplexTime();

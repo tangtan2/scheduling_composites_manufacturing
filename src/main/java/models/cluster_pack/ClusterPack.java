@@ -147,7 +147,7 @@ public class ClusterPack {
             // Tool packing modeler parameters
             cp.setParameter(IloCP.IntParam.Workers, 1);
             cp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            cp.setParameter(IloCP.DoubleParam.TimeLimit, 10);
+            cp.setParameter(IloCP.DoubleParam.TimeLimit, 900);
 
             // Solve tool packing
             double elapsedTime = 0;

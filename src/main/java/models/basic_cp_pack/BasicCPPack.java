@@ -145,7 +145,7 @@ public class BasicCPPack {
             // Tool packing modeler parameters
             cp.setParameter(IloCP.IntParam.Workers, 1);
             cp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            cp.setParameter(IloCP.DoubleParam.TimeLimit, 10);
+            cp.setParameter(IloCP.DoubleParam.TimeLimit, 900);
 
             // Solve tool packing
             double elapsedTime = 0;
@@ -314,7 +314,7 @@ public class BasicCPPack {
             // Autoclave packing modeler parameters
             autocp.setParameter(IloCP.IntParam.Workers, 1);
             autocp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            autocp.setParameter(IloCP.DoubleParam.TimeLimit, 60);
+            autocp.setParameter(IloCP.DoubleParam.TimeLimit, 900);
 
             // Solve autoclave packing
             if (autocp.solve()) {

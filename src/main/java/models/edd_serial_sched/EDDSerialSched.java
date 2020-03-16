@@ -2,6 +2,7 @@ package models.edd_serial_sched;
 import common.model_helpers.*;
 import java.util.*;
 import java.io.*;
+import java.util.stream.Collectors;
 
 public class EDDSerialSched {
 
@@ -100,12 +101,7 @@ public class EDDSerialSched {
             // Schedule chosen activity and add to scheduled set
             assert next != null;
             if (next.type() == 2) {
-                ArrayList<Horizon> relevanthorizons = new ArrayList<>();
-                for (ToolBatchA t : next.b2().b1sA()) {
-                    if (!relevanthorizons.contains(t.bottomToolH().horizon())) {
-                        relevanthorizons.add(t.bottomToolH().horizon());
-                    }
-                }
+                List<Horizon> relevanthorizons = next.b2().b1sA().stream().map(ToolBatchA::bottomToolH).distinct().map(ToolH::horizon).collect(Collectors.toList());
                 relevanthorizons.add(next.b2().autoMachineH().horizon());
                 int earliest = Math.max(next.maxPredEnd(), relevanthorizons.stream().map(Horizon::earliest).max(Comparator.comparing(Integer::intValue)).orElseThrow());
                 for (int i = earliest; i < relevanthorizons.get(0).horizonEnd(); i += 5) {

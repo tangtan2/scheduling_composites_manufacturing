@@ -1,7 +1,7 @@
 # Implementation for chapter 3 models in MASc thesis
 
 9 models in total
-* Logic-based Benders decomposition model
+* Logic-based Benders decomposition model:
   * CP master for batching
   * CP subproblem for scheduling
 * Batching-only models:

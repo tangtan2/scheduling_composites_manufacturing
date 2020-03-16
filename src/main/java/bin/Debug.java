@@ -75,9 +75,9 @@ public class Debug {
 //        // Testing relaxed scheduling
 //        for (int i = 0; i < 30; i++) {
 //            String[] callArgs = new String[]{
-//                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/instance_" + i + ".xlsx",
-//                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/summary.xlsx",
-//                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/intermediates.txt", Integer.toString(i)
+//                    "/Users/tanyatang/Downloads/instance_" + i + ".xlsx",
+//                    "/Users/tanyatang/Downloads/summary.xlsx",
+//                    "/Users/tanyatang/Downloads/intermediates.txt", Integer.toString(i)
 //            };
 //            callRelaxedCPSched(callArgs);
 //        }
@@ -92,12 +92,12 @@ public class Debug {
 //            callBasicCPPack(callArgs);
 //        }
 //
-//        // Testingting MIP packing
+//        // Testing MIP packing
 //        for (int i = 5; i < 10; i++) {
 //            String[] callArgs = new String[]{
-//                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/instance_" + i + ".xlsx",
-//                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/summary.xlsx",
-//                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/intermediates.txt", Integer.toString(i)
+//                    "/Users/tanyatang/Downloads/instance_" + i + ".xlsx",
+//                    "/Users/tanyatang/Downloads/summary.xlsx",
+//                    "/Users/tanyatang/Downloads/intermediates.txt", Integer.toString(i)
 //            };
 //            callBasicMIPPack(callArgs);
 //        }

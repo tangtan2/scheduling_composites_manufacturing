@@ -343,7 +343,7 @@ public class BasicCPSched {
             // Scheduling modeler parameters
             cp.setParameter(IloCP.IntParam.Workers, 1);
             cp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            cp.setParameter(IloCP.DoubleParam.TimeLimit, 60);
+            cp.setParameter(IloCP.DoubleParam.TimeLimit, 1800);
 
             // Solve scheduling
             double elapsedTime = 0;

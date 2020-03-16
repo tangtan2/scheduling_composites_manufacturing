@@ -78,98 +78,98 @@ public class Run {
             String[] callArgs = Arrays.copyOfRange(allArgs, 1, allArgs.length);
 
             // Write to output
-            System.out.println("Running model type " + type + " on problem instance " + callArgs[3] + " with file name " + callArgs[0]);
+            if (type != 100) {
+                System.out.println("Running model type " + type + " on problem instance " + callArgs[3] + " with file name " + callArgs[0] + "...");
+            } else {
+                System.out.println("Generating " + callArgs[2] + " instances for date " + callArgs[3] + "...");
+            }
 
             // Call correct model
             switch (type) {
 
                 case 100: // Generate new instances
                     callGenInstances(callArgs);
+                    break;
 
-                case 0: // RSP + LBBD
+                case 200: // RSP
                     callRelaxedCPSched(callArgs);
+                    break;
+
+                case 0: // LBBD
                     callBasicLBBD(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 1: // RSP + CP pack + CP sched
-                    callRelaxedCPSched(callArgs);
+                case 1: // CP pack + CP sched
                     callBasicCPPack(callArgs);
                     callBasicCPSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 2: // RSP + MIP pack + CP sched
-                    callRelaxedCPSched(callArgs);
+                case 2: // MIP pack + CP sched
                     callBasicMIPPack(callArgs);
                     callBasicCPSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 3: // RSP + EDD pack + CP sched
-                    callRelaxedCPSched(callArgs);
+                case 3: // EDD pack + CP sched
                     callBasicEDDPack(callArgs);
                     callBasicCPSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 4: // RSP + chap2 pack + chap2 sched
-                    callRelaxedCPSched(callArgs);
+                case 4: // chap2 pack + chap2 sched
                     // TBD
                     // TBD
                     callSolutionCheck(callArgs);
                     break;
 
-                case 5: // RSP + chap2 pack + EDD serial sched
-                    callRelaxedCPSched(callArgs);
+                case 5: // chap2 pack + EDD serial sched
                     // TBD
                     callEDDSerialSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 6: // RSP + chap2 pack + EDD parallel sched
-                    callRelaxedCPSched(callArgs);
+                case 6: // chap2 pack + EDD parallel sched
                     // TBD
                     callEDDParallelSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 7: // RSP + chap2 pack + genetic sched
-                    callRelaxedCPSched(callArgs);
+                case 7: // chap2 pack + genetic sched
                     // TBD
                     callGeneticSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 8: // RSP + cluster pack + chap2 sched
-                    callRelaxedCPSched(callArgs);
+                case 8: // cluster pack + chap2 sched
                     callClusterPack(callArgs);
                     // TBD
                     callSolutionCheck(callArgs);
                     break;
 
-                case 9: // RSP + cluster pack + EDD serial sched
-                    callRelaxedCPSched(callArgs);
+                case 9: // cluster pack + EDD serial sched
                     callClusterPack(callArgs);
                     callEDDSerialSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 10: // RSP + cluster pack + EDD parallel sched
-                    callRelaxedCPSched(callArgs);
+                case 10: // cluster pack + EDD parallel sched
                     callClusterPack(callArgs);
                     callEDDParallelSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 11: // RSP + cluster pack + genetic sched
-                    callRelaxedCPSched(callArgs);
+                case 11: // cluster pack + genetic sched
                     callClusterPack(callArgs);
                     callGeneticSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
             }
+
+            // Show complete
+            System.out.println("Success!");
 
         }
 
