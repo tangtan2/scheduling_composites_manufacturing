@@ -357,7 +357,7 @@ public class BasicMIPPack {
             // Autoclave packing modeler parameters
             autocplex.setParam(IloCplex.Param.Threads, 1);
             autocplex.setParam(IloCplex.IntParam.MIP.Display, 1);
-            autocplex.setParam(IloCplex.DoubleParam.TimeLimit, 30);
+            autocplex.setParam(IloCplex.DoubleParam.TimeLimit, 900);
 
             // Solve autoclave packing
             start = autocplex.getCplexTime();
@@ -426,6 +426,7 @@ public class BasicMIPPack {
             // Make solution object
             SolutionPack soln = new SolutionPack(data.numJob, autocplex.getObjValue(), elapsedTime, autocplex.getStatus().toString());
             soln.addAutoBatch(b2objs);
+            System.out.println(soln.jobs().size() + " jobs in solution");
 
             // Write solution to file
             data.writePack(soln);
