@@ -426,6 +426,12 @@ public class BasicMIPPack {
             // Make solution object
             SolutionPack soln = new SolutionPack(data.numJob, autocplex.getObjValue(), elapsedTime, autocplex.getStatus().toString());
             soln.addAutoBatch(b2objs);
+            for (int i = 0; i < soln.numJob(); i++) {
+                int index = i;
+                if (soln.jobs().stream().map(Job::index).noneMatch(x -> x == index)) {
+                    System.out.println("Job " + i + " isn't in solution");
+                }
+            }
             System.out.println(soln.jobs().size() + " jobs in solution");
 
             // Write solution to file
