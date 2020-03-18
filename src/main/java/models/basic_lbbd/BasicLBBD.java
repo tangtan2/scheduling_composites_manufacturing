@@ -96,7 +96,7 @@ public class BasicLBBD {
         }
 
         // Time spent within each component
-        int componentLimit = 600;
+        int componentLimit = 120;
         int totalLimit = 3600;
 
         // Create lists to hold solution qualities over time

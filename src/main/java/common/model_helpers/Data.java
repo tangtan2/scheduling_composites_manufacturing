@@ -458,16 +458,6 @@ public class Data {
 
             XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(new FileInputStream(this.filePath));
             XSSFSheet sheet = workbook.getSheet("order_jobs");
-            sheet.getRow(0).createCell(6).setCellValue("auto_end");
-            sheet.getRow(0).createCell(7).setCellValue("order");
-            sheet.getRow(0).createCell(8).setCellValue("prep_start");
-            sheet.getRow(0).createCell(9).setCellValue("prep_end");
-            sheet.getRow(0).createCell(10).setCellValue("layup_start");
-            sheet.getRow(0).createCell(11).setCellValue("layup_end");
-            sheet.getRow(0).createCell(12).setCellValue("auto_start");
-            sheet.getRow(0).createCell(13).setCellValue("demould_start");
-            sheet.getRow(0).createCell(14).setCellValue("demould_end");
-            sheet.getRow(0).createCell(15).setCellValue("tardiness");
             TreeMap<Integer, ArrayList<JobRSP>> map = new TreeMap<>();
             for (JobRSP j : soln.RSPjobs()) {
                 if (map.containsKey(j.autoEnd())) {

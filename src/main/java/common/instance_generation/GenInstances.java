@@ -70,6 +70,16 @@ public class GenInstances {
 
                     // Add sampled jobs to instance
                     sheet = workbook.getSheet("order_jobs");
+                    sheet.getRow(0).createCell(6).setCellValue("auto_end");
+                    sheet.getRow(0).createCell(7).setCellValue("order");
+                    sheet.getRow(0).createCell(8).setCellValue("prep_start");
+                    sheet.getRow(0).createCell(9).setCellValue("prep_end");
+                    sheet.getRow(0).createCell(10).setCellValue("layup_start");
+                    sheet.getRow(0).createCell(11).setCellValue("layup_end");
+                    sheet.getRow(0).createCell(12).setCellValue("auto_start");
+                    sheet.getRow(0).createCell(13).setCellValue("demould_start");
+                    sheet.getRow(0).createCell(14).setCellValue("demould_end");
+                    sheet.getRow(0).createCell(15).setCellValue("tardiness");
                     for (int j = 0; j < numjob; j++) {
                         sheet.createRow(j + 1).createCell(0).setCellValue(j);
                         sheet.getRow(j + 1).createCell(1).setCellValue(jobs.get(j));
@@ -120,7 +130,7 @@ public class GenInstances {
                     sheet.getRow(0).createCell(42).setCellValue("b2_tools_size");
                     sheet.getRow(0).createCell(43).setCellValue("b2_auto_start");
                     sheet.getRow(0).createCell(44).setCellValue("b2_auto_end");
-                    sheet.getRow(0).createCell(45).setCellValue("b2_auto_mchine");
+                    sheet.getRow(0).createCell(45).setCellValue("b2_auto_machine");
 
                     // Create quality over time page and add headings
                     sheet = workbook.createSheet("quality_over_time");
