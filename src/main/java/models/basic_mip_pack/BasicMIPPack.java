@@ -295,21 +295,6 @@ public class BasicMIPPack {
                 autocplex.addEq(temp, b2vol[j]);
             }
 
-            // Only tool batches with the same cycle can be batched into the same autoclave batch
-            for (int i = 0; i < b1objs.size(); i++) {
-                for (int j = 0; j < b1objs.size(); j++) {
-                    if (b1objs.get(i).jobs().get(0).autoCap() == b1objs.get(j).jobs().get(0).autoCap()) {
-                        IloLinearIntExpr left = autocplex.linearIntExpr();
-                        IloLinearIntExpr right = autocplex.linearIntExpr();
-                        for (int k = 0; k < b1objs.size(); k++) {
-                            left.addTerm(b1tob2[i][k], b1objs.get(i).jobs().get(0).autoCap());
-                            right.addTerm(b1tob2[j][k], b1objs.get(j).jobs().get(0).autoCap());
-                        }
-                        autocplex.addEq(left, right);
-                    }
-                }
-            }
-
             // Only the present quantity of tools can be in the same autoclave batch
             ArrayList<Tool> completedtools = new ArrayList<>();
             for (int i = 0; i < b1objs.size(); i++) {
@@ -376,9 +361,10 @@ public class BasicMIPPack {
                         }
                     }
                 }
+                int it = 0;
                 for (int i = 0; i < b1objs.size(); i++) {
-                    if (autocplex.getValue(b2vol[i]) > 0) {
-                        System.out.println("Autoclave batch " + i + " has volume " + autocplex.getValue(b2vol[i]));
+                    if (Math.round(autocplex.getValue(b2vol[i])) > 0) {
+                        System.out.println("Autoclave batch " + it++ + " has volume " + autocplex.getValue(b2vol[i]));
                     }
                 }
 
@@ -390,7 +376,7 @@ public class BasicMIPPack {
             // Obtain solution values
             ArrayList<AutoBatch> b2objs = new ArrayList<>();
             for (int i = 0; i < b1objs.size(); i++) {
-                if (autocplex.getValue(b2vol[i]) > 0) {
+                if (Math.round(autocplex.getValue(b2vol[i])) > 0) {
                     AutoBatch newb2 = new AutoBatch(0);
                     for (int j = 0; j < b1objs.size(); j++) {
                         if (Math.round(autocplex.getValue(b1tob2[j][i])) == 1) {

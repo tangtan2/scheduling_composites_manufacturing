@@ -258,15 +258,6 @@ public class BasicCPPack {
             // Calculate number of bins
             autocp.addEq(bins, autocp.diff(b1objs.size(), autocp.count(b2vol, 0)));
 
-            // Only tool batches with the same cycle can be batched into the same autoclave batch
-            for (int i = 0; i < b1objs.size(); i++) {
-                for (int j = 0; j < b1objs.size(); j++) {
-                    if (!b1objs.get(i).jobs().get(0).steps()[2].equals(b1objs.get(j).jobs().get(0).steps()[2])) {
-                        autocp.add(autocp.allDiff(new IloIntVar[]{b1pack[i], b1pack[j]}));
-                    }
-                }
-            }
-
             // Only the present quantity of tools can be in the same autoclave batch
             ArrayList<Tool> completedtools = new ArrayList<>();
             for (ToolBatch b1 : b1objs) {
