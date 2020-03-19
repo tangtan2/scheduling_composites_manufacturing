@@ -2,8 +2,8 @@ package models.cluster_pack;
 import common.model_helpers.*;
 import java.util.*;
 import java.io.*;
-import ilog.cp.*;
 import ilog.concert.*;
+import ilog.cplex.IloCplex;
 
 public class ClusterPack {
 
@@ -107,62 +107,80 @@ public class ClusterPack {
             }
 
             // Create tool packing modeler
-            IloCP cp = new IloCP();
+            IloCplex cplex = new IloCplex();
 
             // Define decision variables
-            // x_j
-            IloIntVar[] jobtocombo = new IloIntVar[remainingjobs.size()];
+            // x_{j, c}
+            IloIntVar[][] jobtocombo = new IloIntVar[remainingjobs.size()][comboobjs.size()];
             for (int i = 0; i < remainingjobs.size(); i++) {
-                jobtocombo[i] = cp.intVar(0, comboobjs.size());
+                for (int j = 0; j < comboobjs.size(); j++) {
+                    jobtocombo[i][j] = cplex.intVar(0, 1);
+                }
             }
 
             // \lambda_c
             IloIntVar[] lambda = new IloIntVar[comboobjs.size()];
             for (int i = 0; i < comboobjs.size(); i++) {
-                lambda[i] = cp.intVar(0, remainingjobs.size());
+                lambda[i] = cplex.intVar(0, remainingjobs.size());
             }
 
             // Create constraints
-            // Allowed assignments of jobs to combos
+            // Each job is assigned to one combo
             for (int i = 0; i < remainingjobs.size(); i++) {
-                int[] allowed = new int[remainingjobs.get(i).mappedCombos().size()];
-                for (int j = 0; j < remainingjobs.get(i).mappedCombos().size(); j++) {
-                    allowed[j] = remainingjobs.get(i).mappedCombos().get(j).index();
+                IloLinearIntExpr temp = cplex.linearIntExpr();
+                for (int j = 0; j < comboobjs.size(); j++) {
+                    temp.addTerm(jobtocombo[i][j], 1);
                 }
-                cp.add(cp.allowedAssignments(jobtocombo[i], allowed));
+                cplex.addEq(temp, 1);
             }
 
-            // Number of jobs in combo is less than max number of spots
+            // Restrict job to combo assignments
+            for (int i = 0; i < remainingjobs.size(); i++) {
+                for (int j = 0; j < comboobjs.size(); j++) {
+                    if (!remainingjobs.get(i).mappedCombos().contains(comboobjs.get(j))) {
+                        cplex.addEq(jobtocombo[i][j], 0);
+                    }
+                }
+            }
+
+            // Enforce the total number of jobs to combo to be between min and max
             for (int i = 0; i < comboobjs.size(); i++) {
-                cp.add(cp.le(cp.count(jobtocombo, i), cp.prod(lambda[i], comboobjs.get(i).maxJobPerTop() * comboobjs.get(i).maxTop())));
+                IloLinearIntExpr temp = cplex.linearIntExpr();
+                for (int j = 0; j < remainingjobs.size(); j++) {
+                    temp.addTerm(jobtocombo[j][i], 1);
+                }
+                IloLinearIntExpr max = cplex.linearIntExpr();
+                max.addTerm(comboobjs.get(i).maxTop() * comboobjs.get(i).maxJobPerTop(), lambda[i]);
+                cplex.addLe(temp, max);
             }
 
             // Objective function
-            IloLinearIntExpr obj = cp.linearIntExpr();
+            IloLinearIntExpr obj = cplex.linearIntExpr();
             for (int i = 0; i < comboobjs.size(); i++) {
                 obj.addTerm(lambda[i], comboobjs.get(i).bottom().size());
             }
-            cp.addMinimize(obj);
+            cplex.addMinimize(obj);
 
             // Tool packing modeler parameters
-            cp.setParameter(IloCP.IntParam.Workers, 1);
-            cp.setParameter(IloCP.IntParam.LogVerbosity, IloCP.ParameterValues.Terse);
-            cp.setParameter(IloCP.DoubleParam.TimeLimit, 900);
+            cplex.setParam(IloCplex.Param.Threads, 1);
+            cplex.setParam(IloCplex.IntParam.MIP.Display, 1);
+            cplex.setParam(IloCplex.DoubleParam.TimeLimit, 900);
 
             // Solve tool packing
+            double start = cplex.getCplexTime();
             double elapsedTime = 0;
-            if (cp.solve()) {
+            if (cplex.solve()) {
 
                 // Get solution time and write summary to intermediate file
-                elapsedTime += cp.getInfo(IloCP.DoubleInfo.SolveTime);
-                writer.write("Tool packing found after time " + Math.round(elapsedTime) + " with objective value of " + cp.getObjValue() + "\n");
+                elapsedTime += (cplex.getCplexTime() - start);
+                writer.write("Tool packing found after time " + Math.round(elapsedTime) + " with objective value of " + cplex.getObjValue() + "\n");
 
                 // Print to output
-                System.out.println("Objective value: " + cp.getObjValue());
+                System.out.println("Objective value: " + cplex.getObjValue());
                 for (int i = 0; i < remainingjobs.size(); i++) {
                     for (int j = 0; j < comboobjs.size(); j++) {
-                        if (cp.getValue(jobtocombo[i]) == j) {
-                            System.out.println("Job " + remainingjobs.get(i).index() + " is assigned to combo " + j + " with top tool " + comboobjs.get(j).top().name() + " and bottom tool " + comboobjs.get(j).bottom().name());
+                        if (cplex.getValue(jobtocombo[i][j]) == 1) {
+                            System.out.println("Job " + remainingjobs.get(i).index() + " is assigned to combo " + j);
                         }
                     }
                 }
@@ -179,7 +197,7 @@ public class ClusterPack {
             for (int i = 0; i < comboobjs.size(); i++) {
                 ArrayList<Job> jobs = new ArrayList<>();
                 for (int k = 0; k < remainingjobs.size(); k++) {
-                    if (cp.getValue(jobtocombo[k]) == i) {
+                    if (cplex.getValue(jobtocombo[k][i]) == 1) {
                         jobs.add(remainingjobs.get(k));
                     }
                 }
@@ -193,7 +211,6 @@ public class ClusterPack {
                                 TopBatch newtop = new TopBatch(comboobjs.get(i).top());
                                 for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
                                     newtop.addJob(jobs.get(0));
-                                    jobs.get(0).setTopBatch(newtop);
                                     jobs.remove(0);
                                 }
                                 newb1.addTopBatch(newtop);
@@ -205,7 +222,6 @@ public class ClusterPack {
                                 for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
                                     if (!jobs.isEmpty()) {
                                         newtop.addJob(jobs.get(0));
-                                        jobs.get(0).setTopBatch(newtop);
                                         jobs.remove(0);
                                     } else {
                                         break;
@@ -236,7 +252,7 @@ public class ClusterPack {
             }
 
             // Iterate through each autoclave cycle type
-            double start = System.nanoTime();
+            start = System.nanoTime();
             ArrayList<AutoBatch> b2objs = new ArrayList<>();
             for (Integer i : autoCapList) {
 
@@ -414,7 +430,7 @@ public class ClusterPack {
             data.writeSum(soln);
 
             // Close tool packing modeler and intermediate file
-            cp.end();
+            cplex.end();
             writer.close();
 
         } catch (Exception e) {
