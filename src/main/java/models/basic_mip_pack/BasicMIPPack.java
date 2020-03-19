@@ -371,7 +371,7 @@ public class BasicMIPPack {
                 System.out.println("Objective value: " + autocplex.getObjValue());
                 for (int i = 0; i < b1objs.size(); i++) {
                     for (int j = 0; j < b1objs.size(); j++) {
-                        if (autocplex.getValue(b1tob2[i][j]) == 1) {
+                        if (Math.round(autocplex.getValue(b1tob2[i][j])) == 1) {
                             System.out.println("Tool batch " + i + " has volume " + b1objs.get(i).size() + " and is packed into autoclave batch " + j);
                         }
                     }
@@ -393,7 +393,7 @@ public class BasicMIPPack {
                 if (autocplex.getValue(b2vol[i]) > 0) {
                     AutoBatch newb2 = new AutoBatch(0);
                     for (int j = 0; j < b1objs.size(); j++) {
-                        if (autocplex.getValue(b1tob2[j][i]) == 1) {
+                        if (Math.round(autocplex.getValue(b1tob2[j][i])) == 1) {
                             if (newb2.capacity() == 0) {
                                 newb2.setCapacity(b1objs.get(j).jobs().get(0).autoCap());
                             }
