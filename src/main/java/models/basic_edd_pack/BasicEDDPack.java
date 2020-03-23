@@ -138,7 +138,7 @@ public class BasicEDDPack {
         String sumfile = args[1];
         String interfile = args[2];
         int pi = Integer.parseInt(args[3]);
-        int repetitions = Integer.parseInt(args[4]);
+        int repetitions = 100;
 
         // Make data object and import raw data
         Data data = new Data(filepath, sumfile, pi);

@@ -160,24 +160,6 @@ public class Run {
                     callSolutionCheck(callArgs);
                     break;
 
-                case 11: // cluster pack + EDD serial sched
-                    callBasicMIPPack(callArgs);
-                    callEDDSerialSched(callArgs);
-                    callSolutionCheck(callArgs);
-                    break;
-
-                case 12: // cluster pack + EDD parallel sched
-                    callBasicMIPPack(callArgs);
-                    callEDDParallelSched(callArgs);
-                    callSolutionCheck(callArgs);
-                    break;
-
-                case 13: // cluster pack + genetic sched
-                    callBasicMIPPack(callArgs);
-                    callGeneticSched(callArgs);
-                    callSolutionCheck(callArgs);
-                    break;
-
             }
 
             // Show complete
