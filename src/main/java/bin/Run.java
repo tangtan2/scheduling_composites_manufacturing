@@ -118,50 +118,62 @@ public class Run {
                     callSolutionCheck(callArgs);
                     break;
 
-                case 4: // chap2 pack + chap2 sched
-                    // TBD
-                    // TBD
-                    callSolutionCheck(callArgs);
-                    break;
-
-                case 5: // chap2 pack + EDD serial sched
-                    // TBD
+                case 4: // EDD pack + EDD serial sched
+                    callBasicEDDPack(callArgs);
                     callEDDSerialSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 6: // chap2 pack + EDD parallel sched
-                    // TBD
+                case 5: // EDD pack + EDD parallel sched
+                    callBasicEDDPack(callArgs);
                     callEDDParallelSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 7: // chap2 pack + genetic sched
-                    // TBD
+                case 6: // EDD pack + genetic sched
+                    callBasicEDDPack(callArgs);
                     callGeneticSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 8: // cluster pack + chap2 sched
+                case 7: // cluster pack + CP sched
                     callClusterPack(callArgs);
-                    // TBD
+                    callBasicCPSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 9: // cluster pack + EDD serial sched
+                case 8: // cluster pack + EDD serial sched
                     callClusterPack(callArgs);
                     callEDDSerialSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 10: // cluster pack + EDD parallel sched
+                case 9: // cluster pack + EDD parallel sched
                     callClusterPack(callArgs);
                     callEDDParallelSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 11: // cluster pack + genetic sched
+                case 10: // cluster pack + genetic sched
                     callClusterPack(callArgs);
+                    callGeneticSched(callArgs);
+                    callSolutionCheck(callArgs);
+                    break;
+
+                case 11: // cluster pack + EDD serial sched
+                    callBasicMIPPack(callArgs);
+                    callEDDSerialSched(callArgs);
+                    callSolutionCheck(callArgs);
+                    break;
+
+                case 12: // cluster pack + EDD parallel sched
+                    callBasicMIPPack(callArgs);
+                    callEDDParallelSched(callArgs);
+                    callSolutionCheck(callArgs);
+                    break;
+
+                case 13: // cluster pack + genetic sched
+                    callBasicMIPPack(callArgs);
                     callGeneticSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
