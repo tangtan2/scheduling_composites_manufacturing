@@ -492,13 +492,9 @@ public class GeneticSched {
 
             // Divide into random pairs
             ArrayList<Pair<ArrayList<AutoBatchA>, ArrayList<AutoBatchA>>> parents = new ArrayList<>();
-            ArrayList<Integer> parentIndices = new ArrayList<>();
-            for (int i = 0; i < numInPop; i++) {
-                parentIndices.add(i);
-            }
-            Collections.shuffle(parentIndices);
+            Collections.shuffle(newIndividuals);
             for (int i = 0; i < numInPop; i += 2) {
-                parents.add(new Pair<>(newIndividuals.get(parentIndices.get(i)).autoList(), newIndividuals.get(parentIndices.get(i + 1)).autoList()));
+                parents.add(new Pair<>(newIndividuals.get(i).autoList(), newIndividuals.get(i + 1).autoList()));
             }
 
             // Reproduce
@@ -534,13 +530,9 @@ public class GeneticSched {
                 // Mutation
                 for (ArrayList<AutoBatchA> child : List.of(daughter, son)) {
                     if (Math.random() < mutation) {
-                        int index1 = (int) Math.floor(Math.random() * numActivities - 6) + 3;
-                        int index2 = (int) Math.floor(Math.random() * numActivities - 6) + 3;
-                        if (index1 == index2 && index2 < numActivities - 1) {
-                            index2++;
-                        } else if (index1 == index2 && index2 == numActivities - 1) {
-                            index1--;
-                        }
+                        int index1 = (int) Math.floor(Math.random() * (numActivities - 6)) + 3;
+                        int index2 = (int) Math.floor(Math.random() * (numActivities - 6)) + 3;
+                        System.out.println("numActivities: " + numActivities + ", index1: " + index1 + ", index2: " + index2);
                         if (index1 > index2) {
                             AutoBatchA swap1 = child.get(index1);
                             AutoBatchA swap2 = child.get(index2);
