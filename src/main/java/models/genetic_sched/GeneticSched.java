@@ -414,9 +414,9 @@ public class GeneticSched {
 
         // Initialize parameters
         int numEligible = (int) Math.round(0.4 * data.numB1_new);
-        int numInPop = 20;
+        int numInPop = 10;
         int numGenerations = 15;
-        double mutation = 0.05;
+        double mutation = 0.2;
 
         // Initialize population
         ArrayList<Individual> individuals = new ArrayList<>();

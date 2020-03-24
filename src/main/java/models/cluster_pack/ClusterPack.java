@@ -408,6 +408,9 @@ public class ClusterPack {
                 b1objs.get(i).addIndex(i);
                 for (TopBatch t : b1objs.get(i).b0s()) {
                     t.addIndex(it++);
+                    for (Job j : t.jobs()) {
+                        j.setTopBatch(t);
+                    }
                 }
             }
             for (int i = 0; i < b2objs.size(); i++) {
@@ -416,6 +419,7 @@ public class ClusterPack {
 
             // Make solution object
             elapsedTime += (System.nanoTime() - start) / 1_000_000_000;
+            writer.write("Autoclave packing found after time " + Math.round(elapsedTime) + " with objective value of " + b2objs.size() + "\n");
             SolutionPack soln = new SolutionPack(data.numJob, b2objs.size(), elapsedTime, "Feasible");
             soln.addAutoBatch(b2objs);
 
