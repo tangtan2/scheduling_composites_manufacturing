@@ -415,7 +415,7 @@ public class GeneticSched {
         // Initialize parameters
         int numEligible = (int) Math.round(0.4 * data.numB1_new);
         int numInPop = 20;
-        int numGenerations = 25;
+        int numGenerations = 15;
         double mutation = 0.05;
 
         // Initialize population
@@ -534,8 +534,8 @@ public class GeneticSched {
                 // Mutation
                 for (ArrayList<AutoBatchA> child : List.of(daughter, son)) {
                     if (Math.random() < mutation) {
-                        int index1 = (int) Math.floor(Math.random() * numActivities - 1);
-                        int index2 = (int) Math.floor(Math.random() * numActivities - 1);
+                        int index1 = (int) Math.floor(Math.random() * numActivities - 6) + 3;
+                        int index2 = (int) Math.floor(Math.random() * numActivities - 6) + 3;
                         if (index1 == index2 && index2 < numActivities - 1) {
                             index2++;
                         } else if (index1 == index2 && index2 == numActivities - 1) {

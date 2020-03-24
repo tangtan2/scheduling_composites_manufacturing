@@ -335,13 +335,7 @@ public class ClusterPack {
                     // Perform k means S to obtain actual solution
                     iter = 0;
                     while (iter <= maxiter) {
-                        Collection<Point> iterate = new ArrayList<>(pointMapPerAuto.values());
-                        for (Cluster c : clusters) {
-                            Point bestPoint = Cluster.findPoint(iterate, c);
-                            c.addPoint(bestPoint);
-                            iterate.remove(bestPoint);
-                        }
-                        for (Point p : iterate) {
+                        for (Point p : pointMapPerAuto.values()) {
                             Cluster.checkCluster(clusters, p).addPoint(p);
                         }
                         for (Cluster c : clusters) {
