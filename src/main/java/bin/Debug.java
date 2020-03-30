@@ -8,6 +8,7 @@ import models.basic_cp_sched.BasicCPSched;
 import models.basic_edd_pack.BasicEDDPack;
 import models.basic_lbbd.BasicLBBD;
 import models.cluster_pack.ClusterPack;
+import models.edd_sched.EDDSched;
 import models.edd_serial_sched.EDDSerialSched;
 import models.genetic_sched.GeneticSched;
 import models.relaxed_cp_sched.RelaxedCPSched;
@@ -44,6 +45,10 @@ public class Debug {
 
     public static void callEDDSerialSched(String[] args) throws Exception {
         EDDSerialSched.main(args);
+    }
+
+    public static void callEDDSched(String[] args) throws Exception {
+        EDDSched.main(args);
     }
 
     public static void callGeneticSched(String[] args) throws Exception {
@@ -145,9 +150,9 @@ public class Debug {
 //        // Testing EDD serial scheduling
 //        for (int i = 5; i < 10; i++) {
 //            String[] callArgs = new String[] {
-//                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/instance_" + i + ".xlsx",
-//                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/summary.xlsx",
-//                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/intermediates.txt", Integer.toString(i), "10"
+//                    "/Users/tanyatang/Downloads/jobs_4000/instance_" + i + ".xlsx",
+//                    "/Users/tanyatang/Downloads/jobs_4000/summary.xlsx",
+//                    "/Users/tanyatang/Downloads/jobs_4000/intermediates.txt", Integer.toString(i), "10"
 //            };
 //            callEDDSerialSched(callArgs);
 //        }
@@ -180,6 +185,16 @@ public class Debug {
 //                    "/Users/tanyatang/Downloads/instances_0309/jobs_500/intermediates.txt", Integer.toString(i)
 //            };
 //            callSolutionCheck(callArgs);
+//        }
+//
+//        // Testing EDD scheduling
+//        for (int i = 0; i < 1; i++) {
+//            String[] callArgs = new String[] {
+//                    "/Users/tanyatang/Downloads/jobs_4000/instance_" + i + ".xlsx",
+//                    "/Users/tanyatang/Downloads/jobs_4000/summary.xlsx",
+//                    "/Users/tanyatang/Downloads/jobs_4000/intermediates.txt", Integer.toString(i), "10"
+//            };
+//            callEDDSched(callArgs);
 //        }
 
     }

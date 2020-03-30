@@ -5,6 +5,7 @@ import java.io.*;
 
 public class EDDParallelSched {
 
+    @Deprecated
     public static ArrayList<Activity> parallel(ArrayList<AutoBatchA> b2objs) {
 
         // Sort autoclave batches by due date
@@ -21,20 +22,6 @@ public class EDDParallelSched {
             }
             a.autoAct().setBatch(a);
             a.linkActivities();
-        }
-
-        // Reset horizons
-        for (AutoBatchA a : b2objs) {
-            a.autoMachineH().resetHorizon();
-            for (ToolBatchA t : a.b1sA()) {
-                t.prepMachineH().resetHorizon();
-                t.prepLabourH().resetHorizon();
-                t.layupMachineH().resetHorizon();
-                t.layupLabourH().resetHorizon();
-                t.demouldMachineH().resetHorizon();
-                t.demouldLabourH().resetHorizon();
-                t.bottomToolH().resetHorizon();
-            }
         }
 
         // Initialize heuristic parameters
@@ -178,7 +165,6 @@ public class EDDParallelSched {
                     int labourqty = 0;
                     relevanthorizons.add(next.b1().bottomToolH().horizon());
                     if (next.type() == 0) {
-                        next.b1().bottomToolH().horizon().updateEarliest();
                         relevanthorizons.add(next.b1().prepMachineH().horizon());
                         relevanthorizons.add(next.b1().prepLabourH().horizon());
                         labourqty = next.b1().prepQty();
@@ -248,6 +234,7 @@ public class EDDParallelSched {
 
     }
 
+    @Deprecated
     public static void main(String[] args) throws Exception {
 
         // Get settings from json file

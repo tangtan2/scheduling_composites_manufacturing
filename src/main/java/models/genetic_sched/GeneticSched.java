@@ -1,201 +1,12 @@
 package models.genetic_sched;
 import common.model_helpers.*;
+import models.edd_sched.EDDSched;
 import org.apache.commons.math3.util.Pair;
 import java.util.*;
 import java.io.*;
 import java.util.stream.Collectors;
 
 public class GeneticSched {
-
-    public static ArrayList<Activity> serial(ArrayList<AutoBatchA> b2objs) {
-
-        // Reset activities
-        int activityIt = 0;
-        for (AutoBatchA a : b2objs) {
-            activityIt = a.createActivity(activityIt);
-            for (ToolBatchA t : a.b1sA()) {
-                activityIt = t.createActivities(activityIt);
-                t.linkActivities(a);
-            }
-            a.autoAct().setBatch(a);
-            a.linkActivities();
-        }
-
-        // Reset horizons
-        for (AutoBatchA a : b2objs) {
-            a.autoMachineH().resetHorizon();
-            for (ToolBatchA t : a.b1sA()) {
-                t.prepMachineH().resetHorizon();
-                t.prepLabourH().resetHorizon();
-                t.layupMachineH().resetHorizon();
-                t.layupLabourH().resetHorizon();
-                t.demouldMachineH().resetHorizon();
-                t.demouldLabourH().resetHorizon();
-                t.bottomToolH().resetHorizon();
-            }
-        }
-
-        // Define activity list
-        ArrayList<Activity> activityList = new ArrayList<>();
-        for (AutoBatchA a : b2objs) {
-            for (ToolBatchA t : a.b1sA()) {
-                activityList.add(t.prepAct());
-                activityList.add(t.layupAct());
-            }
-            activityList.add(a.autoAct());
-            for (ToolBatchA t : a.b1sA()) {
-                activityList.add(t.demouldAct());
-            }
-        }
-
-        // While loop to schedule activities
-        for (Activity current : activityList) {
-
-            // Calculate maximum end time of predecessors
-            current.setMaxPredecessorEnd(0);
-            for (Activity pred : current.predecessors()) {
-                if (pred.end() > current.maxPredEnd()) {
-                    current.setMaxPredecessorEnd((int) Math.ceil((double) pred.end() / 5) * 5);
-                }
-            }
-
-            // Schedule
-            if (current.type() == 2) {
-
-                // Collect all relevant horizons to current activity
-                ArrayList<Horizon> relevanthorizons = new ArrayList<>();
-                for (ToolBatchA t : current.b2().b1sA()) {
-                    relevanthorizons.add(t.bottomToolH().horizon());
-                }
-                relevanthorizons.add(current.b2().autoMachineH().horizon());
-
-                // Start at earliest possible time and iterate through horizon periods
-                int earliest = Math.max(current.maxPredEnd(), relevanthorizons.stream().map(Horizon::earliest).max(Comparator.comparing(Integer::intValue)).orElseThrow());
-                for (int i = earliest; i < relevanthorizons.get(0).horizonEnd(); i += 5) {
-
-                    // Check if horizons are open for duration of activity
-                    int ind = 0;
-                    for (Horizon h : relevanthorizons) {
-                        int numtools = 0;
-                        for (ToolBatchA t : current.b2().b1sA()) {
-                            if (t.bottomToolH().horizon().equals(h)) {
-                                numtools++;
-                            }
-                        }
-                        if (numtools == 0) {
-                            if (!h.check(i, i + current.length(), 1)) {
-                                ind = 1;
-                                break;
-                            }
-                        } else {
-                            if (!h.check(i, i + current.length(), numtools)) {
-                                ind = 1;
-                                break;
-                            }
-                        }
-                    }
-
-                    // If all horizons are open, then schedule and exit loop
-                    if (ind == 0) {
-                        for (Horizon h : relevanthorizons) {
-                            int numtools = 0;
-                            for (ToolBatchA t : current.b2().b1sA()) {
-                                t.bottomToolH().horizon().updateEarliest();
-                                if (t.bottomToolH().horizon().equals(h)) {
-                                    numtools++;
-                                }
-                            }
-                            if (numtools == 0) {
-                                h.schedule(i, i + current.length(), 1);
-                            } else {
-                                for (ToolBatchA t : current.b2().b1sA()) {
-                                    if (t.bottomToolH().horizon().equals(h)) {
-                                        h.schedule((int) Math.ceil((double) current.b1().layupAct().end() / 5) * 5, i + current.length(), 1);
-                                    }
-                                }
-                            }
-                        }
-                        current.schedule(i, i + current.length());
-                        break;
-                    }
-
-                }
-
-            } else {
-
-                // Collect all relevant horizons to current activity
-                ArrayList<Horizon> relevanthorizons = new ArrayList<>();
-                int labourqty = 0;
-                relevanthorizons.add(current.b1().bottomToolH().horizon());
-                if (current.type() == 0) {
-                    relevanthorizons.add(current.b1().prepMachineH().horizon());
-                    relevanthorizons.add(current.b1().prepLabourH().horizon());
-                    labourqty = current.b1().prepQty();
-                } else if (current.type() == 1) {
-                    relevanthorizons.add(current.b1().layupMachineH().horizon());
-                    relevanthorizons.add(current.b1().layupLabourH().horizon());
-                    labourqty = current.b1().layupQty();
-                } else if (current.type() == 3) {
-                    relevanthorizons.add(current.b1().demouldMachineH().horizon());
-                    relevanthorizons.add(current.b1().demouldLabourH().horizon());
-                    labourqty = current.b1().demouldQty();
-                }
-
-                // Start at maximum end of predecessors and iterate through horizon periods
-                int earliest = Math.max(current.maxPredEnd(), relevanthorizons.stream().map(Horizon::earliest).max(Comparator.comparing(Integer::intValue)).orElseThrow());
-                for (int i = earliest; i < relevanthorizons.get(0).horizonEnd(); i += 5) {
-
-                    // Check if horizons are open for duration of activity
-                    int ind = 0;
-                    for (Horizon h : relevanthorizons) {
-                        if (relevanthorizons.indexOf(h) == relevanthorizons.size() - 1) {
-                            if (!h.check(i, i + current.length(), labourqty)) {
-                                ind = 1;
-                                break;
-                            }
-                        } else {
-                            if (!h.check(i, i + current.length(), 1)) {
-                                ind = 1;
-                                break;
-                            }
-                        }
-                    }
-
-                    // If all horizons are open, then schedule and exit loop
-                    if (ind == 0) {
-                        if (current.type() == 0) {
-                            for (Horizon h : relevanthorizons) {
-                                if (relevanthorizons.indexOf(h) == relevanthorizons.size() - 1) {
-                                    h.schedule(i, i + current.length(), labourqty);
-                                } else if (relevanthorizons.indexOf(h) == 0) {
-                                    h.schedule(i, i + current.length(), 1);
-                                }
-                            }
-                            relevanthorizons.get(0).updateEarliest();
-                        } else if (current.type() == 1) {
-                            relevanthorizons.get(0).schedule((int) Math.ceil((double) current.b1().prepAct().end() / 5) * 5, i + current.length(), 1);
-                            relevanthorizons.get(1).schedule(i, i + current.length(), 1);
-                            relevanthorizons.get(2).schedule(i, i + current.length(), labourqty);
-                        } else if (current.type() == 3) {
-                            relevanthorizons.get(0).schedule((int) Math.ceil((double) current.b2().autoAct().end() / 5) * 5, i + current.length(), 1);
-                            relevanthorizons.get(0).updateEarliest();
-                            relevanthorizons.get(1).schedule(i, i + current.length(), 1);
-                            relevanthorizons.get(2).schedule(i, i + current.length(), labourqty);
-                        }
-                        current.schedule(i, i + current.length());
-                        break;
-                    }
-
-                }
-
-            }
-
-        }
-
-        // Return scheduled activities
-        return activityList;
-
-    }
 
     public static void main(String[] args) throws Exception {
 
@@ -435,22 +246,8 @@ public class GeneticSched {
                 iterate.remove(chosen);
             }
 
-            // Reset horizons
-            for (AutoBatchA a : b2objs) {
-                a.autoMachineH().resetHorizon();
-                for (ToolBatchA t : a.b1sA()) {
-                    t.prepMachineH().resetHorizon();
-                    t.prepLabourH().resetHorizon();
-                    t.layupMachineH().resetHorizon();
-                    t.layupLabourH().resetHorizon();
-                    t.demouldMachineH().resetHorizon();
-                    t.demouldLabourH().resetHorizon();
-                    t.bottomToolH().resetHorizon();
-                }
-            }
-
             // Create schedule and find fitness
-            ArrayList<Activity> scheduled = serial(newAutoBatchList);
+            ArrayList<Activity> scheduled = EDDSched.schedule(newAutoBatchList);
             System.out.println("Initial individual " + i + " scheduled");
             int newFitness = 0;
             for (Activity a : scheduled) {
@@ -555,7 +352,7 @@ public class GeneticSched {
                 for (ArrayList<AutoBatchA> child : List.of(daughter, son)) {
 
                     // Create schedule and find fitness
-                    ArrayList<Activity> scheduled = serial(child);
+                    ArrayList<Activity> scheduled = EDDSched.schedule(child);
                     System.out.println("Generation " + gen + " child scheduled");
                     int newFitness = 0;
                     for (Activity a : scheduled) {

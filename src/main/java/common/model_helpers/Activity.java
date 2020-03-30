@@ -53,7 +53,7 @@ public class Activity {
 
     }
 
-    // Schedule activituy
+    // Schedule activity
     public void schedule(int start, int end) {
 
         assert (end - start) == length;

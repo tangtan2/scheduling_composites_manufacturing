@@ -1,24 +1,19 @@
 package bin;
 import common.instance_generation.GenInstances;
 import common.solution_checker.SolutionCheck;
-import models.edd_parallel_sched.EDDParallelSched;
 import models.basic_mip_pack.BasicMIPPack;
 import models.basic_cp_pack.BasicCPPack;
 import models.basic_cp_sched.BasicCPSched;
 import models.basic_edd_pack.BasicEDDPack;
 import models.basic_lbbd.BasicLBBD;
 import models.cluster_pack.ClusterPack;
-import models.edd_serial_sched.EDDSerialSched;
 import models.genetic_sched.GeneticSched;
 import models.relaxed_cp_sched.RelaxedCPSched;
+import models.edd_sched.EDDSched;
 import java.nio.file.*;
 import java.util.*;
 
 public class Run {
-
-    public static void callEDDParallelSched(String[] args) throws Exception {
-        EDDParallelSched.main(args);
-    }
 
     public static void callBasicMIPPack(String[] args) {
         BasicMIPPack.main(args);
@@ -44,8 +39,8 @@ public class Run {
         ClusterPack.main(args);
     }
 
-    public static void callEDDSerialSched(String[] args) throws Exception {
-        EDDSerialSched.main(args);
+    public static void callEDDSched(String[] args) throws Exception {
+        EDDSched.main(args);
     }
 
     public static void callGeneticSched(String[] args) throws Exception {
@@ -118,43 +113,31 @@ public class Run {
                     callSolutionCheck(callArgs);
                     break;
 
-                case 4: // EDD pack + EDD serial sched
+                case 4: // EDD pack + EDD sched
                     callBasicEDDPack(callArgs);
-                    callEDDSerialSched(callArgs);
+                    callEDDSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 5: // EDD pack + EDD parallel sched
-                    callBasicEDDPack(callArgs);
-                    callEDDParallelSched(callArgs);
-                    callSolutionCheck(callArgs);
-                    break;
-
-                case 6: // EDD pack + genetic sched
+                case 5: // EDD pack + genetic sched
                     callBasicEDDPack(callArgs);
                     callGeneticSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 7: // cluster pack + CP sched
+                case 6: // cluster pack + CP sched
                     callClusterPack(callArgs);
                     callBasicCPSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 8: // cluster pack + EDD serial sched
+                case 7: // cluster pack + EDD sched
                     callClusterPack(callArgs);
-                    callEDDSerialSched(callArgs);
+                    callEDDSched(callArgs);
                     callSolutionCheck(callArgs);
                     break;
 
-                case 9: // cluster pack + EDD parallel sched
-                    callClusterPack(callArgs);
-                    callEDDParallelSched(callArgs);
-                    callSolutionCheck(callArgs);
-                    break;
-
-                case 10: // cluster pack + genetic sched
+                case 8: // cluster pack + genetic sched
                     callClusterPack(callArgs);
                     callGeneticSched(callArgs);
                     callSolutionCheck(callArgs);
