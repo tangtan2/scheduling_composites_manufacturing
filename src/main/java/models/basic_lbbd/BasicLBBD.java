@@ -762,7 +762,6 @@ public class BasicLBBD {
                 // Make solution object and write to file if better than before
                 Solution newsoln = new Solution(data.numJob, subcp.getObjValue(), elapsedTime, subcp.getStatusString());
                 newsoln.addAutoBatchS(b2objs);
-                newsoln.addLBBDIter(iteration);
                 if (iteration > 1) {
                     allObjs.sort(Comparator.comparing(Integer::intValue));
                     if ((int) Math.round(subcp.getObjValue()) < allObjs.get(0)) {

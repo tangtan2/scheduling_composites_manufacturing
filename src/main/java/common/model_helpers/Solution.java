@@ -17,10 +17,6 @@ public class Solution {
     private ArrayList<ToolBatchS> b1sS = new ArrayList<>();
     private ArrayList<AutoBatchS> b2sS = new ArrayList<>();
     private ArrayList<Activity> acts = new ArrayList<>();
-    private int iteration;
-    private int overHour;
-    private double totElapsedTime;
-    private int nonOptimal;
 
     // Constructor
     public Solution(int numjob, double obj, double time, String status) {
@@ -29,22 +25,6 @@ public class Solution {
         this.objVal = obj;
         this.elapsedTime = time;
         this.status = status;
-
-    }
-
-    // Add LBBD iterations
-    public void addLBBDIter(int it) {
-
-        this.iteration = it;
-
-    }
-
-    // Add LBBD summary
-    public void addLBBD(int over, double tot, int non) {
-
-        this.overHour = over;
-        this.totElapsedTime = tot;
-        this.nonOptimal = non;
 
     }
 
@@ -81,6 +61,13 @@ public class Solution {
 
     }
 
+    // Replace time
+    public void replaceTime(int time) {
+
+        this.elapsedTime = time;
+
+    }
+
     // Accessors
     public int numJob() {return this.numJob;}
     public double objVal() {return this.objVal;}
@@ -94,10 +81,6 @@ public class Solution {
     public ArrayList<TopBatchS> b0sS() {return this.b0sS;}
     public ArrayList<ToolBatchS> b1sS() {return this.b1sS;}
     public ArrayList<AutoBatchS> b2sS() {return this.b2sS;}
-    public int iteration() {return this.iteration;}
-    public int overHour() {return this.overHour;}
-    public double totElapsedTime() {return this.totElapsedTime;}
-    public int nonOptimal() {return this.nonOptimal;}
     public ArrayList<Activity> acts() {return this.acts;}
 
 }

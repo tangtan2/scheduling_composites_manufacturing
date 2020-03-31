@@ -209,7 +209,7 @@ public class EDDSched {
                                 relevantHorizons.get(1).schedule(i, i + next.length(), 1);
                                 relevantHorizons.get(2).schedule(i, i + next.length(), labourqty);
                             } else if (next.type() == 3) {
-                                relevantHorizons.get(0).schedule((int) Math.ceil((double) next.b2().autoAct().end() / 5) * 5, i + next.length(), 1);
+                                relevantHorizons.get(0).updateHorizonStart((int) Math.ceil((double) (i + next.length()) / 5) * 5 - 5, 0);
                                 relevantHorizons.get(1).schedule(i, i + next.length(), 1);
                                 relevantHorizons.get(2).schedule(i, i + next.length(), labourqty);
                             }
@@ -482,6 +482,7 @@ public class EDDSched {
 
         // Write solution to file
         assert best != null;
+        best.replaceTime((int) (System.nanoTime() - starttime) / 1_000_000_000);
         data.writeSched(best);
         data.writeSum(best);
 
