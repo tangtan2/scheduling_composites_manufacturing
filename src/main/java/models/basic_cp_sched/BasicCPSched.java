@@ -347,7 +347,14 @@ public class BasicCPSched {
 
             // Solve scheduling
             double elapsedTime = 0;
-            if (cp.solve()) {
+            cp.startNewSearch();
+            ArrayList<Integer> qualOverTime = new ArrayList<>();
+            ArrayList<Double> times = new ArrayList<>();
+            while (cp.next()) {
+
+                // Get new solution quality and time found
+                qualOverTime.add((int) Math.round(cp.getObjValue()));
+                times.add(cp.getInfo(IloCP.DoubleInfo.SolveTime));
 
                 // Get solution time and write summary to intermediate file
                 elapsedTime = cp.getInfo(IloCP.DoubleInfo.SolveTime);
@@ -404,6 +411,7 @@ public class BasicCPSched {
             // Write solution to file
             data.writeSched(soln);
             data.writeSum(soln);
+            data.writeQual(qualOverTime, times);
 
             // Close modeler and intermediate file
             cp.end();

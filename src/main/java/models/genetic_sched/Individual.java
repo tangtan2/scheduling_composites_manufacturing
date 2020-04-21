@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class Individual {
 
     // Private class variables
-    private ArrayList<AutoBatchA> autoBatchList;
-    private ArrayList<Activity> activityList;
-    private int fitness;
+    private final ArrayList<AutoBatchA> autoBatchList;
+    private final ArrayList<Activity> activityList;
+    private final int fitness;
 
     // Constructor
     public Individual(ArrayList<AutoBatchA> autoList, ArrayList<Activity> activityList, int fitness) {

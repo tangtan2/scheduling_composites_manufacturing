@@ -4,14 +4,14 @@ import java.util.ArrayList;
 public class Job {
 
     // Private class variables
-    private String name;
-    private String partFamily;
-    private int autoCap;
-    private int index;
-    private int size;
-    private int due;
-    private String[] steps;
-    private int[] stepTimes;
+    private final String name;
+    private final String partFamily;
+    private final int autoCap;
+    private final int index;
+    private final int size;
+    private final int due;
+    private final String[] steps;
+    private final int[] stepTimes;
     private int prepStart;
     private int prepEnd;
     private int layupStart;
@@ -23,7 +23,7 @@ public class Job {
     private int tardiness;
     private int rspOrder;
     private TopBatch b0;
-    private ArrayList<ToolCombo> mappedCombos = new ArrayList<>();
+    private final ArrayList<ToolCombo> mappedCombos;
 
     // Constructor
     public Job(String name, String family, int autoCap, int index, int size, int due, String[] steps, int[] stepTimes) {
@@ -36,6 +36,7 @@ public class Job {
         this.due = due;
         this.steps = steps;
         this.stepTimes = stepTimes;
+        this.mappedCombos = new ArrayList<>();
 
     }
 
@@ -43,6 +44,13 @@ public class Job {
     public void addToolCombo(ToolCombo newc) {
 
         this.mappedCombos.add(newc);
+
+    }
+
+    // Remove tool combo mapping
+    public void removeToolCombo(ToolCombo oldc) {
+
+        this.mappedCombos.remove(oldc);
 
     }
 

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Labour {
 
     // Private class variables
-    private String name;
-    private ArrayList<String> skills;
-    private int[] qtyPerShift;
-    private int[] shiftStart;
-    private int[] shiftEnd;
+    private final String name;
+    private final ArrayList<String> skills;
+    private final int[] qtyPerShift;
+    private final int[] shiftStart;
+    private final int[] shiftEnd;
     private IloCumulFunctionExpr cumul;
 
     // Constructor

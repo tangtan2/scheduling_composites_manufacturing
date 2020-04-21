@@ -4,10 +4,10 @@ import common.model_helpers.ToolBatch;
 public class Point {
 
     // Private class variables
-    private ToolBatch b1;
-    private int size;
-    private int location;
-    private int index;
+    private final ToolBatch b1;
+    private final int size;
+    private final int location;
+    private final int index;
 
     // Constructor
     public Point(int index, ToolBatch indexB1, int size, int location) {

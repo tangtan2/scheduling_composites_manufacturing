@@ -5,13 +5,14 @@ public class AutoBatch {
 
     // Private class variables
     private int index;
-    private ArrayList<Job> jobs = new ArrayList<>();
-    private ArrayList<ToolBatch> b1s = new ArrayList<>();
+    private final ArrayList<Job> jobs = new ArrayList<>();
+    private final ArrayList<ToolBatch> b1s = new ArrayList<>();
     private int capacity;
     private int sumToolSize = 0;
     private int autoStart;
     private int autoEnd;
     private Machine autoMachine;
+    private int RSPdist;
 
     // Constructor
     public AutoBatch(int cap) {
@@ -39,6 +40,17 @@ public class AutoBatch {
         this.b1s.add(newtool);
         this.jobs.addAll(newtool.jobs());
         this.sumToolSize += newtool.size();
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (ToolBatch t : this.b1s) {
+            if (t.rspOrder() < min) {
+                min = t.rspOrder();
+            }
+            if (t.rspOrder() > max) {
+                max = t.rspOrder();
+            }
+        }
+        this.RSPdist = max - min;
 
     }
 
@@ -80,5 +92,6 @@ public class AutoBatch {
     public int autoEnd() {return this.autoEnd;}
     public Machine autoMachine() {return this.autoMachine;}
     public int index() {return this.index;}
+    public int RSPdist() {return this.RSPdist;}
 
 }

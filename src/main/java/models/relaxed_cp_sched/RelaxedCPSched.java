@@ -114,10 +114,9 @@ public class RelaxedCPSched {
                 possibletools.sort(Comparator.comparing(Tool::qty).reversed());
                 possibletools.sort(Comparator.comparing(Tool::size));
                 Tool best = possibletools.get(0);
-                best.cumul().add(cp.pulse(j.prepVar(), 1));
-                best.cumul().add(cp.pulse(j.layupVar(), 1));
-                best.cumul().add(cp.pulse(j.autoVar(), 1));
-                best.cumul().add(cp.pulse(j.demouldVar(), 1));
+                IloIntervalVar temp = cp.intervalVar();
+                cp.add(cp.span(temp, new IloIntervalVar[]{j.prepVar(), j.demouldVar()}));
+                best.cumul().add(cp.pulse(temp, 1));
             }
 
             // Bottom tool availability

@@ -524,6 +524,7 @@ public class Data {
                 sheet.getRow(i + 1).createCell(40).setCellValue(soln.b2s().get(i).index());
                 sheet.getRow(i + 1).createCell(41).setCellValue(soln.b2s().get(i).capacity());
                 sheet.getRow(i + 1).createCell(42).setCellValue(soln.b2s().get(i).sumToolSize());
+                sheet.getRow(i + 1).createCell(46).setCellValue(soln.b2s().get(i).RSPdist());
             }
             workbook.write(new FileOutputStream(this.filePath));
             workbook.close();
@@ -708,7 +709,7 @@ public class Data {
     }
 
     // Write LBBD solution
-    public void writeLBBD(Solution soln, ArrayList<Integer> objs, ArrayList<Double> times) {
+    public void writeLBBD(Solution soln) {
 
         try {
 
@@ -768,12 +769,6 @@ public class Data {
             }
             sheet.getRow(0).createCell(0).setCellValue("obj_val");
             sheet.getRow(0).createCell(1).setCellValue(soln.objVal());
-            sheet = workbook.getSheet("quality_over_time");
-            for (int i = 0; i < objs.size(); i++) {
-                sheet.createRow(i + 1).createCell(0).setCellValue(i + 1);
-                sheet.getRow(i + 1).createCell(1).setCellValue(objs.get(i));
-                sheet.getRow(i + 1).createCell(2).setCellValue(times.get(i));
-            }
             workbook.write(new FileOutputStream(this.filePath));
             workbook.close();
 
@@ -918,6 +913,29 @@ public class Data {
             sheet.getRow(this.problemInstance + 1).createCell(7).setCellValue(totElapsedTime);
             sheet.getRow(this.problemInstance + 1).createCell(8).setCellValue(nonOptimal);
             workbook.write(new FileOutputStream(this.summaryFilePath));
+            workbook.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+    // Write quality over time for CP sched
+    public void writeQual(ArrayList<Integer> quality, ArrayList<Double> times) {
+
+        try {
+
+            XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(new FileInputStream(this.filePath));
+            XSSFSheet sheet = workbook.getSheet("quality_over_time");
+            for (int i = 0; i < quality.size(); i++) {
+                sheet.createRow(i + 1).createCell(0).setCellValue(i + 1);
+                sheet.getRow(i + 1).createCell(1).setCellValue(quality.get(i));
+                sheet.getRow(i + 1).createCell(2).setCellValue(times.get(i));
+            }
+            workbook.write(new FileOutputStream(this.filePath));
             workbook.close();
 
         } catch (Exception e) {

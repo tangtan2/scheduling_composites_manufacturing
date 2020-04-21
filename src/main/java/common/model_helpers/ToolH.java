@@ -4,7 +4,7 @@ public class ToolH extends Tool {
 
     // Private class variables
     private Horizon horizon;
-    private int horizonEnd;
+    private final int horizonEnd;
 
     // Constructors
     public ToolH(String name, int cap, int qty, int min, int horizonEnd, int size) {

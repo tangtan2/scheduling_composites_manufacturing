@@ -5,8 +5,8 @@ import ilog.concert.*;
 public class AutoBatchS extends AutoBatch {
 
     // Private class variables
-    private ArrayList<JobS> jobs = new ArrayList<>();
-    private ArrayList<ToolBatchS> b1s = new ArrayList<>();
+    private final ArrayList<JobS> jobs = new ArrayList<>();
+    private final ArrayList<ToolBatchS> b1s = new ArrayList<>();
     private IloIntervalVar autoVar;
 
     // Constructor

@@ -6,7 +6,7 @@ import java.io.*;
 public class BasicEDDPack {
 
     // Static function to run heuristic
-    public static ArrayList<AutoBatch> run(ArrayList<Job> jobobjs) {
+    public static ArrayList<AutoBatch> run(ArrayList<Job> jobobjs, int option) {
 
         // Create lists to hold batch objects
         ArrayList<ToolBatch> b1objs = new ArrayList<>();
@@ -14,7 +14,9 @@ public class BasicEDDPack {
         int randomize = 3;
 
         // Sort jobs in order of due date then order of rsp
-        jobobjs.sort(Comparator.comparing(Job::rspOrder));
+        if (option == 0) {
+            jobobjs.sort(Comparator.comparing(Job::rspOrder));
+        }
         ArrayList<Job> iterate = new ArrayList<>();
         int due = 7 * 24 * 60;
         while (iterate.size() < jobobjs.size()) {
@@ -30,6 +32,11 @@ public class BasicEDDPack {
         int numb0 = 0;
         int numb1 = 0;
         while (!iterate.isEmpty()) {
+
+            // Sort jobs in order of rsp
+            if (option == 0) {
+                iterate.sort(Comparator.comparing(Job::rspOrder));
+            }
 
             // Choose next job
             int choose = (int) Math.round(Math.random() * randomize);
@@ -66,6 +73,10 @@ public class BasicEDDPack {
                 if (associatedJobs.size() == maxjob) {
                     break;
                 }
+            }
+            if (currentJob.mappedCombos().size() > 1 && associatedJobs.size() < Math.max(best.top().min(), Math.max(best.bottom().min(), best.top().min() * best.bottom().min()))) {
+                currentJob.removeToolCombo(best);
+                continue;
             }
             iterate.removeAll(associatedJobs);
             while (!associatedJobs.isEmpty()) {
@@ -138,6 +149,7 @@ public class BasicEDDPack {
         String sumfile = args[1];
         String interfile = args[2];
         int pi = Integer.parseInt(args[3]);
+        int option = Integer.parseInt(args[4]);
         int repetitions = 100;
 
         // Make data object and import raw data
@@ -212,7 +224,7 @@ public class BasicEDDPack {
                 }
                 jobobjs.add(newjob);
             }
-            ArrayList<AutoBatch> packed = run(jobobjs);
+            ArrayList<AutoBatch> packed = run(jobobjs, option);
             double end = System.nanoTime();
             double elapsedTime = (end - start) / 1_000_000_000;
             int objval = packed.size();

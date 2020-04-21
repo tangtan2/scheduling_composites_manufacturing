@@ -4,8 +4,8 @@ import java.util.*;
 public class Horizon {
 
     // Private class variables
-    private int horizonEnd;
-    private HashMap<Integer, Integer> qtyPerPeriod = new HashMap<>();
+    private final int horizonEnd;
+    private final HashMap<Integer, Integer> qtyPerPeriod = new HashMap<>();
 
     // Tool constructor
     public Horizon(int end, int qty) {

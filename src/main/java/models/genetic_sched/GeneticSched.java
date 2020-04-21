@@ -259,6 +259,10 @@ public class GeneticSched {
 
         }
 
+        // Create arrays to hold best fitness over generations
+        ArrayList<Integer> fitnessOverTime = new ArrayList<>();
+        ArrayList<Double> times = new ArrayList<>();
+
         // Genetic algorithm search
         int gen = 0;
         outer: while (gen < numGenerations) {
@@ -283,6 +287,8 @@ public class GeneticSched {
 
             // Sort previous generation by fitness
             individuals.sort(Comparator.comparing(Individual::fitness));
+            fitnessOverTime.add(individuals.get(0).fitness());
+            times.add((System.nanoTime() - start) / 1_000_000_000);
 
             // Add best individuals to new population
             ArrayList<Individual> newIndividuals = new ArrayList<>(individuals.subList(0, numInPop));
@@ -372,6 +378,8 @@ public class GeneticSched {
             gen++;
 
         }
+        fitnessOverTime.add(individuals.get(0).fitness());
+        times.add((System.nanoTime() - start) / 1_000_000_000);
 
         // Make solution object
         individuals.sort(Comparator.comparing(Individual::fitness));
@@ -385,6 +393,7 @@ public class GeneticSched {
         // Write solution to file
         data.writeSched(soln);
         data.writeSum(soln);
+        data.writeQual(fitnessOverTime, times);
 
         // Close modeler and intermediate file
         writer.close();

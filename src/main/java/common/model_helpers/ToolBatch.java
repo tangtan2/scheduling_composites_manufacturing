@@ -5,11 +5,11 @@ public class ToolBatch {
 
     // Private class variables
     private int index;
-    private ArrayList<Job> jobs = new ArrayList<>();
-    private ArrayList<TopBatch> b0s = new ArrayList<>();
-    private Tool bottomTool;
+    private final ArrayList<Job> jobs = new ArrayList<>();
+    private final ArrayList<TopBatch> b0s = new ArrayList<>();
+    private final Tool bottomTool;
     private AutoBatch b2;
-    private int size;
+    private final int size;
     private int prepStart;
     private int prepEnd;
     private int layupStart;

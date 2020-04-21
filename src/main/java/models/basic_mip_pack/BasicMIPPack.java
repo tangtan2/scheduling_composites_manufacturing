@@ -202,27 +202,40 @@ public class BasicMIPPack {
                     jobs.sort(Comparator.comparing(Job::rspOrder));
                     while (!jobs.isEmpty()) {
                         int maxnum = comboobjs.get(i).maxTop() * comboobjs.get(i).maxJobPerTop();
-                        ToolBatch newb1 = new ToolBatch(comboobjs.get(i).bottom());
-                        if (jobs.size() > maxnum) {
-                            for (int j = 0; j < comboobjs.get(i).maxTop(); j++) {
-                                TopBatch newtop = new TopBatch(comboobjs.get(i).top());
-                                for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
-                                    newtop.addJob(jobs.get(0));
-                                    jobs.remove(0);
-                                }
-                                newb1.addTopBatch(newtop);
-                                newtop.setToolBatch(newb1);
+                        int altminnum = 0;
+                        int altmaxnum = 0;
+                        ToolCombo altc = null;
+                        for (ToolCombo c : jobs.get(0).mappedCombos()) {
+                            if (!c.equals(comboobjs.get(i))) {
+                                altminnum = Math.max(c.bottom().min(), Math.max(c.top().min(), c.bottom().min() * c.top().min()));
+                                altmaxnum = c.maxTop() * c.maxJobPerTop();
+                                altc = c;
                             }
-                        } else {
+                        }
+                        ToolBatch newb1;
+                        if (jobs.size() < maxnum && jobs.size() >= altminnum && jobs.size() <= altmaxnum) {
+                            assert altc != null;
+                            newb1 = new ToolBatch(altc.bottom());
                             while (!jobs.isEmpty()) {
-                                TopBatch newtop = new TopBatch(comboobjs.get(i).top());
-                                for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
+                                TopBatch newtop = new TopBatch(altc.top());
+                                for (int k = 0; k < altc.maxJobPerTop(); k++) {
                                     if (!jobs.isEmpty()) {
                                         newtop.addJob(jobs.get(0));
                                         jobs.remove(0);
                                     } else {
                                         break;
                                     }
+                                }
+                                newb1.addTopBatch(newtop);
+                                newtop.setToolBatch(newb1);
+                            }
+                        } else {
+                            newb1 = new ToolBatch(comboobjs.get(i).bottom());
+                            for (int j = 0; j < comboobjs.get(i).maxTop(); j++) {
+                                TopBatch newtop = new TopBatch(comboobjs.get(i).top());
+                                for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
+                                    newtop.addJob(jobs.get(0));
+                                    jobs.remove(0);
                                 }
                                 newb1.addTopBatch(newtop);
                                 newtop.setToolBatch(newb1);

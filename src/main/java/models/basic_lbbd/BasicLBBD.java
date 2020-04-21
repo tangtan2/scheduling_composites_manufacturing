@@ -768,14 +768,16 @@ public class BasicLBBD {
                         allObjs.add((int) Math.round(subcp.getObjValue()));
                         objs.add((int) Math.round(subcp.getObjValue()));
                         times.add(elapsedTime);
-                        data.writeLBBD(newsoln, objs, times);
+                        data.writeLBBD(newsoln);
+                        data.writeQual(objs, times);
                         data.writeSum(newsoln);
                     }
                 } else {
                     allObjs.add((int) Math.round(subcp.getObjValue()));
                     objs.add((int) Math.round(subcp.getObjValue()));
                     times.add(elapsedTime);
-                    data.writeLBBD(newsoln, objs, times);
+                    data.writeLBBD(newsoln);
+                    data.writeQual(objs, times);
                     data.writeSum(newsoln);
                 }
 

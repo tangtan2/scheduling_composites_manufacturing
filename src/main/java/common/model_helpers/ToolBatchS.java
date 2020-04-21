@@ -8,8 +8,8 @@ public class ToolBatchS extends ToolBatch {
     private IloIntervalVar prepVar;
     private IloIntervalVar layupVar;
     private IloIntervalVar demouldVar;
-    private ArrayList<JobS> jobs = new ArrayList<>();
-    private ArrayList<TopBatchS> b0s = new ArrayList<>();
+    private final ArrayList<JobS> jobs = new ArrayList<>();
+    private final ArrayList<TopBatchS> b0s = new ArrayList<>();
     private AutoBatchS b2;
     private int rspOrder;
 

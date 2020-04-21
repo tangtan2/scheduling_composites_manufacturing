@@ -4,17 +4,17 @@ import java.util.ArrayList;
 public class Solution {
 
     // Private class variables
-    private int numJob;
-    private double objVal;
+    private final int numJob;
+    private final double objVal;
     private double elapsedTime;
-    private String status;
-    private ArrayList<Job> jobs = new ArrayList<>();
-    private ArrayList<TopBatch> b0s = new ArrayList<>();
-    private ArrayList<ToolBatch> b1s = new ArrayList<>();
+    private final String status;
+    private final ArrayList<Job> jobs = new ArrayList<>();
+    private final ArrayList<TopBatch> b0s = new ArrayList<>();
+    private final ArrayList<ToolBatch> b1s = new ArrayList<>();
     private ArrayList<AutoBatch> b2s = new ArrayList<>();
-    private ArrayList<JobS> jobsS = new ArrayList<>();
-    private ArrayList<TopBatchS> b0sS = new ArrayList<>();
-    private ArrayList<ToolBatchS> b1sS = new ArrayList<>();
+    private final ArrayList<JobS> jobsS = new ArrayList<>();
+    private final ArrayList<TopBatchS> b0sS = new ArrayList<>();
+    private final ArrayList<ToolBatchS> b1sS = new ArrayList<>();
     private ArrayList<AutoBatchS> b2sS = new ArrayList<>();
     private ArrayList<Activity> acts = new ArrayList<>();
 

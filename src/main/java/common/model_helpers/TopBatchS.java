@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class TopBatchS extends TopBatch {
 
     // Private class variables
-    private ArrayList<JobS> jobs = new ArrayList<>();
+    private final ArrayList<JobS> jobs = new ArrayList<>();
     private ToolBatchS b1;
 
     // Constructor

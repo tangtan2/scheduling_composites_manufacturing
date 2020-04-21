@@ -3,13 +3,13 @@ package common.model_helpers;
 public class ToolCombo {
 
     // Private class variables
-    private Tool top;
-    private Tool bottom;
-    private int size;
-    private int qty;
-    private int index;
-    private int maxTop;
-    private int maxJobPerTop;
+    private final Tool top;
+    private final Tool bottom;
+    private final int size;
+    private final int qty;
+    private final int index;
+    private final int maxTop;
+    private final int maxJobPerTop;
 
     // Constructor
     public ToolCombo(Tool top, Tool bottom, int index) {
