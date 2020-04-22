@@ -7,7 +7,7 @@ public class BasicEDDPack {
 
     // Static function to run heuristic
     public static int infeasCounter;
-    public static ArrayList<AutoBatch> run(ArrayList<Job> jobobjs, int option) {
+    public static ArrayList<AutoBatch> run(ArrayList<Job> jobobjs) {
 
         // Reset infeasible bin counter
         infeasCounter = 0;
@@ -18,9 +18,7 @@ public class BasicEDDPack {
         int randomize = 3;
 
         // Sort jobs in order of due date then order of rsp
-        if (option == 0) {
-            jobobjs.sort(Comparator.comparing(Job::rspOrder));
-        }
+        jobobjs.sort(Comparator.comparing(Job::rspOrder));
         ArrayList<Job> iterate = new ArrayList<>();
         int due = 7 * 24 * 60;
         while (iterate.size() < jobobjs.size()) {
@@ -38,9 +36,7 @@ public class BasicEDDPack {
         while (!iterate.isEmpty()) {
 
             // Sort jobs in order of rsp
-            if (option == 0) {
-                iterate.sort(Comparator.comparing(Job::rspOrder));
-            }
+            iterate.sort(Comparator.comparing(Job::rspOrder));
 
             // Choose next job
             int choose = (int) Math.round(Math.random() * randomize);
@@ -158,7 +154,6 @@ public class BasicEDDPack {
         String sumfile = args[1];
         String interfile = args[2];
         int pi = Integer.parseInt(args[3]);
-        int option = Integer.parseInt(args[4]);
         int repetitions = 100;
 
         // Make data object and import raw data
@@ -233,7 +228,7 @@ public class BasicEDDPack {
                 }
                 jobobjs.add(newjob);
             }
-            ArrayList<AutoBatch> packed = run(jobobjs, option);
+            ArrayList<AutoBatch> packed = run(jobobjs);
             double end = System.nanoTime();
             double elapsedTime = (end - start) / 1_000_000_000;
             int objval = packed.size();
