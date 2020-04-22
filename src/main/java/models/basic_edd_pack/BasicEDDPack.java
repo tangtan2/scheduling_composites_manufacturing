@@ -6,7 +6,11 @@ import java.io.*;
 public class BasicEDDPack {
 
     // Static function to run heuristic
+    public static int infeasCounter;
     public static ArrayList<AutoBatch> run(ArrayList<Job> jobobjs, int option) {
+
+        // Reset infeasible bin counter
+        infeasCounter = 0;
 
         // Create lists to hold batch objects
         ArrayList<ToolBatch> b1objs = new ArrayList<>();
@@ -74,8 +78,9 @@ public class BasicEDDPack {
                     break;
                 }
             }
-            if (currentJob.mappedCombos().size() > 1 && associatedJobs.size() < Math.max(best.top().min(), Math.max(best.bottom().min(), best.top().min() * best.bottom().min()))) {
+            if (currentJob.mappedCombos().size() > 1 && associatedJobs.size() < best.top().min() * best.bottom().min()) {
                 currentJob.removeToolCombo(best);
+                numb1--;
                 continue;
             }
             iterate.removeAll(associatedJobs);
@@ -93,6 +98,10 @@ public class BasicEDDPack {
                 newb1.addTopBatch(newtop);
                 associatedJobs.removeAll(newtop.jobs());
             }
+            if (newb1.jobs().size() < best.top().min() * best.bottom().min()) {
+                infeasCounter++;
+            }
+            newb1.calcRSP();
             b1objs.add(newb1);
 
         }
@@ -228,15 +237,21 @@ public class BasicEDDPack {
             double end = System.nanoTime();
             double elapsedTime = (end - start) / 1_000_000_000;
             int objval = packed.size();
+            int RSPdist = packed.stream().map(AutoBatch::RSPdist).reduce(Integer::sum).orElseThrow();
             SolutionPack soln = new SolutionPack(data.numJob, objval, elapsedTime, "Feasible");
             soln.addAutoBatch(packed);
+            soln.addInfeas(infeasCounter);
+            soln.setRSP(RSPdist);
             solutionList.add(soln);
             writer.write("Heuristic packing solution found after " + elapsedTime + " seconds with objective value " + objval + "\n");
+            System.out.println("Heuristic packing solution found after " + elapsedTime + " seconds with objective value " + objval);
         }
 
         // Choose best solution
         solutionList.sort(Comparator.comparing(SolutionPack::objVal));
+        solutionList.sort(Comparator.comparing(SolutionPack::sumRSPDist));
         SolutionPack best = solutionList.get(0);
+        best.replaceTime((System.nanoTime() - start) / 1_000_000_000);
 
         // Write solution to file
         data.writePack(best);

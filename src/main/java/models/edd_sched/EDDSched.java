@@ -482,7 +482,7 @@ public class EDDSched {
 
         // Write solution to file
         assert best != null;
-        best.replaceTime((int) (System.nanoTime() - starttime) / 1_000_000_000);
+        best.replaceTime((System.nanoTime() - starttime) / 1_000_000_000);
         data.writeSched(best);
         data.writeSum(best);
 

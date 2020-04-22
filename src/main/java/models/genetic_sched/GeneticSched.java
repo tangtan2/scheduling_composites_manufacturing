@@ -378,6 +378,9 @@ public class GeneticSched {
             gen++;
 
         }
+
+        // Add last fitness over time
+        individuals.sort(Comparator.comparing(Individual::fitness));
         fitnessOverTime.add(individuals.get(0).fitness());
         times.add((System.nanoTime() - start) / 1_000_000_000);
 

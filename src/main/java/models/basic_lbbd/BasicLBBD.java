@@ -226,6 +226,7 @@ public class BasicLBBD {
             }
 
             // Obtain solution values
+            int infeasCounter = 0;
             for (int i = 0; i < comboobjs.size(); i++) {
                 ArrayList<JobS> jobs = new ArrayList<>();
                 for (int k = 0; k < remainingjobs.size(); k++) {
@@ -234,26 +235,27 @@ public class BasicLBBD {
                     }
                 }
                 if (jobs.size() > 0) {
-                    jobs.sort(Comparator.comparing(Job::rspOrder));
+                    jobs.sort(Comparator.comparing(JobS::rspOrder));
                     while (!jobs.isEmpty()) {
-                        int maxnum = comboobjs.get(i).maxTop() * comboobjs.get(i).maxJobPerTop();
-                        ToolBatchS newb1 = new ToolBatchS(comboobjs.get(i).bottom(), b1it++);
-                        if (jobs.size() > maxnum) {
-                            for (int j = 0; j < comboobjs.get(i).maxTop(); j++) {
-                                TopBatchS newtop = new TopBatchS(comboobjs.get(i).top(), b0it++);
-                                for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
-                                    newtop.addJobS(jobs.get(0));
-                                    jobs.remove(0);
-                                }
-                                newb1.addTopBatchS(newtop);
-                                newtop.setToolBatchS(newb1);
+                        int minnum = comboobjs.get(i).bottom().min() * comboobjs.get(i).top().min();
+                        int altminnum = 0;
+                        int altmaxnum = 0;
+                        ToolCombo altc = null;
+                        for (ToolCombo c : jobs.get(0).mappedCombos()) {
+                            if (!c.equals(comboobjs.get(i))) {
+                                altminnum = Math.max(c.bottom().min(), Math.max(c.top().min(), c.bottom().min() * c.top().min()));
+                                altmaxnum = c.maxTop() * c.maxJobPerTop();
+                                altc = c;
                             }
-                        } else {
+                        }
+                        ToolBatchS newb1;
+                        if (altc != null && jobs.size() < minnum && jobs.size() >= altminnum && jobs.size() <= altmaxnum) {
+                            newb1 = new ToolBatchS(altc.bottom(), b1it++);
                             while (!jobs.isEmpty()) {
-                                TopBatchS newtop = new TopBatchS(comboobjs.get(i).top(), b0it++);
-                                for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
+                                TopBatchS newtop = new TopBatchS(altc.top(), b0it++);
+                                for (int k = 0; k < altc.maxJobPerTop(); k++) {
                                     if (!jobs.isEmpty()) {
-                                        newtop.addJobS(jobs.get(0));
+                                        newtop.addJob(jobs.get(0));
                                         jobs.remove(0);
                                     } else {
                                         break;
@@ -261,6 +263,39 @@ public class BasicLBBD {
                                 }
                                 newb1.addTopBatchS(newtop);
                                 newtop.setToolBatchS(newb1);
+                            }
+                            if (newb1.jobsS().size() < altminnum) {
+                                infeasCounter++;
+                            }
+                        } else {
+                            newb1 = new ToolBatchS(comboobjs.get(i).bottom(), b1it++);
+                            int size = jobs.size();
+                            if (jobs.size() < comboobjs.get(i).maxJobPerTop() * comboobjs.get(i).maxTop()) {
+                                while (!jobs.isEmpty()) {
+                                    TopBatchS newtop = new TopBatchS(comboobjs.get(i).top(), b0it++);
+                                    for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
+                                        newtop.addJobS(jobs.get(0));
+                                        jobs.remove(0);
+                                        if (jobs.isEmpty()) {
+                                            break;
+                                        }
+                                    }
+                                    newb1.addTopBatchS(newtop);
+                                    newtop.setToolBatchS(newb1);
+                                }
+                            } else {
+                                for (int j = 0; j < Math.min(size, comboobjs.get(i).maxTop()); j++) {
+                                    TopBatchS newtop = new TopBatchS(comboobjs.get(i).top(), b0it++);
+                                    for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
+                                        newtop.addJobS(jobs.get(0));
+                                        jobs.remove(0);
+                                    }
+                                    newb1.addTopBatchS(newtop);
+                                    newtop.setToolBatchS(newb1);
+                                }
+                            }
+                            if (newb1.jobsS().size() < minnum) {
+                                infeasCounter++;
                             }
                         }
                         newb1.calcRSP();
@@ -770,7 +805,7 @@ public class BasicLBBD {
                         times.add(elapsedTime);
                         data.writeLBBD(newsoln);
                         data.writeQual(objs, times);
-                        data.writeSum(newsoln);
+                        data.writeSum(newsoln, infeasCounter);
                     }
                 } else {
                     allObjs.add((int) Math.round(subcp.getObjValue()));
@@ -778,7 +813,7 @@ public class BasicLBBD {
                     times.add(elapsedTime);
                     data.writeLBBD(newsoln);
                     data.writeQual(objs, times);
-                    data.writeSum(newsoln);
+                    data.writeSum(newsoln, infeasCounter);
                 }
 
                 // Close subproblem modeler and increment iteration

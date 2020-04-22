@@ -191,6 +191,7 @@ public class BasicMIPPack {
             }
 
             // Obtain solution values
+            int infeasCounter = 0;
             for (int i = 0; i < comboobjs.size(); i++) {
                 ArrayList<Job> jobs = new ArrayList<>();
                 for (int k = 0; k < remainingjobs.size(); k++) {
@@ -201,7 +202,7 @@ public class BasicMIPPack {
                 if (jobs.size() > 0) {
                     jobs.sort(Comparator.comparing(Job::rspOrder));
                     while (!jobs.isEmpty()) {
-                        int maxnum = comboobjs.get(i).maxTop() * comboobjs.get(i).maxJobPerTop();
+                        int minnum = comboobjs.get(i).bottom().min() * comboobjs.get(i).top().min();
                         int altminnum = 0;
                         int altmaxnum = 0;
                         ToolCombo altc = null;
@@ -213,8 +214,7 @@ public class BasicMIPPack {
                             }
                         }
                         ToolBatch newb1;
-                        if (jobs.size() < maxnum && jobs.size() >= altminnum && jobs.size() <= altmaxnum) {
-                            assert altc != null;
+                        if (altc != null && jobs.size() < minnum && jobs.size() >= altminnum && jobs.size() <= altmaxnum) {
                             newb1 = new ToolBatch(altc.bottom());
                             while (!jobs.isEmpty()) {
                                 TopBatch newtop = new TopBatch(altc.top());
@@ -229,16 +229,38 @@ public class BasicMIPPack {
                                 newb1.addTopBatch(newtop);
                                 newtop.setToolBatch(newb1);
                             }
+                            if (newb1.jobs().size() < altminnum) {
+                                infeasCounter++;
+                            }
                         } else {
                             newb1 = new ToolBatch(comboobjs.get(i).bottom());
-                            for (int j = 0; j < comboobjs.get(i).maxTop(); j++) {
-                                TopBatch newtop = new TopBatch(comboobjs.get(i).top());
-                                for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
-                                    newtop.addJob(jobs.get(0));
-                                    jobs.remove(0);
+                            int size = jobs.size();
+                            if (jobs.size() < comboobjs.get(i).maxJobPerTop() * comboobjs.get(i).maxTop()) {
+                                while (!jobs.isEmpty()) {
+                                    TopBatch newtop = new TopBatch(comboobjs.get(i).top());
+                                    for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
+                                        newtop.addJob(jobs.get(0));
+                                        jobs.remove(0);
+                                        if (jobs.isEmpty()) {
+                                            break;
+                                        }
+                                    }
+                                    newb1.addTopBatch(newtop);
+                                    newtop.setToolBatch(newb1);
                                 }
-                                newb1.addTopBatch(newtop);
-                                newtop.setToolBatch(newb1);
+                            } else {
+                                for (int j = 0; j < Math.min(size, comboobjs.get(i).maxTop()); j++) {
+                                    TopBatch newtop = new TopBatch(comboobjs.get(i).top());
+                                    for (int k = 0; k < comboobjs.get(i).maxJobPerTop(); k++) {
+                                        newtop.addJob(jobs.get(0));
+                                        jobs.remove(0);
+                                    }
+                                    newb1.addTopBatch(newtop);
+                                    newtop.setToolBatch(newb1);
+                                }
+                            }
+                            if (newb1.jobs().size() < minnum) {
+                                infeasCounter++;
                             }
                         }
                         newb1.calcRSP();
@@ -425,6 +447,7 @@ public class BasicMIPPack {
             // Make solution object
             SolutionPack soln = new SolutionPack(data.numJob, autocplex.getObjValue(), elapsedTime, autocplex.getStatus().toString());
             soln.addAutoBatch(b2objs);
+            soln.addInfeas(infeasCounter);
 
             // Write solution to file
             data.writePack(soln);

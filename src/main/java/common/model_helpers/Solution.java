@@ -33,10 +33,10 @@ public class Solution {
 
         this.b2s = b2s;
         for (AutoBatch a : b2s) {
-            this.jobs.addAll(new ArrayList<>(a.jobs()));
-            this.b1s.addAll(new ArrayList<>(a.b1s()));
+            this.jobs.addAll(a.jobs());
+            this.b1s.addAll(a.b1s());
             for (ToolBatch t : a.b1s()) {
-                this.b0s.addAll(new ArrayList<>(t.b0s()));
+                this.b0s.addAll(t.b0s());
             }
         }
 
@@ -62,7 +62,7 @@ public class Solution {
     }
 
     // Replace time
-    public void replaceTime(int time) {
+    public void replaceTime(double time) {
 
         this.elapsedTime = time;
 

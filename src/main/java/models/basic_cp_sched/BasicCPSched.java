@@ -346,7 +346,7 @@ public class BasicCPSched {
             cp.setParameter(IloCP.DoubleParam.TimeLimit, 1800);
 
             // Solve scheduling
-            double elapsedTime = 0;
+            double elapsedTime;
             cp.startNewSearch();
             ArrayList<Integer> qualOverTime = new ArrayList<>();
             ArrayList<Double> times = new ArrayList<>();
@@ -405,6 +405,7 @@ public class BasicCPSched {
             }
 
             // Make solution object
+            elapsedTime = cp.getInfo(IloCP.DoubleInfo.SolveTime);
             SolutionSched soln = new SolutionSched(data.numJob, cp.getObjValue(), elapsedTime, cp.getStatusString());
             soln.addAutoBatchS(b2objs);
 

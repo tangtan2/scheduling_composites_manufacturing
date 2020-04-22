@@ -174,6 +174,7 @@ public class GenInstances {
                 sheet.getRow(0).createCell(2).setCellValue("status");
                 sheet.getRow(0).createCell(3).setCellValue("numbins");
                 sheet.getRow(0).createCell(4).setCellValue("elapsed_time");
+                sheet.getRow(0).createCell(5).setCellValue("infeas_bins");
                 sheet = summary.createSheet("current_exp_sched");
                 sheet.createRow(0).createCell(0).setCellValue("instance");
                 sheet.getRow(0).createCell(1).setCellValue("numjobs");
@@ -182,14 +183,15 @@ public class GenInstances {
                 sheet.getRow(0).createCell(4).setCellValue("elapsed_time");
                 sheet = summary.createSheet("current_exp");
                 sheet.createRow(0).createCell(0).setCellValue("instance");
-                sheet.getRow(0).createCell(1).setCellValue("numjobs");
-                sheet.getRow(0).createCell(2).setCellValue("status");
+                sheet.getRow(0).createCell(1).setCellValue("status");
+                sheet.getRow(0).createCell(2).setCellValue("numbins");
                 sheet.getRow(0).createCell(3).setCellValue("tardiness");
                 sheet.getRow(0).createCell(4).setCellValue("elapsed_time_to_best");
                 sheet.getRow(0).createCell(5).setCellValue("iterations");
                 sheet.getRow(0).createCell(6).setCellValue("over_hour");
                 sheet.getRow(0).createCell(7).setCellValue("elapsed_time");
                 sheet.getRow(0).createCell(8).setCellValue("non_optimal");
+                sheet.getRow(0).createCell(9).setCellValue("infeas_bins");
                 sheet = summary.createSheet("solution_check");
                 sheet.createRow(0).createCell(0).setCellValue("instance");
                 sheet.getRow(0).createCell(1).setCellValue("status");

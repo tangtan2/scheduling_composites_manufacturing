@@ -844,6 +844,7 @@ public class Data {
             sheet.getRow(this.problemInstance + 1).createCell(2).setCellValue(soln.status());
             sheet.getRow(this.problemInstance + 1).createCell(3).setCellValue(soln.objVal());
             sheet.getRow(this.problemInstance + 1).createCell(4).setCellValue(soln.elapsedTime());
+            sheet.getRow(this.problemInstance + 1).createCell(5).setCellValue(soln.infeasCounter());
             workbook.write(new FileOutputStream(this.summaryFilePath));
             workbook.close();
 
@@ -879,17 +880,18 @@ public class Data {
     }
 
     // Write summary for LBBD solution
-    public void writeSum(Solution soln) {
+    public void writeSum(Solution soln, int infeasCounter) {
 
         try {
 
             XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(new FileInputStream(this.summaryFilePath));
             XSSFSheet sheet = workbook.getSheet("current_exp");
             sheet.createRow(this.problemInstance + 1).createCell(0).setCellValue(this.problemInstance);
-            sheet.getRow(this.problemInstance + 1).createCell(1).setCellValue(soln.numJob());
-            sheet.getRow(this.problemInstance + 1).createCell(2).setCellValue(soln.status());
+            sheet.getRow(this.problemInstance + 1).createCell(1).setCellValue(soln.status());
+            sheet.getRow(this.problemInstance + 1).createCell(2).setCellValue(soln.b2sS().size());
             sheet.getRow(this.problemInstance + 1).createCell(3).setCellValue(soln.objVal());
             sheet.getRow(this.problemInstance + 1).createCell(4).setCellValue(soln.elapsedTime());
+            sheet.getRow(this.problemInstance + 1).createCell(9).setCellValue(infeasCounter);
             workbook.write(new FileOutputStream(this.summaryFilePath));
             workbook.close();
 
