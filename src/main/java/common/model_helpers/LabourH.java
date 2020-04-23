@@ -5,7 +5,7 @@ public class LabourH extends Labour {
 
     // Private class variables
     private Horizon horizon;
-    private final int horizonEnd;
+    private int horizonEnd;
 
     // Constructor
     public LabourH(String name, ArrayList<String> skills, int[] qty, int[] start, int[] end, int horizonEnd) {

@@ -4,11 +4,11 @@ import ilog.concert.IloCumulFunctionExpr;
 public class Machine {
 
     // Private class variables
-    private final String name;
-    private final int[] qtyPerShift;
+    private String name;
+    private int[] qtyPerShift;
     private int capacity;
-    private final int[] shiftStart;
-    private final int[] shiftEnd;
+    private int[] shiftStart;
+    private int[] shiftEnd;
     private IloCumulFunctionExpr cumul;
 
     // Constructor

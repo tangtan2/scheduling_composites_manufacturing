@@ -4,7 +4,7 @@ public class MachineH extends Machine {
 
     // Private class variables
     private Horizon horizon;
-    private final int horizonEnd;
+    private int horizonEnd;
 
     // Constructor
     public MachineH(String name, int[] qty, int[] start, int[] end, int horizonEnd) {

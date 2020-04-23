@@ -4,11 +4,11 @@ import ilog.concert.IloCumulFunctionExpr;
 public class Tool {
 
     // Private class variables
-    private final String name;
-    private final int capacity;
-    private final int qty;
-    private final int min;
-    private final int size;
+    private String name;
+    private int capacity;
+    private int qty;
+    private int min;
+    private int size;
     private IloCumulFunctionExpr cumul;
 
     // Constructor

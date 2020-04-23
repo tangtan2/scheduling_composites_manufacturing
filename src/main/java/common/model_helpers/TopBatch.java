@@ -5,8 +5,8 @@ import java.util.List;
 public class TopBatch {
 
     // Private class variables
-    private final ArrayList<Job> jobs = new ArrayList<>();
-    private final Tool topTool;
+    private ArrayList<Job> jobs = new ArrayList<>();
+    private Tool topTool;
     private ToolBatch b1;
     private int index;
 

@@ -5,8 +5,8 @@ public class AutoBatch {
 
     // Private class variables
     private int index;
-    private final ArrayList<Job> jobs = new ArrayList<>();
-    private final ArrayList<ToolBatch> b1s = new ArrayList<>();
+    private ArrayList<Job> jobs = new ArrayList<>();
+    private ArrayList<ToolBatch> b1s = new ArrayList<>();
     private int capacity;
     private int sumToolSize = 0;
     private int autoStart;

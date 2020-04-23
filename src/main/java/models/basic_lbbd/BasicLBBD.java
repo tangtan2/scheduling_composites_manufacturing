@@ -255,7 +255,7 @@ public class BasicLBBD {
                                 TopBatchS newtop = new TopBatchS(altc.top(), b0it++);
                                 for (int k = 0; k < altc.maxJobPerTop(); k++) {
                                     if (!jobs.isEmpty()) {
-                                        newtop.addJob(jobs.get(0));
+                                        newtop.addJobS(jobs.get(0));
                                         jobs.remove(0);
                                     } else {
                                         break;
@@ -303,6 +303,9 @@ public class BasicLBBD {
                     }
                 }
             }
+
+            // Close tool packing modeler
+            cplex.end();
 
             // Create autoclave packing modeler
             IloCP autocp = new IloCP();
@@ -837,7 +840,6 @@ public class BasicLBBD {
 
             // Close modeler and intermediate file
             autocp.end();
-            cplex.end();
             writer.close();
 
         } catch (Exception e) {

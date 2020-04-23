@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class AutoBatchA extends AutoBatch {
 
     // Private class variables
-    private final ArrayList<ToolBatchA> b1s = new ArrayList<>();
+    private ArrayList<ToolBatchA> b1s = new ArrayList<>();
     private Activity autoAct;
     private int due = (int) Double.POSITIVE_INFINITY;
     private MachineH autoMachine;

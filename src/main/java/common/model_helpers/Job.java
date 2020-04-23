@@ -4,14 +4,14 @@ import java.util.ArrayList;
 public class Job {
 
     // Private class variables
-    private final String name;
-    private final String partFamily;
-    private final int autoCap;
-    private final int index;
-    private final int size;
-    private final int due;
-    private final String[] steps;
-    private final int[] stepTimes;
+    private String name;
+    private String partFamily;
+    private int autoCap;
+    private int index;
+    private int size;
+    private int due;
+    private String[] steps;
+    private int[] stepTimes;
     private int prepStart;
     private int prepEnd;
     private int layupStart;
@@ -23,7 +23,7 @@ public class Job {
     private int tardiness;
     private int rspOrder;
     private TopBatch b0;
-    private final ArrayList<ToolCombo> mappedCombos;
+    private ArrayList<ToolCombo> mappedCombos;
 
     // Constructor
     public Job(String name, String family, int autoCap, int index, int size, int due, String[] steps, int[] stepTimes) {

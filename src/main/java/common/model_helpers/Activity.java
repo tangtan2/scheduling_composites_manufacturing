@@ -4,17 +4,17 @@ import java.util.ArrayList;
 public class Activity {
 
     // Private class variables
-    private final String name;
-    private final int length;
+    private String name;
+    private int length;
     private int start;
     private int end;
     private AutoBatchA b2 = null;
     private ToolBatchA b1 = null;
-    private final ArrayList<Activity> predecessors = new ArrayList<>();
+    private ArrayList<Activity> predecessors = new ArrayList<>();
     private int maxPredecessorEnd = 0;
-    private final int due;
-    private final int type;
-    private final int index;
+    private int due;
+    private int type;
+    private int index;
 
     // Constructor
     public Activity(String name, int index, int type, int due, int length) {

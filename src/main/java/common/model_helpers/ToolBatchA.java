@@ -3,7 +3,7 @@ package common.model_helpers;
 public class ToolBatchA extends ToolBatch {
 
     // Private class variables
-    private final ToolH bottomTool;
+    private ToolH bottomTool;
     private Activity prepAct;
     private Activity layupAct;
     private Activity demouldAct;
