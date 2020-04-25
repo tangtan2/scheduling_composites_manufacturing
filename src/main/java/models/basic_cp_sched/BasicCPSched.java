@@ -348,12 +348,12 @@ public class BasicCPSched {
             // Solve scheduling
             double elapsedTime;
             cp.startNewSearch();
-            ArrayList<Integer> qualOverTime = new ArrayList<>();
+            ArrayList<Double> qualOverTime = new ArrayList<>();
             ArrayList<Double> times = new ArrayList<>();
             while (cp.next()) {
 
                 // Get new solution quality and time found
-                qualOverTime.add((int) Math.round(cp.getObjValue()));
+                qualOverTime.add(cp.getObjValue());
                 times.add(cp.getInfo(IloCP.DoubleInfo.SolveTime));
 
                 // Get solution time and write summary to intermediate file

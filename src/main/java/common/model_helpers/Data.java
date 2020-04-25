@@ -926,7 +926,7 @@ public class Data {
     }
 
     // Write quality over time for CP sched
-    public void writeQual(ArrayList<Integer> quality, ArrayList<Double> times) {
+    public void writeQual(ArrayList<Double> quality, ArrayList<Double> times) {
 
         try {
 
