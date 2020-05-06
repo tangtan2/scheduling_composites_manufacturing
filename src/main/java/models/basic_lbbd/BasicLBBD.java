@@ -105,7 +105,7 @@ public class BasicLBBD {
 
         // Create lists to hold solution qualities over time
         ArrayList<Integer> allObjs = new ArrayList<>();
-        ArrayList<Integer> objs = new ArrayList<>();
+        ArrayList<Double> objs = new ArrayList<>();
         ArrayList<Double> times = new ArrayList<>();
 
         try {
@@ -804,7 +804,7 @@ public class BasicLBBD {
                     allObjs.sort(Comparator.comparing(Integer::intValue));
                     if ((int) Math.round(subcp.getObjValue()) < allObjs.get(0)) {
                         allObjs.add((int) Math.round(subcp.getObjValue()));
-                        objs.add((int) Math.round(subcp.getObjValue()));
+                        objs.add(subcp.getObjValue());
                         times.add(elapsedTime);
                         data.writeLBBD(newsoln);
                         data.writeQual(objs, times);
@@ -812,7 +812,7 @@ public class BasicLBBD {
                     }
                 } else {
                     allObjs.add((int) Math.round(subcp.getObjValue()));
-                    objs.add((int) Math.round(subcp.getObjValue()));
+                    objs.add(subcp.getObjValue());
                     times.add(elapsedTime);
                     data.writeLBBD(newsoln);
                     data.writeQual(objs, times);
@@ -831,7 +831,7 @@ public class BasicLBBD {
             }
 
             // Print iterations and objective values for each iteration
-            for (Integer i : objs) {
+            for (Double i : objs) {
                 writer.write("Iteration: " + (objs.indexOf(i)) + " Objective Value: " + i + "\n");
             }
 
