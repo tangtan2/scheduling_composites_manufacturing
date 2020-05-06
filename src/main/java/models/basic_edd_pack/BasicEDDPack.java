@@ -15,11 +15,10 @@ public class BasicEDDPack {
         // Create lists to hold batch objects
         ArrayList<ToolBatch> b1objs = new ArrayList<>();
         ArrayList<AutoBatch> b2objs = new ArrayList<>();
-        int randomize = 0;
+        int randomize = 3;
 
         // Sort jobs in order of due date then order of rsp
-        Collections.shuffle(jobobjs);
-//        jobobjs.sort(Comparator.comparing(Job::rspOrder));
+        jobobjs.sort(Comparator.comparing(Job::rspOrder));
         ArrayList<Job> iterate = new ArrayList<>();
         int due = 7 * 24 * 60;
         while (iterate.size() < jobobjs.size()) {
@@ -30,9 +29,6 @@ public class BasicEDDPack {
             }
             due += 7 * 24 * 60;
         }
-        for (Job j : jobobjs) {
-            System.out.println(j.rspOrder());
-        }
 
         // Pack jobs into tool batches
         int numb0 = 0;
@@ -40,7 +36,7 @@ public class BasicEDDPack {
         while (!iterate.isEmpty()) {
 
             // Sort jobs in order of rsp
-//            iterate.sort(Comparator.comparing(Job::rspOrder));
+            iterate.sort(Comparator.comparing(Job::rspOrder));
 
             // Choose next job
             int choose = (int) Math.round(Math.random() * randomize);
@@ -158,7 +154,7 @@ public class BasicEDDPack {
         String sumfile = args[1];
         String interfile = args[2];
         int pi = Integer.parseInt(args[3]);
-        int repetitions = 1;
+        int repetitions = 100;
 
         // Make data object and import raw data
         Data data = new Data(filepath, sumfile, pi);
