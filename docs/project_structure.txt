@@ -1,13 +1,9 @@
 directories
 
-- config -> text files containing experimental parameters
-
 - data
 ---- archive -> archived experimental results
----- temp -> hold experimental instance sets
----- template -> templates for instance generate and summary sheets
-
-- docs -> documentation for project
+---- analytics -> data visualizations and analysis of results
+---- templates
 
 - src
 ---- common
@@ -15,13 +11,12 @@ directories
 ------- model helpers -> common classes used between all models
 ------- solution checker -> check validity of solution against constraints
 ---- models
-------- basic_cp_pack -> CP model for packing
-------- basic_cp_sched -> CP model for scheduling
+------- basic_cp_pack -> CP model for packing, built around pack constraint
+------- basic_cp_sched -> CP model for scheduling, built around precedence and cumulative expression constraints
 ------- basic_edd_pack -> greedy EDD based heuristic for packing
 ------- basic_lbbd -> LBBD using CP model for packing and CP model for scheduling
 ------- basic_mip_pack -> MIP model for packing
 ------- cluster_pack -> size-constrained clustering using KmeansS
-------- edd_parallel_sched -> parallel SGS for GRCPSP
-------- edd_serial_sched -> serial SGS for GRCPSP
-------- genetic_sched -> genetic algorithm based on Hartmann (1998)
-------- relaxed_cp_sched -> relaxation of basic_cp_sched model
+------- edd_sched -> parallel SGS for GRCPSP
+------- genetic_sched -> genetic algorithm based on Hartmann (1998) using parallel SGS to evaluate the fitness function
+------- relaxed_cp_sched -> relaxation of basic_cp_sched model used as preprocessing step

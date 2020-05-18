@@ -3,6 +3,7 @@
 *test/
 *target/
 *config/
-*data/
+*data/archive/
+*.ipynb_checkpoints/
 *.idea/
 *.iml

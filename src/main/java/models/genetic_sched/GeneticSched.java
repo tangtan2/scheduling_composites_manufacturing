@@ -251,8 +251,10 @@ public class GeneticSched {
             System.out.println("Initial individual " + i + " scheduled");
             int newFitness = 0;
             for (Activity a : scheduled) {
-                for (Job j : a.b1().jobs()) {
-                    newFitness += Math.max(0, a.end() - j.due());
+                if (a.type() == 3) {
+                    for (Job j : a.b1().jobs()) {
+                        newFitness += Math.max(0, a.end() - j.due());
+                    }
                 }
             }
             individuals.add(new Individual(newAutoBatchList, scheduled, newFitness));
