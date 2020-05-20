@@ -1,0 +1,29 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              tardiness   R-squared:                       0.890
+Model:                            OLS   Adj. R-squared:                  0.889
+Method:                 Least Squares   F-statistic:                     962.1
+Date:                Wed, 20 May 2020   Prob (F-statistic):          1.76e-114
+Time:                        14:52:09   Log-Likelihood:                -4394.7
+No. Observations:                 240   AIC:                             8795.
+Df Residuals:                     237   BIC:                             8806.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+========================================================================================
+                           coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------
+Intercept             1.663e+08   2.75e+06     60.478      0.000    1.61e+08    1.72e+08
+C(numbins)[T.low]    -1.547e+08   3.53e+06    -43.821      0.000   -1.62e+08   -1.48e+08
+C(numbins)[T.medium] -9.977e+07   3.68e+06    -27.141      0.000   -1.07e+08   -9.25e+07
+==============================================================================
+Omnibus:                       20.414   Durbin-Watson:                   1.517
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               28.839
+Skew:                          -0.562   Prob(JB):                     5.47e-07
+Kurtosis:                       4.273   Cond. No.                         4.17
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                  sum_sq     df           F         PR(>F)
+C(numbins)  9.164537e+17    2.0  962.111126  1.761151e-114
+Residual    1.128765e+17  237.0         NaN            NaN

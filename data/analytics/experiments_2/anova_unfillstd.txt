@@ -1,0 +1,29 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              tardiness   R-squared:                       0.018
+Model:                            OLS   Adj. R-squared:                  0.009
+Method:                 Least Squares   F-statistic:                     2.143
+Date:                Wed, 20 May 2020   Prob (F-statistic):              0.120
+Time:                        14:52:10   Log-Likelihood:                -4657.8
+No. Observations:                 240   AIC:                             9322.
+Df Residuals:                     237   BIC:                             9332.
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==========================================================================================
+                             coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------------
+Intercept               6.324e+07   5.96e+06     10.606      0.000    5.15e+07     7.5e+07
+C(unfillstd)[T.low]     2.137e+07   1.03e+07      2.069      0.040    1.03e+06    4.17e+07
+C(unfillstd)[T.medium]  7.629e+06   1.03e+07      0.739      0.461   -1.27e+07     2.8e+07
+==============================================================================
+Omnibus:                       55.816   Durbin-Watson:                   0.105
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               25.497
+Skew:                           0.624   Prob(JB):                     2.91e-06
+Kurtosis:                       2.005   Cond. No.                         3.23
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                    sum_sq     df         F   PR(>F)
+C(unfillstd)  1.828061e+16    2.0  2.142577  0.11962
+Residual      1.011050e+18  237.0       NaN      NaN

@@ -1,0 +1,36 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              tardiness   R-squared:                       0.914
+Model:                            OLS   Adj. R-squared:                  0.913
+Method:                 Least Squares   F-statistic:                     626.6
+Date:                Wed, 20 May 2020   Prob (F-statistic):          4.76e-124
+Time:                        14:16:59   Log-Likelihood:                -4365.1
+No. Observations:                 240   AIC:                             8740.
+Df Residuals:                     235   BIC:                             8758.
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+=========================================================================================================
+                                            coef    std err          t      P>|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                              1.663e+08   2.44e+06     68.111      0.000    1.61e+08    1.71e+08
+C(numbins)[T.low]                     -1.417e+08   4.52e+06    -31.366      0.000   -1.51e+08   -1.33e+08
+C(numbins)[T.medium]                  -9.306e+07    3.4e+06    -27.364      0.000   -9.98e+07   -8.64e+07
+C(rspstd)[T.low]                      -1.972e+07   2.45e+06     -8.033      0.000   -2.46e+07   -1.49e+07
+C(numbins)[T.low]:C(rspstd)[T.low]      1.87e+06   3.55e+06      0.527      0.599   -5.12e+06    8.86e+06
+C(numbins)[T.medium]:C(rspstd)[T.low] -2.159e+07   4.19e+06     -5.157      0.000   -2.98e+07   -1.33e+07
+==============================================================================
+Omnibus:                       52.246   Durbin-Watson:                   1.658
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              169.264
+Skew:                          -0.887   Prob(JB):                     1.76e-37
+Kurtosis:                       6.712   Cond. No.                     1.06e+16
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is 3.5e-30. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.
+                            sum_sq     df             F         PR(>F)
+C(numbins)            9.164537e+17    2.0  1.220300e+03  7.559294e-125
+C(rspstd)            -6.857635e+03    1.0 -1.826251e-11   1.000000e+00
+C(numbins):C(rspstd)  2.463322e+16    2.0  3.280027e+01   2.733243e-13
+Residual              8.824330e+16  235.0           NaN            NaN

@@ -1,0 +1,37 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              tardiness   R-squared:                       0.900
+Model:                            OLS   Adj. R-squared:                  0.897
+Method:                 Least Squares   F-statistic:                     261.3
+Date:                Wed, 20 May 2020   Prob (F-statistic):          3.53e-111
+Time:                        14:17:22   Log-Likelihood:                -4383.0
+No. Observations:                 240   AIC:                             8784.
+Df Residuals:                     231   BIC:                             8815.
+Df Model:                           8                                         
+Covariance Type:            nonrobust                                         
+===============================================================================================================
+                                                  coef    std err          t      P>|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------
+Intercept                                     1.54e+08   3.84e+06     40.048      0.000    1.46e+08    1.62e+08
+C(numbins)[T.low]                           -1.428e+08   4.83e+06    -29.574      0.000   -1.52e+08   -1.33e+08
+C(numbins)[T.medium]                        -9.113e+07   5.14e+06    -17.720      0.000   -1.01e+08    -8.1e+07
+C(unfillstd)[T.low]                          2.723e+07   6.39e+06      4.259      0.000    1.46e+07    3.98e+07
+C(unfillstd)[T.medium]                       1.959e+07   6.52e+06      3.005      0.003    6.74e+06    3.24e+07
+C(numbins)[T.low]:C(unfillstd)[T.low]       -2.735e+07    8.6e+06     -3.179      0.002   -4.43e+07   -1.04e+07
+C(numbins)[T.medium]:C(unfillstd)[T.low]    -1.818e+07   8.38e+06     -2.168      0.031   -3.47e+07   -1.66e+06
+C(numbins)[T.low]:C(unfillstd)[T.medium]    -1.824e+07   8.21e+06     -2.221      0.027   -3.44e+07   -2.05e+06
+C(numbins)[T.medium]:C(unfillstd)[T.medium] -1.557e+07   8.96e+06     -1.738      0.084   -3.32e+07    2.08e+06
+==============================================================================
+Omnibus:                       65.345   Durbin-Watson:                   1.744
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              166.098
+Skew:                          -1.228   Prob(JB):                     8.56e-37
+Kurtosis:                       6.252   Cond. No.                         13.5
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                               sum_sq     df            F         PR(>F)
+C(numbins)               9.033010e+17    2.0  1018.614453  2.602250e-115
+C(unfillstd)             5.127922e+15    2.0     5.782542   3.544188e-03
+C(numbins):C(unfillstd)  5.323918e+15    4.0     3.001779   1.926253e-02
+Residual                 1.024247e+17  231.0          NaN            NaN

@@ -1,0 +1,28 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              tardiness   R-squared:                       0.449
+Model:                            OLS   Adj. R-squared:                  0.447
+Method:                 Least Squares   F-statistic:                     194.3
+Date:                Wed, 20 May 2020   Prob (F-statistic):           1.09e-32
+Time:                        14:52:10   Log-Likelihood:                -4588.3
+No. Observations:                 240   AIC:                             9181.
+Df Residuals:                     238   BIC:                             9188.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+====================================================================================
+                       coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Intercept         1.027e+08   3.91e+06     26.289      0.000     9.5e+07     1.1e+08
+C(rspstd)[T.low] -9.205e+07    6.6e+06    -13.939      0.000   -1.05e+08    -7.9e+07
+==============================================================================
+Omnibus:                        4.224   Durbin-Watson:                   0.548
+Prob(Omnibus):                  0.121   Jarque-Bera (JB):                3.919
+Skew:                           0.250   Prob(JB):                        0.141
+Kurtosis:                       2.622   Cond. No.                         2.42
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                 sum_sq     df           F        PR(>F)
+C(rspstd)  4.626417e+17    1.0  194.302058  1.093025e-32
+Residual   5.666884e+17  238.0         NaN           NaN
