@@ -800,24 +800,21 @@ public class BasicLBBD {
                 // Make solution object and write to file if better than before
                 Solution newsoln = new Solution(data.numJob, subcp.getObjValue(), elapsedTime, subcp.getStatusString());
                 newsoln.addAutoBatchS(b2objs);
+                objs.add(subcp.getObjValue());
+                times.add(elapsedTime);
                 if (iteration > 1) {
                     allObjs.sort(Comparator.comparing(Integer::intValue));
                     if ((int) Math.round(subcp.getObjValue()) < allObjs.get(0)) {
-                        allObjs.add((int) Math.round(subcp.getObjValue()));
-                        objs.add(subcp.getObjValue());
-                        times.add(elapsedTime);
                         data.writeLBBD(newsoln);
                         data.writeQual(objs, times);
                         data.writeSum(newsoln, infeasCounter);
                     }
                 } else {
-                    allObjs.add((int) Math.round(subcp.getObjValue()));
-                    objs.add(subcp.getObjValue());
-                    times.add(elapsedTime);
                     data.writeLBBD(newsoln);
                     data.writeQual(objs, times);
                     data.writeSum(newsoln, infeasCounter);
                 }
+                allObjs.add((int) Math.round(subcp.getObjValue()));
 
                 // Close subproblem modeler and increment iteration
                 subcp.end();
