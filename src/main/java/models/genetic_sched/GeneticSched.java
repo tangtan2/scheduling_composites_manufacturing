@@ -224,10 +224,9 @@ public class GeneticSched {
         double start = System.nanoTime();
 
         // Initialize parameters
-        int numEligible = (int) Math.round(0.4 * data.numB1_new);
         int numInPop = 20;
         int numGenerations = 25;
-        double mutation = 0.3;
+        double mutation = 0.05;
 
         // Initialize population
         ArrayList<Individual> individuals = new ArrayList<>();
@@ -237,11 +236,7 @@ public class GeneticSched {
             ArrayList<AutoBatchA> iterate = new ArrayList<>(b2objs);
             ArrayList<AutoBatchA> newAutoBatchList = new ArrayList<>();
             while (newAutoBatchList.size() < data.numB2_new) {
-                ArrayList<AutoBatchA> eligible = new ArrayList<>();
-                for (int j = 0; j < numEligible; j++) {
-                    eligible.add(iterate.get((int) Math.floor(Math.random() * iterate.size())));
-                }
-                AutoBatchA chosen = eligible.get((int) Math.floor(Math.random() * eligible.size()));
+                AutoBatchA chosen = iterate.get((int) Math.floor(Math.random() * iterate.size()));
                 newAutoBatchList.add(chosen);
                 iterate.remove(chosen);
             }
