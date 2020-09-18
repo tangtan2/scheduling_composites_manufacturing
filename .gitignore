@@ -1,9 +1,6 @@
 *DS_Store
-*lib/
-*test/
 *target/
-*config/
-*data/archive/
 *.ipynb_checkpoints/
 *.idea/
 *.iml
+*data/archive

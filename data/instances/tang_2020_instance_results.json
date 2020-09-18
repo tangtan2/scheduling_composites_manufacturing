@@ -1,0 +1,5492 @@
+{
+  "model_0": {
+    "jobs_100": [
+      {
+        "pack_UB": 17,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 16,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 20,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 16,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 16,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 15,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 20,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 18,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 18,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 18,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 15,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 19,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 16,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 19,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 16,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 20,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 21,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 19,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 19,
+        "sched_UB": 1852,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 18,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 18,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 16,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 18,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 17,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 21,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 15,
+        "sched_UB": 0,
+        "runtime": 3600
+      }
+    ],
+    "jobs_300": [
+      {
+        "pack_UB": 34,
+        "sched_UB": 5561,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 38,
+        "sched_UB": 66746,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 72444,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 42,
+        "sched_UB": 36702,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 38,
+        "sched_UB": 38844,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 37,
+        "sched_UB": 13490,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 51518,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 36,
+        "sched_UB": 8638,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 8660,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 45,
+        "sched_UB": 44751,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 8665,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 35852,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 37,
+        "sched_UB": 0,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 36,
+        "sched_UB": 15329,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 45460,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 6786,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 38,
+        "sched_UB": 18427,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 3705,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 19450,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 20308,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 19427,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 8660,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 4929,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 38,
+        "sched_UB": 1857,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 4847,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 13487,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 42,
+        "sched_UB": 3709,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 29339,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 34698,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 30223,
+        "runtime": 3600
+      }
+    ],
+    "jobs_500": [
+      {
+        "pack_UB": 70,
+        "sched_UB": 363510,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 69,
+        "sched_UB": 401696,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 62,
+        "sched_UB": 382576,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 65,
+        "sched_UB": 453146,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 70,
+        "sched_UB": 413560,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 65,
+        "sched_UB": 402486,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 64,
+        "sched_UB": 512641,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 76,
+        "sched_UB": 252996,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 61,
+        "sched_UB": 251406,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 58,
+        "sched_UB": 160766,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 61,
+        "sched_UB": 285017,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 62,
+        "sched_UB": 232995,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 72,
+        "sched_UB": 525835,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 67,
+        "sched_UB": 442038,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 63,
+        "sched_UB": 210480,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 57,
+        "sched_UB": 235375,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 63,
+        "sched_UB": 440423,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 67,
+        "sched_UB": 228911,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 59,
+        "sched_UB": 349199,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 56,
+        "sched_UB": 288333,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 65,
+        "sched_UB": 510287,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 60,
+        "sched_UB": 339672,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 67,
+        "sched_UB": 234318,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 58,
+        "sched_UB": 292930,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 61,
+        "sched_UB": 211224,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 64,
+        "sched_UB": 427181,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 62,
+        "sched_UB": 480495,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 58,
+        "sched_UB": 113731,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 57,
+        "sched_UB": 419484,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 55,
+        "sched_UB": 368581,
+        "runtime": 3600
+      }
+    ]
+  },
+  "model_1": {
+    "jobs_100": [
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 925
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 912
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 1047
+      },
+      {
+        "pack_UB": 11,
+        "sched_UB": 0,
+        "runtime": 916
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 1118
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 1852,
+        "runtime": 3217
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 11,
+        "sched_UB": 0,
+        "runtime": 1338
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 13,
+        "sched_UB": 0,
+        "runtime": 1194
+      },
+      {
+        "pack_UB": 11,
+        "sched_UB": 0,
+        "runtime": 914
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 915
+      },
+      {
+        "pack_UB": 8,
+        "sched_UB": 0,
+        "runtime": 912
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 1518
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 15,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 13,
+        "sched_UB": 0,
+        "runtime": 1805
+      },
+      {
+        "pack_UB": 13,
+        "sched_UB": 0,
+        "runtime": 1630
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 9,
+        "sched_UB": 0,
+        "runtime": 912
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 1080
+      },
+      {
+        "pack_UB": 8,
+        "sched_UB": 0,
+        "runtime": 1171
+      },
+      {
+        "pack_UB": 16,
+        "sched_UB": 0,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 1800
+      }
+    ],
+    "jobs_300": [
+      {
+        "pack_UB": 24,
+        "sched_UB": 15738,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 39122,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 28,
+        "sched_UB": 51862,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 28,
+        "sched_UB": 35170,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 8556,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 8810,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 33,
+        "sched_UB": 47662,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 8551,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 34149,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 74125,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 19365,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 28385,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 15245,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 25,
+        "sched_UB": 9786,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 40346,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 20657,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 28805,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 8523,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 21851,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 23447,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 32292,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 39848,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 25352,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 23578,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 17590,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 28320,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 28,
+        "sched_UB": 4939,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 38140,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 17601,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 34076,
+        "runtime": 3600
+      }
+    ],
+    "jobs_500": [
+      {
+        "pack_UB": 46,
+        "sched_UB": 210201,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 47,
+        "sched_UB": 298887,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 278275,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 47,
+        "sched_UB": 341937,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 48,
+        "sched_UB": 359427,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 48,
+        "sched_UB": 271370,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 45,
+        "sched_UB": 315013,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 51,
+        "sched_UB": 142323,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 201649,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 108611,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 196041,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 208252,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 439067,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 237803,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 45,
+        "sched_UB": 134043,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 143331,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 219065,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 181778,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 361313,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 37,
+        "sched_UB": 212980,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 426935,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 42,
+        "sched_UB": 244268,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 49,
+        "sched_UB": 164180,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 195795,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 197827,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 302560,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 45,
+        "sched_UB": 380087,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 87715,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 343039,
+        "runtime": 3600
+      },
+      {
+        "pack_UB": 42,
+        "sched_UB": 248944,
+        "runtime": 3600
+      }
+    ]
+  },
+  "model_2": {
+    "jobs_100": [
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 682
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 1852,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 17
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 56
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 12
+      },
+      {
+        "pack_UB": 11,
+        "sched_UB": 0,
+        "runtime": 11
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 54
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 3709,
+        "runtime": 2326
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 140
+      },
+      {
+        "pack_UB": 11,
+        "sched_UB": 0,
+        "runtime": 189
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 900
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 42
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 92
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 13
+      },
+      {
+        "pack_UB": 13,
+        "sched_UB": 0,
+        "runtime": 900
+      },
+      {
+        "pack_UB": 11,
+        "sched_UB": 0,
+        "runtime": 27
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 8
+      },
+      {
+        "pack_UB": 8,
+        "sched_UB": 0,
+        "runtime": 9
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 39
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 187
+      },
+      {
+        "pack_UB": 15,
+        "sched_UB": 0,
+        "runtime": 900
+      },
+      {
+        "pack_UB": 13,
+        "sched_UB": 0,
+        "runtime": 97
+      },
+      {
+        "pack_UB": 13,
+        "sched_UB": 0,
+        "runtime": 110
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 900
+      },
+      {
+        "pack_UB": 9,
+        "sched_UB": 0,
+        "runtime": 7
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 900
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 6
+      },
+      {
+        "pack_UB": 8,
+        "sched_UB": 0,
+        "runtime": 14
+      },
+      {
+        "pack_UB": 16,
+        "sched_UB": 0,
+        "runtime": 228
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 18
+      }
+    ],
+    "jobs_300": [
+      {
+        "pack_UB": 24,
+        "sched_UB": 1852,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 40070,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 5551,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 28,
+        "sched_UB": 11653,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 1857,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 8835,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 33,
+        "sched_UB": 33288,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 4929,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 8566,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 19442,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 8556,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 9786,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 1857,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 25,
+        "sched_UB": 0,
+        "runtime": 911
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 32175,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 0,
+        "runtime": 979
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 9134,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 28,
+        "sched_UB": 0,
+        "runtime": 925
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 5566,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 8648,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 11614,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 26363,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 4939,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 5571,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 1852,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 25,
+        "sched_UB": 18803,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 1857,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 11633,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 1857,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 24349,
+        "runtime": 2700
+      }
+    ],
+    "jobs_500": [
+      {
+        "pack_UB": 46,
+        "sched_UB": 172223,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 47,
+        "sched_UB": 219942,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 304665,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 47,
+        "sched_UB": 402690,
+        "runtime": 2701
+      },
+      {
+        "pack_UB": 48,
+        "sched_UB": 275840,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 48,
+        "sched_UB": 246490,
+        "runtime": 2701
+      },
+      {
+        "pack_UB": 45,
+        "sched_UB": 313202,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 51,
+        "sched_UB": 247380,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 253994,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 148082,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 168386,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 214325,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 391026,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 376415,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 45,
+        "sched_UB": 101459,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 172113,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 341694,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 198880,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 230446,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 37,
+        "sched_UB": 149954,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 309199,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 42,
+        "sched_UB": 200703,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 49,
+        "sched_UB": 155962,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 227625,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 147285,
+        "runtime": 2701
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 279339,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 45,
+        "sched_UB": 332093,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 113377,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 204576,
+        "runtime": 2700
+      },
+      {
+        "pack_UB": 42,
+        "sched_UB": 256322,
+        "runtime": 2700
+      }
+    ]
+  },
+  "model_3": {
+    "jobs_100": [
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 1852,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 11,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 3704,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 11,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 12,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 13,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 11,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 8,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 15,
+        "sched_UB": 0,
+        "runtime": 1
+      },
+      {
+        "pack_UB": 13,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 13,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 9,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 14,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 8,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 15,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 10,
+        "sched_UB": 0,
+        "runtime": 0
+      }
+    ],
+    "jobs_300": [
+      {
+        "pack_UB": 24,
+        "sched_UB": 8526,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 27770,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 24754,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 28,
+        "sched_UB": 6786,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 14381,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 13349,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 33,
+        "sched_UB": 24798,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 3704,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 1853,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 20653,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 8526,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 12279,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 0,
+        "runtime": 0
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 13348,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 13349,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 3705,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 5583,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 0,
+        "runtime": 48
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 6674,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 8526,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 15224,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 26,
+        "sched_UB": 7408,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 27,
+        "sched_UB": 5578,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 10378,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 5557,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 24,
+        "sched_UB": 15227,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 28,
+        "sched_UB": 1852,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 29,
+        "sched_UB": 4934,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 25,
+        "sched_UB": 3705,
+        "runtime": 1800
+      },
+      {
+        "pack_UB": 30,
+        "sched_UB": 3704,
+        "runtime": 1800
+      }
+    ],
+    "jobs_500": [
+      {
+        "pack_UB": 46,
+        "sched_UB": 77669,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 47,
+        "sched_UB": 188785,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 150685,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 47,
+        "sched_UB": 208694,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 48,
+        "sched_UB": 117723,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 45,
+        "sched_UB": 188964,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 120016,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 47,
+        "sched_UB": 86293,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 75090,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 38,
+        "sched_UB": 34800,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 50625,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 35230,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 170738,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 114662,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 53221,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 40,
+        "sched_UB": 89734,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 129701,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 31562,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 98082,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 37,
+        "sched_UB": 114502,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 44,
+        "sched_UB": 134226,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 41,
+        "sched_UB": 99071,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 46,
+        "sched_UB": 58685,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 57993,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 29653,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 42,
+        "sched_UB": 210517,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 45,
+        "sched_UB": 149655,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 43,
+        "sched_UB": 38084,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 39,
+        "sched_UB": 126488,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 42,
+        "sched_UB": 249094,
+        "runtime": 1801
+      }
+    ],
+    "jobs_1000": [
+      {
+        "pack_UB": 83,
+        "sched_UB": 2756236,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 1763716,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 2581685,
+        "runtime": 1805
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 2465673,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 78,
+        "sched_UB": 2075344,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 1830973,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 87,
+        "sched_UB": 3677022,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 80,
+        "sched_UB": 2035177,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 3123789,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 1582611,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 80,
+        "sched_UB": 2187724,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 2746577,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 2455009,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 70,
+        "sched_UB": 2086554,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 96,
+        "sched_UB": 3506137,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 75,
+        "sched_UB": 1989363,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 78,
+        "sched_UB": 2592630,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 92,
+        "sched_UB": 2596609,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 88,
+        "sched_UB": 3360395,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 2537017,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 2926380,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 70,
+        "sched_UB": 2140813,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 89,
+        "sched_UB": 3065855,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 1723792,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 2642931,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 87,
+        "sched_UB": 2657830,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 90,
+        "sched_UB": 2650227,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 2047965,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 79,
+        "sched_UB": 1558562,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 2803086,
+        "runtime": 1802
+      }
+    ],
+    "jobs_2000": [
+      {
+        "pack_UB": 153,
+        "sched_UB": 27301483,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 24471479,
+        "runtime": 1815
+      },
+      {
+        "pack_UB": 160,
+        "sched_UB": 26821324,
+        "runtime": 1811
+      },
+      {
+        "pack_UB": 156,
+        "sched_UB": 21416947,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 164,
+        "sched_UB": 23308860,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 170,
+        "sched_UB": 24671341,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 152,
+        "sched_UB": 21065988,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 22909543,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 149,
+        "sched_UB": 19289112,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 163,
+        "sched_UB": 23302751,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 27265499,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 172,
+        "sched_UB": 26397384,
+        "runtime": 1808
+      },
+      {
+        "pack_UB": 169,
+        "sched_UB": 25773765,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 160,
+        "sched_UB": 25594890,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 21440396,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 23941036,
+        "runtime": 1808
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 25923831,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 19900557,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 150,
+        "sched_UB": 21808264,
+        "runtime": 1808
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 22310730,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 21213056,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 155,
+        "sched_UB": 22555424,
+        "runtime": 1808
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 21621201,
+        "runtime": 1808
+      },
+      {
+        "pack_UB": 160,
+        "sched_UB": 33739710,
+        "runtime": 1808
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 20286245,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 21395620,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 18316416,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 150,
+        "sched_UB": 21049894,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 141,
+        "sched_UB": 22353620,
+        "runtime": 1809
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 20375813,
+        "runtime": 1809
+      }
+    ],
+    "jobs_3000": [
+      {
+        "pack_UB": 241,
+        "sched_UB": 91420665,
+        "runtime": 1813
+      },
+      {
+        "pack_UB": 219,
+        "sched_UB": 74560455,
+        "runtime": 1827
+      },
+      {
+        "pack_UB": 241,
+        "sched_UB": 80393089,
+        "runtime": 1821
+      },
+      {
+        "pack_UB": 236,
+        "sched_UB": 69513727,
+        "runtime": 1819
+      },
+      {
+        "pack_UB": 222,
+        "sched_UB": 63552181,
+        "runtime": 1819
+      },
+      {
+        "pack_UB": 230,
+        "sched_UB": 64928678,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 251,
+        "sched_UB": 69166529,
+        "runtime": 1817
+      },
+      {
+        "pack_UB": 238,
+        "sched_UB": 67905489,
+        "runtime": 1817
+      },
+      {
+        "pack_UB": 244,
+        "sched_UB": 69329707,
+        "runtime": 1816
+      },
+      {
+        "pack_UB": 230,
+        "sched_UB": 73395350,
+        "runtime": 1817
+      },
+      {
+        "pack_UB": 230,
+        "sched_UB": 68265922,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 231,
+        "sched_UB": 77259494,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 253,
+        "sched_UB": 78694445,
+        "runtime": 1819
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 69240425,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 239,
+        "sched_UB": 82257354,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 241,
+        "sched_UB": 63838227,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 232,
+        "sched_UB": 73319800,
+        "runtime": 1817
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 67220586,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 234,
+        "sched_UB": 76183008,
+        "runtime": 1817
+      },
+      {
+        "pack_UB": 245,
+        "sched_UB": 78606757,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 78070332,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 225,
+        "sched_UB": 61499619,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 224,
+        "sched_UB": 78563268,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 251,
+        "sched_UB": 86522712,
+        "runtime": 1817
+      },
+      {
+        "pack_UB": 222,
+        "sched_UB": 77563990,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 229,
+        "sched_UB": 63880952,
+        "runtime": 1817
+      },
+      {
+        "pack_UB": 227,
+        "sched_UB": 77355905,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 231,
+        "sched_UB": 83138039,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 227,
+        "sched_UB": 65945570,
+        "runtime": 1818
+      },
+      {
+        "pack_UB": 226,
+        "sched_UB": 66023405,
+        "runtime": 1817
+      }
+    ],
+    "jobs_4000": [
+      {
+        "pack_UB": 301,
+        "sched_UB": 156479838,
+        "runtime": 1821
+      },
+      {
+        "pack_UB": 301,
+        "sched_UB": 144247721,
+        "runtime": 1836
+      },
+      {
+        "pack_UB": 316,
+        "sched_UB": 174657786,
+        "runtime": 1830
+      },
+      {
+        "pack_UB": 309,
+        "sched_UB": 118783003,
+        "runtime": 1833
+      },
+      {
+        "pack_UB": 292,
+        "sched_UB": 142194023,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 327,
+        "sched_UB": 162983624,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 169570577,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 294,
+        "sched_UB": 139167549,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 303,
+        "sched_UB": 140820346,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 293,
+        "sched_UB": 139979002,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 295,
+        "sched_UB": 146918139,
+        "runtime": 1824
+      },
+      {
+        "pack_UB": 320,
+        "sched_UB": 143294599,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 305,
+        "sched_UB": 163748504,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 328,
+        "sched_UB": 172161048,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 328,
+        "sched_UB": 157411269,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 295,
+        "sched_UB": 166064236,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 168014480,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 306,
+        "sched_UB": 152831752,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 303,
+        "sched_UB": 147515538,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 311,
+        "sched_UB": 174982745,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 306,
+        "sched_UB": 121899973,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 327,
+        "sched_UB": 153135377,
+        "runtime": 1825
+      },
+      {
+        "pack_UB": 336,
+        "sched_UB": 162447784,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 335,
+        "sched_UB": 174230261,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 323,
+        "sched_UB": 149950760,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 298,
+        "sched_UB": 159643522,
+        "runtime": 1827
+      },
+      {
+        "pack_UB": 307,
+        "sched_UB": 149022794,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 306,
+        "sched_UB": 164850949,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 310,
+        "sched_UB": 143362549,
+        "runtime": 1826
+      },
+      {
+        "pack_UB": 305,
+        "sched_UB": 158573378,
+        "runtime": 1826
+      }
+    ]
+  },
+  "model_4": {
+    "jobs_1000": [
+      {
+        "pack_UB": 83,
+        "sched_UB": 3925605,
+        "runtime": 55
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 3851990,
+        "runtime": 89
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 7349705,
+        "runtime": 87
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 5711094,
+        "runtime": 92
+      },
+      {
+        "pack_UB": 78,
+        "sched_UB": 3985836,
+        "runtime": 76
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 4790464,
+        "runtime": 87
+      },
+      {
+        "pack_UB": 87,
+        "sched_UB": 6325980,
+        "runtime": 85
+      },
+      {
+        "pack_UB": 80,
+        "sched_UB": 4770492,
+        "runtime": 82
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 6033894,
+        "runtime": 91
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 4958416,
+        "runtime": 74
+      },
+      {
+        "pack_UB": 80,
+        "sched_UB": 4079705,
+        "runtime": 80
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 7001694,
+        "runtime": 81
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 4569590,
+        "runtime": 77
+      },
+      {
+        "pack_UB": 70,
+        "sched_UB": 5038041,
+        "runtime": 82
+      },
+      {
+        "pack_UB": 96,
+        "sched_UB": 6168183,
+        "runtime": 85
+      },
+      {
+        "pack_UB": 75,
+        "sched_UB": 4025311,
+        "runtime": 81
+      },
+      {
+        "pack_UB": 78,
+        "sched_UB": 5111739,
+        "runtime": 84
+      },
+      {
+        "pack_UB": 92,
+        "sched_UB": 5894819,
+        "runtime": 75
+      },
+      {
+        "pack_UB": 88,
+        "sched_UB": 7075494,
+        "runtime": 80
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 6399223,
+        "runtime": 84
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 5534220,
+        "runtime": 82
+      },
+      {
+        "pack_UB": 70,
+        "sched_UB": 3995385,
+        "runtime": 77
+      },
+      {
+        "pack_UB": 89,
+        "sched_UB": 4998428,
+        "runtime": 77
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 4649726,
+        "runtime": 77
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 4171334,
+        "runtime": 72
+      },
+      {
+        "pack_UB": 87,
+        "sched_UB": 3745576,
+        "runtime": 82
+      },
+      {
+        "pack_UB": 90,
+        "sched_UB": 6170865,
+        "runtime": 85
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 4753044,
+        "runtime": 73
+      },
+      {
+        "pack_UB": 79,
+        "sched_UB": 3554854,
+        "runtime": 80
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 4136407,
+        "runtime": 85
+      }
+    ],
+    "jobs_2000": [
+      {
+        "pack_UB": 154,
+        "sched_UB": 39976993,
+        "runtime": 312
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 46255712,
+        "runtime": 303
+      },
+      {
+        "pack_UB": 160,
+        "sched_UB": 36414578,
+        "runtime": 296
+      },
+      {
+        "pack_UB": 156,
+        "sched_UB": 30760275,
+        "runtime": 278
+      },
+      {
+        "pack_UB": 164,
+        "sched_UB": 43429968,
+        "runtime": 296
+      },
+      {
+        "pack_UB": 170,
+        "sched_UB": 43924559,
+        "runtime": 281
+      },
+      {
+        "pack_UB": 152,
+        "sched_UB": 38693361,
+        "runtime": 277
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 38680787,
+        "runtime": 277
+      },
+      {
+        "pack_UB": 149,
+        "sched_UB": 35643744,
+        "runtime": 258
+      },
+      {
+        "pack_UB": 163,
+        "sched_UB": 39894147,
+        "runtime": 185
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 49872638,
+        "runtime": 180
+      },
+      {
+        "pack_UB": 172,
+        "sched_UB": 47173467,
+        "runtime": 179
+      },
+      {
+        "pack_UB": 169,
+        "sched_UB": 43162251,
+        "runtime": 184
+      },
+      {
+        "pack_UB": 160,
+        "sched_UB": 36549356,
+        "runtime": 188
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 36432481,
+        "runtime": 175
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 40723751,
+        "runtime": 167
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 49292562,
+        "runtime": 171
+      },
+      {
+        "pack_UB": 152,
+        "sched_UB": 36192602,
+        "runtime": 172
+      },
+      {
+        "pack_UB": 150,
+        "sched_UB": 44805483,
+        "runtime": 180
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 42089950,
+        "runtime": 180
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 42831707,
+        "runtime": 180
+      },
+      {
+        "pack_UB": 155,
+        "sched_UB": 31538507,
+        "runtime": 171
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 40160548,
+        "runtime": 167
+      },
+      {
+        "pack_UB": 160,
+        "sched_UB": 41416061,
+        "runtime": 173
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 40239298,
+        "runtime": 171
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 36676675,
+        "runtime": 176
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 33330496,
+        "runtime": 180
+      },
+      {
+        "pack_UB": 150,
+        "sched_UB": 38763867,
+        "runtime": 173
+      },
+      {
+        "pack_UB": 141,
+        "sched_UB": 36336975,
+        "runtime": 167
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 40351288,
+        "runtime": 177
+      }
+    ],
+    "jobs_3000": [
+      {
+        "pack_UB": 241,
+        "sched_UB": 107603980,
+        "runtime": 571
+      },
+      {
+        "pack_UB": 219,
+        "sched_UB": 112091778,
+        "runtime": 575
+      },
+      {
+        "pack_UB": 241,
+        "sched_UB": 120498375,
+        "runtime": 601
+      },
+      {
+        "pack_UB": 236,
+        "sched_UB": 113337930,
+        "runtime": 618
+      },
+      {
+        "pack_UB": 222,
+        "sched_UB": 121114728,
+        "runtime": 602
+      },
+      {
+        "pack_UB": 230,
+        "sched_UB": 112175114,
+        "runtime": 591
+      },
+      {
+        "pack_UB": 251,
+        "sched_UB": 120759221,
+        "runtime": 594
+      },
+      {
+        "pack_UB": 238,
+        "sched_UB": 115425917,
+        "runtime": 608
+      },
+      {
+        "pack_UB": 244,
+        "sched_UB": 98079768,
+        "runtime": 578
+      },
+      {
+        "pack_UB": 230,
+        "sched_UB": 119732817,
+        "runtime": 628
+      },
+      {
+        "pack_UB": 230,
+        "sched_UB": 98467530,
+        "runtime": 551
+      },
+      {
+        "pack_UB": 231,
+        "sched_UB": 77992759,
+        "runtime": 554
+      },
+      {
+        "pack_UB": 253,
+        "sched_UB": 100592932,
+        "runtime": 591
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 117148475,
+        "runtime": 596
+      },
+      {
+        "pack_UB": 239,
+        "sched_UB": 113864333,
+        "runtime": 569
+      },
+      {
+        "pack_UB": 241,
+        "sched_UB": 124219982,
+        "runtime": 628
+      },
+      {
+        "pack_UB": 232,
+        "sched_UB": 91759938,
+        "runtime": 572
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 111912471,
+        "runtime": 573
+      },
+      {
+        "pack_UB": 234,
+        "sched_UB": 88253448,
+        "runtime": 578
+      },
+      {
+        "pack_UB": 245,
+        "sched_UB": 114213466,
+        "runtime": 621
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 90692790,
+        "runtime": 570
+      },
+      {
+        "pack_UB": 225,
+        "sched_UB": 94551058,
+        "runtime": 571
+      },
+      {
+        "pack_UB": 224,
+        "sched_UB": 117789969,
+        "runtime": 580
+      },
+      {
+        "pack_UB": 251,
+        "sched_UB": 104413117,
+        "runtime": 602
+      },
+      {
+        "pack_UB": 222,
+        "sched_UB": 103829707,
+        "runtime": 569
+      },
+      {
+        "pack_UB": 229,
+        "sched_UB": 97105195,
+        "runtime": 557
+      },
+      {
+        "pack_UB": 227,
+        "sched_UB": 115882659,
+        "runtime": 587
+      },
+      {
+        "pack_UB": 231,
+        "sched_UB": 104044735,
+        "runtime": 593
+      },
+      {
+        "pack_UB": 227,
+        "sched_UB": 117350053,
+        "runtime": 583
+      },
+      {
+        "pack_UB": 226,
+        "sched_UB": 96236671,
+        "runtime": 564
+      }
+    ],
+    "jobs_4000": [
+      {
+        "pack_UB": 301,
+        "sched_UB": 225950002,
+        "runtime": 1004
+      },
+      {
+        "pack_UB": 301,
+        "sched_UB": 220193166,
+        "runtime": 1041
+      },
+      {
+        "pack_UB": 316,
+        "sched_UB": 225396870,
+        "runtime": 1100
+      },
+      {
+        "pack_UB": 309,
+        "sched_UB": 217327607,
+        "runtime": 1024
+      },
+      {
+        "pack_UB": 292,
+        "sched_UB": 178703539,
+        "runtime": 1052
+      },
+      {
+        "pack_UB": 327,
+        "sched_UB": 222162324,
+        "runtime": 1102
+      },
+      {
+        "pack_UB": 313,
+        "sched_UB": 180710388,
+        "runtime": 1073
+      },
+      {
+        "pack_UB": 294,
+        "sched_UB": 221482691,
+        "runtime": 1002
+      },
+      {
+        "pack_UB": 303,
+        "sched_UB": 215577390,
+        "runtime": 1028
+      },
+      {
+        "pack_UB": 293,
+        "sched_UB": 216132798,
+        "runtime": 1017
+      },
+      {
+        "pack_UB": 295,
+        "sched_UB": 216408619,
+        "runtime": 1032
+      },
+      {
+        "pack_UB": 320,
+        "sched_UB": 233862579,
+        "runtime": 1139
+      },
+      {
+        "pack_UB": 305,
+        "sched_UB": 219683220,
+        "runtime": 1075
+      },
+      {
+        "pack_UB": 328,
+        "sched_UB": 194999523,
+        "runtime": 1021
+      },
+      {
+        "pack_UB": 328,
+        "sched_UB": 223969698,
+        "runtime": 1061
+      },
+      {
+        "pack_UB": 295,
+        "sched_UB": 238739015,
+        "runtime": 1045
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 218477518,
+        "runtime": 927
+      },
+      {
+        "pack_UB": 306,
+        "sched_UB": 181044864,
+        "runtime": 745
+      },
+      {
+        "pack_UB": 303,
+        "sched_UB": 220459870,
+        "runtime": 660
+      },
+      {
+        "pack_UB": 311,
+        "sched_UB": 232215110,
+        "runtime": 620
+      },
+      {
+        "pack_UB": 306,
+        "sched_UB": 221316538,
+        "runtime": 609
+      },
+      {
+        "pack_UB": 327,
+        "sched_UB": 190361859,
+        "runtime": 601
+      },
+      {
+        "pack_UB": 336,
+        "sched_UB": 222231322,
+        "runtime": 607
+      },
+      {
+        "pack_UB": 335,
+        "sched_UB": 207984174,
+        "runtime": 627
+      },
+      {
+        "pack_UB": 323,
+        "sched_UB": 194488746,
+        "runtime": 588
+      },
+      {
+        "pack_UB": 298,
+        "sched_UB": 221407671,
+        "runtime": 612
+      },
+      {
+        "pack_UB": 307,
+        "sched_UB": 219982111,
+        "runtime": 586
+      },
+      {
+        "pack_UB": 306,
+        "sched_UB": 225731917,
+        "runtime": 610
+      },
+      {
+        "pack_UB": 310,
+        "sched_UB": 228021432,
+        "runtime": 585
+      },
+      {
+        "pack_UB": 305,
+        "sched_UB": 210160673,
+        "runtime": 577
+      }
+    ]
+  },
+  "model_5": {
+    "jobs_1000": [
+      {
+        "pack_UB": 83,
+        "sched_UB": 4426393,
+        "runtime": 283
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 3011490,
+        "runtime": 330
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 4614389,
+        "runtime": 435
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 3980812,
+        "runtime": 474
+      },
+      {
+        "pack_UB": 78,
+        "sched_UB": 3229461,
+        "runtime": 425
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 2908312,
+        "runtime": 456
+      },
+      {
+        "pack_UB": 87,
+        "sched_UB": 4312749,
+        "runtime": 334
+      },
+      {
+        "pack_UB": 80,
+        "sched_UB": 2988627,
+        "runtime": 454
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 4284884,
+        "runtime": 468
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 2936579,
+        "runtime": 393
+      },
+      {
+        "pack_UB": 80,
+        "sched_UB": 3858395,
+        "runtime": 469
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 4493117,
+        "runtime": 439
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 3887199,
+        "runtime": 397
+      },
+      {
+        "pack_UB": 70,
+        "sched_UB": 3824984,
+        "runtime": 447
+      },
+      {
+        "pack_UB": 96,
+        "sched_UB": 5037719,
+        "runtime": 422
+      },
+      {
+        "pack_UB": 75,
+        "sched_UB": 2871250,
+        "runtime": 332
+      },
+      {
+        "pack_UB": 78,
+        "sched_UB": 3335649,
+        "runtime": 456
+      },
+      {
+        "pack_UB": 92,
+        "sched_UB": 3966837,
+        "runtime": 457
+      },
+      {
+        "pack_UB": 89,
+        "sched_UB": 5061955,
+        "runtime": 447
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 4706820,
+        "runtime": 434
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 4495638,
+        "runtime": 446
+      },
+      {
+        "pack_UB": 70,
+        "sched_UB": 3176229,
+        "runtime": 418
+      },
+      {
+        "pack_UB": 89,
+        "sched_UB": 4117838,
+        "runtime": 404
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 3104056,
+        "runtime": 403
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 4362657,
+        "runtime": 428
+      },
+      {
+        "pack_UB": 87,
+        "sched_UB": 3397349,
+        "runtime": 398
+      },
+      {
+        "pack_UB": 90,
+        "sched_UB": 3856988,
+        "runtime": 450
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 3544128,
+        "runtime": 406
+      },
+      {
+        "pack_UB": 79,
+        "sched_UB": 2807599,
+        "runtime": 364
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 4050743,
+        "runtime": 331
+      }
+    ],
+    "jobs_2000": [
+      {
+        "pack_UB": 153,
+        "sched_UB": 32000187,
+        "runtime": 1685
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 34045169,
+        "runtime": 1622
+      },
+      {
+        "pack_UB": 160,
+        "sched_UB": 33233941,
+        "runtime": 1690
+      },
+      {
+        "pack_UB": 156,
+        "sched_UB": 29746605,
+        "runtime": 1546
+      },
+      {
+        "pack_UB": 163,
+        "sched_UB": 35386594,
+        "runtime": 1707
+      },
+      {
+        "pack_UB": 170,
+        "sched_UB": 40160269,
+        "runtime": 1614
+      },
+      {
+        "pack_UB": 152,
+        "sched_UB": 31247933,
+        "runtime": 1559
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 35591401,
+        "runtime": 1346
+      },
+      {
+        "pack_UB": 149,
+        "sched_UB": 27236758,
+        "runtime": 1405
+      },
+      {
+        "pack_UB": 163,
+        "sched_UB": 31774268,
+        "runtime": 1514
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 37287584,
+        "runtime": 1576
+      },
+      {
+        "pack_UB": 173,
+        "sched_UB": 36514152,
+        "runtime": 1646
+      },
+      {
+        "pack_UB": 169,
+        "sched_UB": 40254458,
+        "runtime": 1605
+      },
+      {
+        "pack_UB": 160,
+        "sched_UB": 37502763,
+        "runtime": 1636
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 27465982,
+        "runtime": 1501
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 31954603,
+        "runtime": 1447
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 35034872,
+        "runtime": 1581
+      },
+      {
+        "pack_UB": 152,
+        "sched_UB": 29855101,
+        "runtime": 1456
+      },
+      {
+        "pack_UB": 150,
+        "sched_UB": 29904622,
+        "runtime": 1502
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 32612587,
+        "runtime": 1637
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 31240883,
+        "runtime": 1547
+      },
+      {
+        "pack_UB": 155,
+        "sched_UB": 26728226,
+        "runtime": 1475
+      },
+      {
+        "pack_UB": 154,
+        "sched_UB": 31965318,
+        "runtime": 1391
+      },
+      {
+        "pack_UB": 160,
+        "sched_UB": 32373245,
+        "runtime": 1536
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 31762433,
+        "runtime": 1582
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 30415133,
+        "runtime": 1517
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 28211410,
+        "runtime": 1504
+      },
+      {
+        "pack_UB": 150,
+        "sched_UB": 29366631,
+        "runtime": 1524
+      },
+      {
+        "pack_UB": 141,
+        "sched_UB": 24646681,
+        "runtime": 1331
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 27156183,
+        "runtime": 1145
+      }
+    ],
+    "jobs_3000": [
+      {
+        "pack_UB": 241,
+        "sched_UB": 91961282,
+        "runtime": 3504
+      },
+      {
+        "pack_UB": 219,
+        "sched_UB": 87653777,
+        "runtime": 3426
+      },
+      {
+        "pack_UB": 241,
+        "sched_UB": 100979799,
+        "runtime": 3489
+      },
+      {
+        "pack_UB": 236,
+        "sched_UB": 98676719,
+        "runtime": 3564
+      },
+      {
+        "pack_UB": 223,
+        "sched_UB": 93037603,
+        "runtime": 3422
+      },
+      {
+        "pack_UB": 230,
+        "sched_UB": 99592993,
+        "runtime": 3554
+      },
+      {
+        "pack_UB": 251,
+        "sched_UB": 100589767,
+        "runtime": 3567
+      },
+      {
+        "pack_UB": 238,
+        "sched_UB": 93645120,
+        "runtime": 3535
+      },
+      {
+        "pack_UB": 244,
+        "sched_UB": 94172980,
+        "runtime": 3491
+      },
+      {
+        "pack_UB": 230,
+        "sched_UB": 93076524,
+        "runtime": 2654
+      },
+      {
+        "pack_UB": 230,
+        "sched_UB": 86479990,
+        "runtime": 2004
+      },
+      {
+        "pack_UB": 231,
+        "sched_UB": 80035426,
+        "runtime": 1964
+      },
+      {
+        "pack_UB": 253,
+        "sched_UB": 100287224,
+        "runtime": 2135
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 99719010,
+        "runtime": 2151
+      },
+      {
+        "pack_UB": 239,
+        "sched_UB": 91777573,
+        "runtime": 2034
+      },
+      {
+        "pack_UB": 241,
+        "sched_UB": 95158271,
+        "runtime": 2156
+      },
+      {
+        "pack_UB": 232,
+        "sched_UB": 90926657,
+        "runtime": 2063
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 90542814,
+        "runtime": 2130
+      },
+      {
+        "pack_UB": 234,
+        "sched_UB": 88729165,
+        "runtime": 2019
+      },
+      {
+        "pack_UB": 245,
+        "sched_UB": 95009552,
+        "runtime": 2214
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 92567925,
+        "runtime": 2117
+      },
+      {
+        "pack_UB": 225,
+        "sched_UB": 87950284,
+        "runtime": 2061
+      },
+      {
+        "pack_UB": 224,
+        "sched_UB": 94500832,
+        "runtime": 2123
+      },
+      {
+        "pack_UB": 251,
+        "sched_UB": 107035837,
+        "runtime": 2185
+      },
+      {
+        "pack_UB": 222,
+        "sched_UB": 80102263,
+        "runtime": 1994
+      },
+      {
+        "pack_UB": 229,
+        "sched_UB": 91200459,
+        "runtime": 2054
+      },
+      {
+        "pack_UB": 227,
+        "sched_UB": 78456309,
+        "runtime": 1994
+      },
+      {
+        "pack_UB": 231,
+        "sched_UB": 91605491,
+        "runtime": 2139
+      },
+      {
+        "pack_UB": 227,
+        "sched_UB": 96344559,
+        "runtime": 2021
+      },
+      {
+        "pack_UB": 226,
+        "sched_UB": 94723483,
+        "runtime": 1681
+      }
+    ],
+    "jobs_4000": [
+      {
+        "pack_UB": 301,
+        "sched_UB": 189818163,
+        "runtime": 3429
+      },
+      {
+        "pack_UB": 301,
+        "sched_UB": 174101102,
+        "runtime": 3383
+      },
+      {
+        "pack_UB": 316,
+        "sched_UB": 207315174,
+        "runtime": 3641
+      },
+      {
+        "pack_UB": 309,
+        "sched_UB": 178420578,
+        "runtime": 3449
+      },
+      {
+        "pack_UB": 292,
+        "sched_UB": 181022979,
+        "runtime": 3401
+      },
+      {
+        "pack_UB": 327,
+        "sched_UB": 203148388,
+        "runtime": 3613
+      },
+      {
+        "pack_UB": 313,
+        "sched_UB": 191479467,
+        "runtime": 3400
+      },
+      {
+        "pack_UB": 294,
+        "sched_UB": 172182304,
+        "runtime": 3324
+      },
+      {
+        "pack_UB": 303,
+        "sched_UB": 178815881,
+        "runtime": 3396
+      },
+      {
+        "pack_UB": 293,
+        "sched_UB": 171373697,
+        "runtime": 3252
+      },
+      {
+        "pack_UB": 295,
+        "sched_UB": 176020123,
+        "runtime": 3367
+      },
+      {
+        "pack_UB": 320,
+        "sched_UB": 213215239,
+        "runtime": 3597
+      },
+      {
+        "pack_UB": 305,
+        "sched_UB": 196735808,
+        "runtime": 3519
+      },
+      {
+        "pack_UB": 328,
+        "sched_UB": 198668062,
+        "runtime": 3479
+      },
+      {
+        "pack_UB": 328,
+        "sched_UB": 202243797,
+        "runtime": 3522
+      },
+      {
+        "pack_UB": 295,
+        "sched_UB": 185402169,
+        "runtime": 3313
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 196379487,
+        "runtime": 3368
+      },
+      {
+        "pack_UB": 306,
+        "sched_UB": 180890520,
+        "runtime": 3418
+      },
+      {
+        "pack_UB": 303,
+        "sched_UB": 170549375,
+        "runtime": 3409
+      },
+      {
+        "pack_UB": 311,
+        "sched_UB": 187394601,
+        "runtime": 3496
+      },
+      {
+        "pack_UB": 306,
+        "sched_UB": 191297304,
+        "runtime": 3454
+      },
+      {
+        "pack_UB": 327,
+        "sched_UB": 197439574,
+        "runtime": 3513
+      },
+      {
+        "pack_UB": 336,
+        "sched_UB": 203538502,
+        "runtime": 3512
+      },
+      {
+        "pack_UB": 335,
+        "sched_UB": 224610362,
+        "runtime": 3603
+      },
+      {
+        "pack_UB": 323,
+        "sched_UB": 196880416,
+        "runtime": 3412
+      },
+      {
+        "pack_UB": 298,
+        "sched_UB": 175798028,
+        "runtime": 3390
+      },
+      {
+        "pack_UB": 307,
+        "sched_UB": 182571622,
+        "runtime": 3373
+      },
+      {
+        "pack_UB": 306,
+        "sched_UB": 182627337,
+        "runtime": 3459
+      },
+      {
+        "pack_UB": 310,
+        "sched_UB": 183181981,
+        "runtime": 3293
+      },
+      {
+        "pack_UB": 305,
+        "sched_UB": 162781312,
+        "runtime": 2681
+      }
+    ]
+  },
+  "model_6": {
+    "jobs_1000": [
+      {
+        "pack_UB": 86,
+        "sched_UB": 4366632,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 3054042,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 4103597,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 4111548,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 78,
+        "sched_UB": 2485132,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 2946302,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 92,
+        "sched_UB": 4999064,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 2865728,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 83,
+        "sched_UB": 4136188,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 2952820,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 83,
+        "sched_UB": 3927506,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 3421695,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 3641715,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 71,
+        "sched_UB": 3032612,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 98,
+        "sched_UB": 4895138,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 3331004,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 4227618,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 94,
+        "sched_UB": 3480583,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 93,
+        "sched_UB": 4480434,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 4300895,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 3836972,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 73,
+        "sched_UB": 3009592,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 92,
+        "sched_UB": 4600408,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 2947966,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 4071479,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 87,
+        "sched_UB": 3593360,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 90,
+        "sched_UB": 3993324,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 3008331,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 2816350,
+        "runtime": 1801
+      },
+      {
+        "pack_UB": 89,
+        "sched_UB": 3313235,
+        "runtime": 1801
+      }
+    ],
+    "jobs_2000": [
+      {
+        "pack_UB": 161,
+        "sched_UB": 26053701,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 33781026,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 167,
+        "sched_UB": 37035282,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 165,
+        "sched_UB": 24507457,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 172,
+        "sched_UB": 31043791,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 172,
+        "sched_UB": 35404812,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 31318213,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 168,
+        "sched_UB": 31984218,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 25886517,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 170,
+        "sched_UB": 29684804,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 163,
+        "sched_UB": 35213660,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 179,
+        "sched_UB": 35469327,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 175,
+        "sched_UB": 37921746,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 164,
+        "sched_UB": 36434034,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 168,
+        "sched_UB": 30328209,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 30588220,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 165,
+        "sched_UB": 32639343,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 25300099,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 152,
+        "sched_UB": 28968781,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 33257246,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 156,
+        "sched_UB": 27899576,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 162,
+        "sched_UB": 28851357,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 29384848,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 173,
+        "sched_UB": 33499952,
+        "runtime": 1803
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 28857055,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 169,
+        "sched_UB": 30776634,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 30661216,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 156,
+        "sched_UB": 25611543,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 148,
+        "sched_UB": 29451673,
+        "runtime": 1802
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 25259447,
+        "runtime": 1802
+      }
+    ],
+    "jobs_3000": [
+      {
+        "pack_UB": 246,
+        "sched_UB": 108099754,
+        "runtime": 1805
+      },
+      {
+        "pack_UB": 232,
+        "sched_UB": 78125741,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 255,
+        "sched_UB": 105049439,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 84706002,
+        "runtime": 1805
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 82938619,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 236,
+        "sched_UB": 87634377,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 251,
+        "sched_UB": 95074840,
+        "runtime": 1805
+      },
+      {
+        "pack_UB": 243,
+        "sched_UB": 84483993,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 258,
+        "sched_UB": 85258317,
+        "runtime": 1805
+      },
+      {
+        "pack_UB": 238,
+        "sched_UB": 84503425,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 232,
+        "sched_UB": 101319132,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 92699610,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 270,
+        "sched_UB": 90681028,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 240,
+        "sched_UB": 98597552,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 246,
+        "sched_UB": 95102798,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 98304976,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 240,
+        "sched_UB": 81112199,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 92542722,
+        "runtime": 1805
+      },
+      {
+        "pack_UB": 243,
+        "sched_UB": 80320191,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 248,
+        "sched_UB": 114026985,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 241,
+        "sched_UB": 89124044,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 227,
+        "sched_UB": 92835568,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 82468407,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 257,
+        "sched_UB": 93037323,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 77958010,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 93205567,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 231,
+        "sched_UB": 90555255,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 237,
+        "sched_UB": 86465492,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 238,
+        "sched_UB": 76461771,
+        "runtime": 1804
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 84699252,
+        "runtime": 1804
+      }
+    ],
+    "jobs_4000": [
+      {
+        "pack_UB": 307,
+        "sched_UB": 186206808,
+        "runtime": 1808
+      },
+      {
+        "pack_UB": 317,
+        "sched_UB": 175057074,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 330,
+        "sched_UB": 198368515,
+        "runtime": 1808
+      },
+      {
+        "pack_UB": 323,
+        "sched_UB": 170391121,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 310,
+        "sched_UB": 168551710,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 343,
+        "sched_UB": 199170222,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 324,
+        "sched_UB": 199219305,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 301,
+        "sched_UB": 163003813,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 317,
+        "sched_UB": 197351759,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 297,
+        "sched_UB": 185680246,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 295,
+        "sched_UB": 174397678,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 327,
+        "sched_UB": 209497907,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 315,
+        "sched_UB": 195728355,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 331,
+        "sched_UB": 177679112,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 330,
+        "sched_UB": 205356958,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 307,
+        "sched_UB": 163721497,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 322,
+        "sched_UB": 189061601,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 313,
+        "sched_UB": 164430491,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 309,
+        "sched_UB": 182015496,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 325,
+        "sched_UB": 203027018,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 316,
+        "sched_UB": 176407249,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 338,
+        "sched_UB": 192592201,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 349,
+        "sched_UB": 191395348,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 341,
+        "sched_UB": 236499881,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 335,
+        "sched_UB": 204918924,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 178575386,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 162499021,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 311,
+        "sched_UB": 190059699,
+        "runtime": 1806
+      },
+      {
+        "pack_UB": 324,
+        "sched_UB": 175398129,
+        "runtime": 1807
+      },
+      {
+        "pack_UB": 318,
+        "sched_UB": 171863873,
+        "runtime": 1806
+      }
+    ]
+  },
+  "model_7": {
+    "jobs_1000": [
+      {
+        "pack_UB": 86,
+        "sched_UB": 5716486,
+        "runtime": 85
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 3902927,
+        "runtime": 76
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 11607793,
+        "runtime": 98
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 7883074,
+        "runtime": 84
+      },
+      {
+        "pack_UB": 78,
+        "sched_UB": 3828614,
+        "runtime": 70
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 4630323,
+        "runtime": 82
+      },
+      {
+        "pack_UB": 92,
+        "sched_UB": 7421047,
+        "runtime": 84
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 6608925,
+        "runtime": 86
+      },
+      {
+        "pack_UB": 83,
+        "sched_UB": 5409303,
+        "runtime": 81
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 4431143,
+        "runtime": 73
+      },
+      {
+        "pack_UB": 83,
+        "sched_UB": 6747878,
+        "runtime": 88
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 6850776,
+        "runtime": 83
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 7672329,
+        "runtime": 87
+      },
+      {
+        "pack_UB": 71,
+        "sched_UB": 7015214,
+        "runtime": 89
+      },
+      {
+        "pack_UB": 98,
+        "sched_UB": 12628159,
+        "runtime": 94
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 6701302,
+        "runtime": 77
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 9630653,
+        "runtime": 88
+      },
+      {
+        "pack_UB": 94,
+        "sched_UB": 5361823,
+        "runtime": 76
+      },
+      {
+        "pack_UB": 93,
+        "sched_UB": 10589633,
+        "runtime": 83
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 6764571,
+        "runtime": 76
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 8771041,
+        "runtime": 78
+      },
+      {
+        "pack_UB": 73,
+        "sched_UB": 5215497,
+        "runtime": 72
+      },
+      {
+        "pack_UB": 92,
+        "sched_UB": 7226657,
+        "runtime": 79
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 6861594,
+        "runtime": 73
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 5542262,
+        "runtime": 74
+      },
+      {
+        "pack_UB": 87,
+        "sched_UB": 6042201,
+        "runtime": 87
+      },
+      {
+        "pack_UB": 90,
+        "sched_UB": 8966281,
+        "runtime": 87
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 6499512,
+        "runtime": 82
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 5719477,
+        "runtime": 58
+      },
+      {
+        "pack_UB": 89,
+        "sched_UB": 4903539,
+        "runtime": 61
+      }
+    ],
+    "jobs_2000": [
+      {
+        "pack_UB": 161,
+        "sched_UB": 61148102,
+        "runtime": 340
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 39193773,
+        "runtime": 299
+      },
+      {
+        "pack_UB": 167,
+        "sched_UB": 53173266,
+        "runtime": 295
+      },
+      {
+        "pack_UB": 165,
+        "sched_UB": 53900883,
+        "runtime": 289
+      },
+      {
+        "pack_UB": 172,
+        "sched_UB": 57319615,
+        "runtime": 287
+      },
+      {
+        "pack_UB": 172,
+        "sched_UB": 69459742,
+        "runtime": 322
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 61684303,
+        "runtime": 316
+      },
+      {
+        "pack_UB": 168,
+        "sched_UB": 59358717,
+        "runtime": 314
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 48522810,
+        "runtime": 184
+      },
+      {
+        "pack_UB": 170,
+        "sched_UB": 63629283,
+        "runtime": 190
+      },
+      {
+        "pack_UB": 163,
+        "sched_UB": 68420770,
+        "runtime": 199
+      },
+      {
+        "pack_UB": 179,
+        "sched_UB": 44417045,
+        "runtime": 178
+      },
+      {
+        "pack_UB": 175,
+        "sched_UB": 60105539,
+        "runtime": 177
+      },
+      {
+        "pack_UB": 164,
+        "sched_UB": 73527279,
+        "runtime": 196
+      },
+      {
+        "pack_UB": 168,
+        "sched_UB": 35509857,
+        "runtime": 168
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 59437979,
+        "runtime": 168
+      },
+      {
+        "pack_UB": 165,
+        "sched_UB": 64591220,
+        "runtime": 193
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 58435961,
+        "runtime": 168
+      },
+      {
+        "pack_UB": 152,
+        "sched_UB": 57513344,
+        "runtime": 174
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 67016843,
+        "runtime": 199
+      },
+      {
+        "pack_UB": 156,
+        "sched_UB": 59740292,
+        "runtime": 187
+      },
+      {
+        "pack_UB": 162,
+        "sched_UB": 59217042,
+        "runtime": 190
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 35169339,
+        "runtime": 168
+      },
+      {
+        "pack_UB": 173,
+        "sched_UB": 72885470,
+        "runtime": 197
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 35741724,
+        "runtime": 183
+      },
+      {
+        "pack_UB": 169,
+        "sched_UB": 52129798,
+        "runtime": 186
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 54048681,
+        "runtime": 199
+      },
+      {
+        "pack_UB": 156,
+        "sched_UB": 35653326,
+        "runtime": 165
+      },
+      {
+        "pack_UB": 148,
+        "sched_UB": 51846539,
+        "runtime": 141
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 55770629,
+        "runtime": 141
+      }
+    ],
+    "jobs_3000": [
+      {
+        "pack_UB": 246,
+        "sched_UB": 95708776,
+        "runtime": 593
+      },
+      {
+        "pack_UB": 232,
+        "sched_UB": 158222396,
+        "runtime": 623
+      },
+      {
+        "pack_UB": 255,
+        "sched_UB": 178833075,
+        "runtime": 688
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 159370015,
+        "runtime": 689
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 159158625,
+        "runtime": 626
+      },
+      {
+        "pack_UB": 236,
+        "sched_UB": 172673402,
+        "runtime": 680
+      },
+      {
+        "pack_UB": 251,
+        "sched_UB": 102654722,
+        "runtime": 624
+      },
+      {
+        "pack_UB": 243,
+        "sched_UB": 147690335,
+        "runtime": 645
+      },
+      {
+        "pack_UB": 258,
+        "sched_UB": 101172610,
+        "runtime": 624
+      },
+      {
+        "pack_UB": 238,
+        "sched_UB": 158770438,
+        "runtime": 625
+      },
+      {
+        "pack_UB": 232,
+        "sched_UB": 96881545,
+        "runtime": 605
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 135825089,
+        "runtime": 562
+      },
+      {
+        "pack_UB": 270,
+        "sched_UB": 105659748,
+        "runtime": 605
+      },
+      {
+        "pack_UB": 240,
+        "sched_UB": 172988794,
+        "runtime": 685
+      },
+      {
+        "pack_UB": 246,
+        "sched_UB": 184610444,
+        "runtime": 672
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 170720730,
+        "runtime": 671
+      },
+      {
+        "pack_UB": 240,
+        "sched_UB": 95367599,
+        "runtime": 594
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 159720364,
+        "runtime": 672
+      },
+      {
+        "pack_UB": 243,
+        "sched_UB": 89643334,
+        "runtime": 593
+      },
+      {
+        "pack_UB": 248,
+        "sched_UB": 108404810,
+        "runtime": 655
+      },
+      {
+        "pack_UB": 241,
+        "sched_UB": 151445231,
+        "runtime": 653
+      },
+      {
+        "pack_UB": 227,
+        "sched_UB": 157461515,
+        "runtime": 634
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 95985563,
+        "runtime": 560
+      },
+      {
+        "pack_UB": 257,
+        "sched_UB": 166335499,
+        "runtime": 657
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 151646849,
+        "runtime": 622
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 166794651,
+        "runtime": 603
+      },
+      {
+        "pack_UB": 231,
+        "sched_UB": 149403420,
+        "runtime": 646
+      },
+      {
+        "pack_UB": 237,
+        "sched_UB": 99359859,
+        "runtime": 492
+      },
+      {
+        "pack_UB": 238,
+        "sched_UB": 145651133,
+        "runtime": 453
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 162738174,
+        "runtime": 493
+      }
+    ],
+    "jobs_4000": [
+      {
+        "pack_UB": 307,
+        "sched_UB": 308841695,
+        "runtime": 1196
+      },
+      {
+        "pack_UB": 317,
+        "sched_UB": 300799554,
+        "runtime": 1125
+      },
+      {
+        "pack_UB": 330,
+        "sched_UB": 191708693,
+        "runtime": 1140
+      },
+      {
+        "pack_UB": 323,
+        "sched_UB": 177821349,
+        "runtime": 1066
+      },
+      {
+        "pack_UB": 310,
+        "sched_UB": 291517005,
+        "runtime": 1199
+      },
+      {
+        "pack_UB": 343,
+        "sched_UB": 196929512,
+        "runtime": 1113
+      },
+      {
+        "pack_UB": 324,
+        "sched_UB": 309148953,
+        "runtime": 1256
+      },
+      {
+        "pack_UB": 301,
+        "sched_UB": 285039689,
+        "runtime": 1040
+      },
+      {
+        "pack_UB": 317,
+        "sched_UB": 178758904,
+        "runtime": 1033
+      },
+      {
+        "pack_UB": 297,
+        "sched_UB": 305057172,
+        "runtime": 1131
+      },
+      {
+        "pack_UB": 295,
+        "sched_UB": 167787935,
+        "runtime": 1027
+      },
+      {
+        "pack_UB": 327,
+        "sched_UB": 307677677,
+        "runtime": 1168
+      },
+      {
+        "pack_UB": 315,
+        "sched_UB": 182140798,
+        "runtime": 1074
+      },
+      {
+        "pack_UB": 331,
+        "sched_UB": 349770981,
+        "runtime": 1148
+      },
+      {
+        "pack_UB": 330,
+        "sched_UB": 316488650,
+        "runtime": 1249
+      },
+      {
+        "pack_UB": 307,
+        "sched_UB": 312707156,
+        "runtime": 922
+      },
+      {
+        "pack_UB": 322,
+        "sched_UB": 317045319,
+        "runtime": 840
+      },
+      {
+        "pack_UB": 313,
+        "sched_UB": 177517912,
+        "runtime": 643
+      },
+      {
+        "pack_UB": 309,
+        "sched_UB": 307878704,
+        "runtime": 654
+      },
+      {
+        "pack_UB": 325,
+        "sched_UB": 310923819,
+        "runtime": 664
+      },
+      {
+        "pack_UB": 316,
+        "sched_UB": 188169652,
+        "runtime": 619
+      },
+      {
+        "pack_UB": 338,
+        "sched_UB": 291778687,
+        "runtime": 667
+      },
+      {
+        "pack_UB": 349,
+        "sched_UB": 326349058,
+        "runtime": 703
+      },
+      {
+        "pack_UB": 341,
+        "sched_UB": 344636378,
+        "runtime": 707
+      },
+      {
+        "pack_UB": 335,
+        "sched_UB": 188443195,
+        "runtime": 622
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 180936592,
+        "runtime": 685
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 295379050,
+        "runtime": 639
+      },
+      {
+        "pack_UB": 311,
+        "sched_UB": 185328424,
+        "runtime": 547
+      },
+      {
+        "pack_UB": 324,
+        "sched_UB": 308568959,
+        "runtime": 547
+      },
+      {
+        "pack_UB": 318,
+        "sched_UB": 177453357,
+        "runtime": 486
+      }
+    ]
+  },
+  "model_8": {
+    "jobs_1000": [
+      {
+        "pack_UB": 86,
+        "sched_UB": 5469965,
+        "runtime": 196
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 4415773,
+        "runtime": 212
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 6357693,
+        "runtime": 351
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 5253516,
+        "runtime": 457
+      },
+      {
+        "pack_UB": 78,
+        "sched_UB": 4499294,
+        "runtime": 399
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 5026107,
+        "runtime": 438
+      },
+      {
+        "pack_UB": 92,
+        "sched_UB": 6961155,
+        "runtime": 430
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 4896303,
+        "runtime": 404
+      },
+      {
+        "pack_UB": 83,
+        "sched_UB": 5651634,
+        "runtime": 451
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 4096737,
+        "runtime": 385
+      },
+      {
+        "pack_UB": 83,
+        "sched_UB": 5648597,
+        "runtime": 434
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 6140219,
+        "runtime": 422
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 6016408,
+        "runtime": 367
+      },
+      {
+        "pack_UB": 71,
+        "sched_UB": 5072885,
+        "runtime": 430
+      },
+      {
+        "pack_UB": 98,
+        "sched_UB": 7713373,
+        "runtime": 411
+      },
+      {
+        "pack_UB": 77,
+        "sched_UB": 4183044,
+        "runtime": 389
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 5574927,
+        "runtime": 404
+      },
+      {
+        "pack_UB": 94,
+        "sched_UB": 5984053,
+        "runtime": 394
+      },
+      {
+        "pack_UB": 93,
+        "sched_UB": 7525551,
+        "runtime": 439
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 5909602,
+        "runtime": 416
+      },
+      {
+        "pack_UB": 84,
+        "sched_UB": 5791098,
+        "runtime": 419
+      },
+      {
+        "pack_UB": 73,
+        "sched_UB": 3969451,
+        "runtime": 396
+      },
+      {
+        "pack_UB": 92,
+        "sched_UB": 7142815,
+        "runtime": 427
+      },
+      {
+        "pack_UB": 81,
+        "sched_UB": 3514431,
+        "runtime": 311
+      },
+      {
+        "pack_UB": 85,
+        "sched_UB": 6217789,
+        "runtime": 417
+      },
+      {
+        "pack_UB": 87,
+        "sched_UB": 5802958,
+        "runtime": 439
+      },
+      {
+        "pack_UB": 90,
+        "sched_UB": 5641083,
+        "runtime": 309
+      },
+      {
+        "pack_UB": 86,
+        "sched_UB": 4726514,
+        "runtime": 376
+      },
+      {
+        "pack_UB": 82,
+        "sched_UB": 3842160,
+        "runtime": 378
+      },
+      {
+        "pack_UB": 89,
+        "sched_UB": 4761045,
+        "runtime": 409
+      }
+    ],
+    "jobs_2000": [
+      {
+        "pack_UB": 161,
+        "sched_UB": 34460465,
+        "runtime": 1558
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 36723772,
+        "runtime": 1486
+      },
+      {
+        "pack_UB": 167,
+        "sched_UB": 39221807,
+        "runtime": 1598
+      },
+      {
+        "pack_UB": 165,
+        "sched_UB": 37727598,
+        "runtime": 1479
+      },
+      {
+        "pack_UB": 172,
+        "sched_UB": 40618340,
+        "runtime": 1571
+      },
+      {
+        "pack_UB": 172,
+        "sched_UB": 43534632,
+        "runtime": 1568
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 40975956,
+        "runtime": 1508
+      },
+      {
+        "pack_UB": 168,
+        "sched_UB": 42210482,
+        "runtime": 1353
+      },
+      {
+        "pack_UB": 153,
+        "sched_UB": 31923461,
+        "runtime": 1309
+      },
+      {
+        "pack_UB": 170,
+        "sched_UB": 39783132,
+        "runtime": 1473
+      },
+      {
+        "pack_UB": 163,
+        "sched_UB": 44847775,
+        "runtime": 1564
+      },
+      {
+        "pack_UB": 179,
+        "sched_UB": 43092492,
+        "runtime": 1529
+      },
+      {
+        "pack_UB": 175,
+        "sched_UB": 44026759,
+        "runtime": 1527
+      },
+      {
+        "pack_UB": 164,
+        "sched_UB": 43294267,
+        "runtime": 1564
+      },
+      {
+        "pack_UB": 168,
+        "sched_UB": 35437967,
+        "runtime": 1399
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 35292429,
+        "runtime": 1395
+      },
+      {
+        "pack_UB": 165,
+        "sched_UB": 41759865,
+        "runtime": 1426
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 36695287,
+        "runtime": 1432
+      },
+      {
+        "pack_UB": 152,
+        "sched_UB": 35040279,
+        "runtime": 1387
+      },
+      {
+        "pack_UB": 166,
+        "sched_UB": 38912037,
+        "runtime": 1508
+      },
+      {
+        "pack_UB": 156,
+        "sched_UB": 38192141,
+        "runtime": 1493
+      },
+      {
+        "pack_UB": 162,
+        "sched_UB": 36398167,
+        "runtime": 1468
+      },
+      {
+        "pack_UB": 157,
+        "sched_UB": 33535646,
+        "runtime": 1342
+      },
+      {
+        "pack_UB": 173,
+        "sched_UB": 40811443,
+        "runtime": 1459
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 35243315,
+        "runtime": 1430
+      },
+      {
+        "pack_UB": 169,
+        "sched_UB": 43634034,
+        "runtime": 1501
+      },
+      {
+        "pack_UB": 158,
+        "sched_UB": 38928738,
+        "runtime": 1501
+      },
+      {
+        "pack_UB": 156,
+        "sched_UB": 34413562,
+        "runtime": 1366
+      },
+      {
+        "pack_UB": 148,
+        "sched_UB": 30701638,
+        "runtime": 1348
+      },
+      {
+        "pack_UB": 161,
+        "sched_UB": 34637506,
+        "runtime": 1386
+      }
+    ],
+    "jobs_3000": [
+      {
+        "pack_UB": 246,
+        "sched_UB": 108383869,
+        "runtime": 3356
+      },
+      {
+        "pack_UB": 232,
+        "sched_UB": 97145901,
+        "runtime": 3238
+      },
+      {
+        "pack_UB": 255,
+        "sched_UB": 119357671,
+        "runtime": 3471
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 109011427,
+        "runtime": 3407
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 105278948,
+        "runtime": 3439
+      },
+      {
+        "pack_UB": 236,
+        "sched_UB": 113268226,
+        "runtime": 3356
+      },
+      {
+        "pack_UB": 251,
+        "sched_UB": 115962906,
+        "runtime": 3491
+      },
+      {
+        "pack_UB": 243,
+        "sched_UB": 116638745,
+        "runtime": 3432
+      },
+      {
+        "pack_UB": 258,
+        "sched_UB": 114616928,
+        "runtime": 3292
+      },
+      {
+        "pack_UB": 238,
+        "sched_UB": 104760863,
+        "runtime": 2858
+      },
+      {
+        "pack_UB": 232,
+        "sched_UB": 108015512,
+        "runtime": 1946
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 95420227,
+        "runtime": 1913
+      },
+      {
+        "pack_UB": 270,
+        "sched_UB": 108542362,
+        "runtime": 1993
+      },
+      {
+        "pack_UB": 240,
+        "sched_UB": 113971342,
+        "runtime": 2116
+      },
+      {
+        "pack_UB": 246,
+        "sched_UB": 112127548,
+        "runtime": 1998
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 113756501,
+        "runtime": 2064
+      },
+      {
+        "pack_UB": 240,
+        "sched_UB": 102243037,
+        "runtime": 1968
+      },
+      {
+        "pack_UB": 242,
+        "sched_UB": 112568032,
+        "runtime": 1971
+      },
+      {
+        "pack_UB": 243,
+        "sched_UB": 100496923,
+        "runtime": 1979
+      },
+      {
+        "pack_UB": 248,
+        "sched_UB": 116435802,
+        "runtime": 2121
+      },
+      {
+        "pack_UB": 241,
+        "sched_UB": 104144778,
+        "runtime": 1959
+      },
+      {
+        "pack_UB": 227,
+        "sched_UB": 101121313,
+        "runtime": 1975
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 103218363,
+        "runtime": 1977
+      },
+      {
+        "pack_UB": 257,
+        "sched_UB": 115593970,
+        "runtime": 2049
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 105793666,
+        "runtime": 1928
+      },
+      {
+        "pack_UB": 235,
+        "sched_UB": 111524765,
+        "runtime": 1968
+      },
+      {
+        "pack_UB": 231,
+        "sched_UB": 90849665,
+        "runtime": 1901
+      },
+      {
+        "pack_UB": 237,
+        "sched_UB": 106062087,
+        "runtime": 1988
+      },
+      {
+        "pack_UB": 238,
+        "sched_UB": 95858941,
+        "runtime": 1930
+      },
+      {
+        "pack_UB": 233,
+        "sched_UB": 100682234,
+        "runtime": 1953
+      }
+    ],
+    "jobs_4000": [
+      {
+        "pack_UB": 307,
+        "sched_UB": 210188408,
+        "runtime": 3297
+      },
+      {
+        "pack_UB": 317,
+        "sched_UB": 193921035,
+        "runtime": 3228
+      },
+      {
+        "pack_UB": 330,
+        "sched_UB": 208247329,
+        "runtime": 3367
+      },
+      {
+        "pack_UB": 323,
+        "sched_UB": 208734599,
+        "runtime": 3198
+      },
+      {
+        "pack_UB": 310,
+        "sched_UB": 203494202,
+        "runtime": 3289
+      },
+      {
+        "pack_UB": 343,
+        "sched_UB": 235795491,
+        "runtime": 3482
+      },
+      {
+        "pack_UB": 324,
+        "sched_UB": 200632892,
+        "runtime": 3323
+      },
+      {
+        "pack_UB": 301,
+        "sched_UB": 189177535,
+        "runtime": 3193
+      },
+      {
+        "pack_UB": 317,
+        "sched_UB": 197846150,
+        "runtime": 3176
+      },
+      {
+        "pack_UB": 297,
+        "sched_UB": 199530382,
+        "runtime": 3156
+      },
+      {
+        "pack_UB": 295,
+        "sched_UB": 195925334,
+        "runtime": 3235
+      },
+      {
+        "pack_UB": 327,
+        "sched_UB": 225904811,
+        "runtime": 3450
+      },
+      {
+        "pack_UB": 315,
+        "sched_UB": 213694879,
+        "runtime": 3318
+      },
+      {
+        "pack_UB": 331,
+        "sched_UB": 214563153,
+        "runtime": 3325
+      },
+      {
+        "pack_UB": 330,
+        "sched_UB": 228118880,
+        "runtime": 3491
+      },
+      {
+        "pack_UB": 307,
+        "sched_UB": 208355302,
+        "runtime": 3185
+      },
+      {
+        "pack_UB": 322,
+        "sched_UB": 214026055,
+        "runtime": 3256
+      },
+      {
+        "pack_UB": 313,
+        "sched_UB": 202135008,
+        "runtime": 3224
+      },
+      {
+        "pack_UB": 309,
+        "sched_UB": 199830436,
+        "runtime": 3255
+      },
+      {
+        "pack_UB": 325,
+        "sched_UB": 223848341,
+        "runtime": 3403
+      },
+      {
+        "pack_UB": 316,
+        "sched_UB": 206318987,
+        "runtime": 3347
+      },
+      {
+        "pack_UB": 338,
+        "sched_UB": 215933683,
+        "runtime": 3214
+      },
+      {
+        "pack_UB": 349,
+        "sched_UB": 219780139,
+        "runtime": 3294
+      },
+      {
+        "pack_UB": 341,
+        "sched_UB": 242232803,
+        "runtime": 3554
+      },
+      {
+        "pack_UB": 335,
+        "sched_UB": 228910099,
+        "runtime": 3284
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 206059959,
+        "runtime": 3302
+      },
+      {
+        "pack_UB": 314,
+        "sched_UB": 209184982,
+        "runtime": 3294
+      },
+      {
+        "pack_UB": 311,
+        "sched_UB": 215432638,
+        "runtime": 3294
+      },
+      {
+        "pack_UB": 324,
+        "sched_UB": 217001239,
+        "runtime": 3193
+      },
+      {
+        "pack_UB": 318,
+        "sched_UB": 206849082,
+        "runtime": 3199
+      }
+    ]
+  }
+}
