@@ -1,0 +1,60 @@
+Problem Instance: 0
+Schedule found after time 3600 with objective value of 2.2983796E7
+Problem Instance: 1
+Schedule found after time 3600 with objective value of 2.291456E7
+Problem Instance: 2
+Schedule found after time 3600 with objective value of 2.3249052E7
+Problem Instance: 3
+Schedule found after time 3600 with objective value of 2.3428157E7
+Problem Instance: 4
+Schedule found after time 3600 with objective value of 2.3612664E7
+Problem Instance: 5
+Schedule found after time 3600 with objective value of 2.7197201E7
+Problem Instance: 6
+Schedule found after time 3600 with objective value of 2.3935646E7
+Problem Instance: 7
+Schedule found after time 3600 with objective value of 2.426175E7
+Problem Instance: 8
+Schedule found after time 3600 with objective value of 2.5949571E7
+Problem Instance: 9
+Schedule found after time 3600 with objective value of 2.5422548E7
+Problem Instance: 10
+Schedule found after time 3600 with objective value of 2.5251265E7
+Problem Instance: 11
+Schedule found after time 3600 with objective value of 2.2882131E7
+Problem Instance: 12
+Schedule found after time 3600 with objective value of 2.4277952E7
+Problem Instance: 13
+Schedule found after time 3600 with objective value of 2.5537016E7
+Problem Instance: 14
+Schedule found after time 3600 with objective value of 2.5030412E7
+Problem Instance: 15
+Schedule found after time 3600 with objective value of 2.6580061E7
+Problem Instance: 16
+Schedule found after time 3600 with objective value of 2.6644413E7
+Problem Instance: 17
+Schedule found after time 3600 with objective value of 2.6747103E7
+Problem Instance: 18
+Schedule found after time 3600 with objective value of 2.5053887E7
+Problem Instance: 19
+Schedule found after time 3600 with objective value of 2.407729E7
+Problem Instance: 20
+Schedule found after time 3600 with objective value of 2.3761385E7
+Problem Instance: 21
+Schedule found after time 3600 with objective value of 2.4551555E7
+Problem Instance: 22
+Schedule found after time 3600 with objective value of 2.6591384E7
+Problem Instance: 23
+Schedule found after time 3600 with objective value of 2.5249364E7
+Problem Instance: 24
+Schedule found after time 3600 with objective value of 2.4079961E7
+Problem Instance: 25
+Schedule found after time 3600 with objective value of 2.2099268E7
+Problem Instance: 26
+Schedule found after time 3600 with objective value of 2.1341821E7
+Problem Instance: 27
+Schedule found after time 3600 with objective value of 2.3924242E7
+Problem Instance: 28
+Schedule found after time 3600 with objective value of 2.768952E7
+Problem Instance: 29
+Schedule found after time 3600 with objective value of 2.829279E7

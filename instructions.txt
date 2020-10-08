@@ -1,0 +1,31 @@
+Creating new sets of instances
+------------------------------------------------
+1) you should not have to generate any new instances to keep consistency with previous experiments
+2) copy all required folder contents from instances_042220_rsp as a basis for running experiments, these instances have already been preprocessed using the RSP
+3) rename the destination folder to match the model being tested (for example, instances_100820_3 for testing model 3 on October 8)
+
+Creating run instructions for a set of instances
+------------------------------------------------
+
+1) use gen_config.sh to create run instructions
+2) fileName -> name of instructions file, summary of instance characteristics (for example, chap3_4000_3 indicates instances for chapter 3 of the thesis with 4000 jobs using model 3)
+3) mainFolder -> folder in which all instance excel files are stored (for example, /Documents/data)
+4) instanceFolder -> folder in mainFolder in which excel files for the current set of all instances are stored (for example, ./instances_042220 for instances created on April 22)
+5) numJobs -> folder in instanceFolder in which excel files for the instances with the desired number of jobs are stored (for example, ./jobs_4000 for 4000 job instances)
+6) numInstances -> number of instances in folder to create run instructions for
+7) modelTypes -> model numbers to create run instructions for, usually I only put one model type per run instruction file to be able to use multiple threads, but if you want to run multiple models sequentially, then you can put multiple model types
+8) repetitions -> only applicable for models using edd-sched (4 and 7), default number of repetitions is 100
+
+Running built jar file
+------------------------------------------------
+
+1) make sure than run instructions have been created
+2) shaded jar file is located in target/run_experiments.jar, all dependencies are already included in file if maven successfully built
+3) command to run jar file is:
+java -Djava.library.path=$CPLEX_PATH:$CPOPTIMIZER_PATH -jar $PATH_TO_SHADED_JAR_FILE $RUN_INSTRUCTIONS_PATH
+
+After running
+------------------------------------------------
+
+1) summary.xlsx file in each folder should contain everything you need to analyze results, individual instance files can be used to investigate discrepancies but otherwise don't need to be looked at
+2) move all solved instances from temp folder into archive folder

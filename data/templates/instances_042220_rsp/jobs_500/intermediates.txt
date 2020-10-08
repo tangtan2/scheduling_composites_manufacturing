@@ -1,0 +1,60 @@
+Problem Instance: 0
+Schedule found after time 38 with objective value of 0.0
+Problem Instance: 1
+Schedule found after time 21 with objective value of 0.0
+Problem Instance: 2
+Schedule found after time 3600 with objective value of 157226.0
+Problem Instance: 3
+Schedule found after time 143 with objective value of 0.0
+Problem Instance: 4
+Schedule found after time 59 with objective value of 0.0
+Problem Instance: 5
+Schedule found after time 3600 with objective value of 19228.0
+Problem Instance: 6
+Schedule found after time 3600 with objective value of 8174.0
+Problem Instance: 7
+Schedule found after time 29 with objective value of 0.0
+Problem Instance: 8
+Schedule found after time 42 with objective value of 0.0
+Problem Instance: 9
+Schedule found after time 3600 with objective value of 4306.0
+Problem Instance: 10
+Schedule found after time 20 with objective value of 0.0
+Problem Instance: 11
+Schedule found after time 3600 with objective value of 8064.0
+Problem Instance: 12
+Schedule found after time 3600 with objective value of 1857.0
+Problem Instance: 13
+Schedule found after time 3600 with objective value of 4087.0
+Problem Instance: 14
+Schedule found after time 3600 with objective value of 1857.0
+Problem Instance: 15
+Schedule found after time 3600 with objective value of 11273.0
+Problem Instance: 16
+Schedule found after time 3600 with objective value of 5813.0
+Problem Instance: 17
+Schedule found after time 88 with objective value of 0.0
+Problem Instance: 18
+Schedule found after time 28 with objective value of 0.0
+Problem Instance: 19
+Schedule found after time 3600 with objective value of 9682.0
+Problem Instance: 20
+Schedule found after time 3600 with objective value of 4087.0
+Problem Instance: 21
+Schedule found after time 3600 with objective value of 4087.0
+Problem Instance: 22
+Schedule found after time 3600 with objective value of 3977.0
+Problem Instance: 23
+Schedule found after time 44 with objective value of 0.0
+Problem Instance: 24
+Schedule found after time 73 with objective value of 0.0
+Problem Instance: 25
+Schedule found after time 27 with objective value of 0.0
+Problem Instance: 26
+Schedule found after time 35 with objective value of 0.0
+Problem Instance: 27
+Schedule found after time 14 with objective value of 0.0
+Problem Instance: 28
+Schedule found after time 3600 with objective value of 11724.0
+Problem Instance: 29
+Schedule found after time 27 with objective value of 0.0
